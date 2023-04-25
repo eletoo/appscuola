@@ -1,0 +1,38 @@
+.breadcrumb {
+    font-size: small;
+    margin-top: 5px;
+}
+
+header {
+    margin-left: 8px;
+    margin-top: 15px;
+    font-size: large;
+}
+
+#header-sezione{
+    margin-top: 2em;
+    border-bottom: 2px solid #357ebd;
+    margin-bottom: 2em;
+}
+
+table{
+    margin-top: 10px;
+    width: 100%;
+}
+
+#menu li:hover ul{
+    display: block;
+    position: absolute;
+    z-index: 1;
+    background-color: lightgray;
+    width: 160px;
+}
+
+#menu a:hover{
+    background-color: darkgray;
+}
+
+#menu li ul {
+    display: none;
+}
+
