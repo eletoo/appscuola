@@ -12,6 +12,11 @@ class DataLayer
         return Personale::where('ruolo','Docente')->orderBy('lastname', 'asc')->orderBy('firstname', 'asc')->get();
     }
 
+    public function listaDocentiSede($idsede)
+    {
+        return Personale::where('ruolo','Docente')->where('sede_id', $idsede)->orderBy('lastname', 'asc')->orderBy('firstname', 'asc')->get();
+    }
+
     public function infoSede($cittasede)
     {
         return Sede::where('citta', $cittasede)->first();

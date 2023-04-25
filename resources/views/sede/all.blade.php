@@ -17,6 +17,7 @@
 @endsection
 
 @section('body')
+<div class="container">
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped table-hover table-responsive table-bordered">
@@ -44,13 +45,18 @@
                         ({{$sede->provincia}})
                     </td>
                     <td>
-                        <button type="button" class="btn btn-info">Calendario</button>
-                        <button type="button" class="btn btn-info">Docenti</button>
+                        <button type="button" class="btn btn-info">
+                            <a href="#">
+                            <i class="bi bi-calendar-event"></i> Calendario</a></button>
+                        <button type="button" class="btn btn-info">
+                            <a href="{{route(strtolower($sede->citta).'.index')}}">
+                            <i class="bi bi-person"></i> Docenti</a></button>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>                
     </div>
+</div>
 </div>
 @endsection

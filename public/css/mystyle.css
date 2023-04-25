@@ -1,4 +1,5 @@
 .breadcrumb {
+    margin-left: 8px;
     font-size: small;
     margin-top: 5px;
 }
@@ -16,23 +17,31 @@ header {
 }
 
 table{
-    margin-top: 10px;
+    margin-top: 20px;
     width: 100%;
 }
 
-#menu li:hover ul{
-    display: block;
-    position: absolute;
-    z-index: 1;
-    background-color: lightgray;
-    width: 160px;
+.instructions {
+    margin-top: 1em;
+    margin-left: 8px;
+    font-size: 150%;
+    margin-bottom: 1em;
 }
 
-#menu a:hover{
-    background-color: darkgray;
+.TODO{
+    font-size: x-large;
+    color: red;
+    align-content: center;
 }
 
-#menu li ul {
-    display: none;
+.form-group{
+    margin-bottom: 2em;
 }
 
+p{
+    margin-left: 8px;
+}
+
+a{
+    color: black;
+}

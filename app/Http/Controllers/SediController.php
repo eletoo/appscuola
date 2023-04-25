@@ -17,21 +17,24 @@ class SediController extends Controller
     public function brescia()
     {
         $dl = new DataLayer();
+        $docenti = $dl->listaDocentiSede(1);
         $info_sede = $dl->infoSede('Brescia');
-        return view('sede.index')->with('info_sede', $info_sede);
+        return view('sede.index')->with(['lista_docenti' => $docenti, 'info_sede' => $info_sede]);
     }
 
     public function bergamo()
     {
         $dl = new DataLayer();
+        $docenti = $dl->listaDocentiSede(2);
         $info_sede = $dl->infoSede('Bergamo');
-        return view('sede.index')->with('info_sede', $info_sede);
+        return view('sede.index')->with(['lista_docenti' => $docenti, 'info_sede' => $info_sede]);
     }
 
     public function milano()
     {
         $dl = new DataLayer();
+        $docenti = $dl->listaDocentiSede(3);
         $info_sede = $dl->infoSede('Milano');
-        return view('sede.index')->with('info_sede', $info_sede);
+        return view('sede.index')->with(['lista_docenti' => $docenti, 'info_sede' => $info_sede]);
     }
 }

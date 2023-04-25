@@ -15,22 +15,40 @@
 
 @section('body')
 <div class="row">
-        <div class="col-md-offset-10 col-md-12">
-            <div class="input-group">            
-                <input type="search" class="form-control rounded" placeholder="Cerca" aria-label="Search"
-                    aria-describedby="search-addon" />
-                <button type="button" class="btn btn-primary">Cerca</button>
-            </div>
+    <div class="container">
+        <div class="instructions">
+            Filtra per:
         </div>
     </div>
-        
+    <div class="TODO">TODO: filtra per disponibilità</div>    
+</div>    
 
-    <div class="row ">
-        <div class="col-md-12">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-10 col-md-12">
+            <div>
+                <div class="form-group">
+                    <label for="SedeField">Sede</label>
+                    <select class="form-select" id="SedeField" name="sedefield">
+                        @foreach($lista_sedi as $sede)
+                            <option value="{{$sede->id}}">{{$sede->citta}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="SedeField">Disponibilità</label>
+                    <select class="form-select" id="SedeField" name="sedefield">
+                        @foreach($lista_sedi as $sede)
+                            <option value="{{$sede->id}}">{{$sede->citta}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <table class="table table-striped table-hover table-responsive table-bordered">
-                <col width="40%"/>
-                <col width="40%"/>
-                <col width="20%"/>
+                <col width="45%"/>
+                <col width="45%"/>
+                <col width="10%"/>
                 <thead>
                     <tr>
                         <th>Cognome</th>
@@ -43,11 +61,13 @@
                         <tr>
                             <td>{{$doc->lastname}}</td>
                             <td>{{$doc->firstname}}</td>
-                            <td><a class="btn btn-primary" href="#">Orario</a></td>
+                            <td><a class="btn btn-primary" href="#"><i class="bi bi-clock"></i> Orario</a></td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+</div>
+
 @endsection
