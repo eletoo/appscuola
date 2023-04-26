@@ -45,10 +45,10 @@
                         ({{$sede->provincia}})
                     </td>
                     <td>
-                        <button type="button" class="btn btn-info">
+                        <button type="button" class="btn btn-primary">
                             <a href="#">
                             <i class="bi bi-calendar-event"></i> Calendario</a></button>
-                        <button type="button" class="btn btn-info">
+                        <button type="button" class="btn btn-primary">
                             <a href="{{route(strtolower($sede->citta).'.index')}}">
                             <i class="bi bi-person"></i> Docenti</a></button>
                     </td>

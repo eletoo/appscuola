@@ -61,7 +61,10 @@
                         <tr>
                             <td>{{$doc->lastname}}</td>
                             <td>{{$doc->firstname}}</td>
-                            <td><a class="btn btn-primary" href="#"><i class="bi bi-clock"></i> Orario</a></td>
+                            <td>
+                                <button  class="btn btn-primary">
+                                    <a href="#"><i class="bi bi-clock"></i> Orario</a></td>
+                                </button>
                         </tr>
                     @endforeach
                 </tbody>

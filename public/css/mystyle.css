@@ -28,20 +28,47 @@ table{
     margin-bottom: 1em;
 }
 
-.TODO{
+.TODO {
     font-size: x-large;
     color: red;
     align-content: center;
 }
 
-.form-group{
+.form-group {
     margin-bottom: 2em;
 }
 
-p{
+p {
     margin-left: 8px;
 }
 
-a{
+a {
     color: black;
+}
+
+.btn-primary {
+    background-color: #94a7c4;
+    border-color: #94a7c4;
+
+}
+
+.btn-primary:hover{
+    background-color: #7b99c4;
+    border-color: #7b99c4;
+    
+}
+
+.btn-primary:active:hover{
+    background-color: #7b99c4;
+    border-color: #7b99c4;      
+}
+
+.home-page-button {
+    margin-top: 2.5em;
+    margin-left: 2.5em;
+    margin-right: 2.5em;
+    margin-bottom: 2.55em;
+    font-size: 150%;
+    width: 200px;
+    height: 150px;
 }
