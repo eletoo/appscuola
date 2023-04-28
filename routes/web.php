@@ -16,3 +16,9 @@ Route::get('/sede/tutte', [SediController::class, 'index'])->name('sedi.index');
 Route::get('/sede/brescia', [SediController::class, 'brescia'])->name('brescia.index');
 Route::get('/sede/bergamo', [SediController::class, 'bergamo'])->name('bergamo.index');
 Route::get('/sede/milano', [SediController::class, 'milano'])->name('milano.index');
+
+/*Login*/
+Route::get('/personale/loginDocenti', [PersonaleController::class,'loginDocenti'])->name('personale.loginDocenti');
+Route::get('/personale/loginSegreteria', [PersonaleController::class,'loginSegreteria'])->name('personale.loginSegreteria');
+
+/*Calendari*/

@@ -9,6 +9,7 @@
     <!--STYLESHEETS-->
     <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('/') }}/css/@yield('style')" />
+    <link rel="stylesheet" href="{{ url('/') }}/css/timetable.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <!--JAVASCRIPT-->
@@ -28,9 +29,8 @@
     </nav>
 </div>
 
-
-<!--NAVBAR-->
 <div class="container-fluid">
+    <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,6 @@
                         Sedi
                     </a>
                     <ul class="dropdown-menu">
-                        <!--TODO: for item in database-->
                         <li><a class="dropdown-item" href="{{route('bergamo.index')}}">Bergamo</a></li>
                         <li><a class="dropdown-item" href="{{route('brescia.index')}}">Brescia</a></li>
                         <li><a class="dropdown-item" href="{{route('milano.index')}}">Milano</a></li>
@@ -60,6 +59,14 @@
                     <a class="nav-link" href="{{route('docenti.index')}}" role="button">Tutti i Docenti</a>
                 </li>       
             </ul> 
+            <ul class="navbar-nav mt-2 mt-lg-0 ms-auto">
+                <li class="nav-item ms-auto">
+                    <a class="nav-link" role="button" href="{{route('personale.loginDocenti')}}">Login Docenti</a>
+                </li>
+                <li class="nav-item ms-auto">
+                    <a class="nav-link" role="button" href="{{route('personale.loginSegreteria')}}">Login Segreteria</a>
+                </li>
+            </ul>
         </div>
     </nav>
 </div>
@@ -79,6 +86,8 @@
         </h1>
     </header>
 </div>
+
+
 
 <!--BODY-->
 <div class="container-fluid">
