@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventoController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PersonaleController;
 use App\Http\Controllers\SediController;
@@ -21,4 +22,5 @@ Route::get('/sede/milano', [SediController::class, 'milano'])->name('milano.inde
 Route::get('/personale/loginDocenti', [PersonaleController::class,'loginDocenti'])->name('personale.loginDocenti');
 Route::get('/personale/loginSegreteria', [PersonaleController::class,'loginSegreteria'])->name('personale.loginSegreteria');
 
-/*Calendari*/
+/*Eventi*/
+Route::resource('eventi', EventoController::class);

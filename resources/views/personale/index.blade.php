@@ -4,6 +4,9 @@
 
 @section('title', 'Tutti i Docenti')
 
+@section('page_title', 'Tutti i Docenti')
+
+
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -15,7 +18,7 @@
 
 @section('body')
 <div class="row">
-    <div class="container">
+    <div class="container-fluid">
         <div class="instructions">
             Filtra per:
         </div>
@@ -23,7 +26,7 @@
     <div class="TODO">TODO: filtra per disponibilità</div>    
 </div>    
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-offset-10 col-md-12">
             <div>

@@ -6,6 +6,9 @@
     Elenco Sedi
 @endsection
 
+@section('page_title', 'Elenco Sedi')
+
+
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -17,7 +20,7 @@
 @endsection
 
 @section('body')
-<div class="container">
+<div class="container-fluid">
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped table-hover table-responsive table-bordered">

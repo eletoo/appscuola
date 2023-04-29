@@ -6,6 +6,10 @@
   {{$info_sede->nome_sede}} - Docenti
 @endsection
 
+@section('page_title')
+  {{$info_sede->nome_sede}} - Docenti
+@endsection
+
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -30,7 +34,7 @@
         </p>
     </div>
 </div>
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-offset-10 col-md-12">
 			<table class="table table-striped table-hover table-responsive table-bordered">

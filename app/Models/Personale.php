@@ -14,6 +14,11 @@ class Personale extends Model
 
     public function sedi()
     {
-        return $this->belongsToMany(Sede::class, 'docente_sede','sede_id', 'id');
+        return $this->belongsToMany(Sede::class, 'docente_sede', 'sede_id', 'id');
+    }
+
+    public function eventi()
+    {
+        return $this->hasMany(Evento::class, 'docente_id', 'id');
     }
 }

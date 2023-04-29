@@ -22,10 +22,10 @@
 <!--BANNER-->
 <div class="container-fluid">
     <nav class="navbar navbar-light d-none d-md-block">
-        <img class="mw-100 my-navbar" src="{{url('/img/Leopardi.png')}}" alt="Max-width 100%">
+        <img class="mw-100 my-navbar" src="{{url('/img/banner/Leopardi.png')}}" alt="Max-width 100%">
     </nav>
     <nav class="navbar navbar-light d-block d-md-none">
-        <img class="mw-100 my-navbar" src="{{url('/img/Leopardi_mobile.png')}}" alt="Max-width 800px">
+        <img class="mw-100 my-navbar" src="{{url('/img/banner/Leopardi_mobile.png')}}" alt="Max-width 800px">
     </nav>
 </div>
 
@@ -82,7 +82,7 @@
 <div class="container-fluid">
     <header class="section-header">
         <h1>
-            @yield('title')
+            @yield('page_title')
         </h1>
     </header>
 </div>
