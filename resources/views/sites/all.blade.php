@@ -35,24 +35,24 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($lista_sedi as $sede)
+                @foreach($sites_list as $site)
                 <tr>
                     <td>
-                        {{$sede->nome_sede}}
+                        {{$site->site_name}}
                     </td>
                     <td>
-                        {{$sede->via}} 
-                        {{$sede->civico}}, 
-                        {{$sede->CAP}}, 
-                        {{$sede->citta}} 
-                        ({{$sede->provincia}})
+                        {{$site->street}} 
+                        {{$site->number}}, 
+                        {{$site->postcode}}, 
+                        {{$site->city}} 
+                        ({{$site->province}})
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary">
                             <a href="#">
                             <i class="bi bi-calendar-event"></i> Calendario</a></button>
                         <button type="button" class="btn btn-primary">
-                            <a href="{{route(strtolower($sede->citta).'.index')}}">
+                            <a href="{{route(strtolower($site->city).'.index')}}">
                             <i class="bi bi-person"></i> Docenti</a></button>
                     </td>
                 </tr>

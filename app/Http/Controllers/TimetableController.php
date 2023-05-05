@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataLayer;
-use App\Models\Evento;
-use Illuminate\Http\Request;
+use App\Models\Timetable;
+use App\Http\Requests\StoreTimetableRequest;
+use App\Http\Requests\UpdateTimetableRequest;
 
-class EventoController extends Controller
+class TimetableController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +15,8 @@ class EventoController extends Controller
      */
     public function index()
     {
-        $dl = new DataLayer();
-        $lista_docenti = $dl->listaDocenti();
-        $eventi = Evento::all();
-        return view('eventi.index')->with([
-            'eventi' => $eventi,
-            'lista_docenti' => $lista_docenti
-        ]);
-    } //
-
+        //
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,28 +25,27 @@ class EventoController extends Controller
      */
     public function create()
     {
-        return view('eventi.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreTimetableRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTimetableRequest $request)
     {
-        Evento::create($request->all());
-        return redirect()->route('eventi.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Timetable  $timetable
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Timetable $timetable)
     {
         //
     }
@@ -61,10 +53,10 @@ class EventoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Timetable  $timetable
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Timetable $timetable)
     {
         //
     }
@@ -72,11 +64,11 @@ class EventoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateTimetableRequest  $request
+     * @param  \App\Models\Timetable  $timetable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTimetableRequest $request, Timetable $timetable)
     {
         //
     }
@@ -84,10 +76,10 @@ class EventoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Timetable  $timetable
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Timetable $timetable)
     {
         //
     }

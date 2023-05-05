@@ -33,16 +33,16 @@
                 <div class="form-group">
                     <label for="SedeField">Sede</label>
                     <select class="form-select" id="SedeField" name="sedefield">
-                        @foreach($lista_sedi as $sede)
-                            <option value="{{$sede->id}}">{{$sede->citta}}</option>
+                        @foreach($sites_list as $site)
+                            <option value="{{$site->id}}">{{$site->city}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="SedeField">Disponibilità</label>
                     <select class="form-select" id="SedeField" name="sedefield">
-                        @foreach($lista_sedi as $sede)
-                            <option value="{{$sede->id}}">{{$sede->citta}}</option>
+                        @foreach($sites_list as $site)
+                            <option value="{{$site->id}}">{{$site->city}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -60,10 +60,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($lista_docenti as $doc)
+                    @foreach($teachers_list as $teacher)
                         <tr>
-                            <td>{{$doc->lastname}}</td>
-                            <td>{{$doc->firstname}}</td>
+                            <td>{{$teacher->lastname}}</td>
+                            <td>{{$teacher->firstname}}</td>
                             <td>
                                 <button  class="btn btn-primary">
                                     <a href="#"><i class="bi bi-clock"></i> Orario</a></td>

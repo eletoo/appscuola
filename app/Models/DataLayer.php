@@ -2,28 +2,28 @@
 
 namespace App\Models;
 
-use App\Models\Personale;
+use App\Models\Teacher;
 
 class DataLayer
 {
     // contiene tutti i metodi per interagire con il DB
-    public function listaDocenti()
+    public function listTeachers()
     {
-        return Personale::where('ruolo','Docente')->orderBy('lastname', 'asc')->orderBy('firstname', 'asc')->get();
+        return Teacher::where('role','Docente')->orderBy('lastname', 'asc')->orderBy('firstname', 'asc')->get();
     }
 
-    public function listaDocentiSede($idsede)
+    public function listSiteTeachers($siteid)
     {
-        return Personale::where('ruolo','Docente')->where('sede_id', $idsede)->orderBy('lastname', 'asc')->orderBy('firstname', 'asc')->get();
+        return Teacher::where('role','Docente')->where('site_id', $siteid)->orderBy('lastname', 'asc')->orderBy('firstname', 'asc')->get();
     }
 
-    public function infoSede($cittasede)
+    public function infoSite($sitecity)
     {
-        return Sede::where('citta', $cittasede)->first();
+        return Site::where('city', $sitecity)->first();
     }
 
-    public function listaSedi()
+    public function listSites()
     {
-        return Sede::orderBy('citta', 'asc')->get();
+        return Site::orderBy('city', 'asc')->get();
     }
 }

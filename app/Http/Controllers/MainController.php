@@ -11,13 +11,13 @@ class MainController extends Controller
         return view('index');
     }
 
-    public function getPersonale()
+    public function getTeachers()
     {
-        return view('personale');
+        return view('teachers');
     }
 
-    public function getSede()
+    public function getSites()
     {
-        return view('sede');
+        return view('sites');
     }
 }

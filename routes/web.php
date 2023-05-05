@@ -1,26 +1,26 @@
 <?php
 
-use App\Http\Controllers\EventoController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\PersonaleController;
-use App\Http\Controllers\SediController;
+use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\SitesController;
 use Illuminate\Support\Facades\Route;
 
 /*Home*/
 Route::get('/', [MainController::class, 'getHome'])->name('home');
 
 /*Personale*/
-Route::get('/personale/docenti', [PersonaleController::class, 'docenti'])->name('docenti.index');
+Route::get('/personale/docenti', [TeachersController::class, 'teachers'])->name('teachers.index');
 
 /*Sedi*/
-Route::get('/sede/tutte', [SediController::class, 'index'])->name('sedi.index');
-Route::get('/sede/brescia', [SediController::class, 'brescia'])->name('brescia.index');
-Route::get('/sede/bergamo', [SediController::class, 'bergamo'])->name('bergamo.index');
-Route::get('/sede/milano', [SediController::class, 'milano'])->name('milano.index');
+Route::get('/sede/tutte', [SitesController::class, 'index'])->name('sites.index');
+Route::get('/sede/brescia', [SitesController::class, 'brescia'])->name('brescia.index');
+Route::get('/sede/bergamo', [SitesController::class, 'bergamo'])->name('bergamo.index');
+Route::get('/sede/milano', [SitesController::class, 'milano'])->name('milano.index');
 
 /*Login*/
-Route::get('/personale/loginDocenti', [PersonaleController::class,'loginDocenti'])->name('personale.loginDocenti');
-Route::get('/personale/loginSegreteria', [PersonaleController::class,'loginSegreteria'])->name('personale.loginSegreteria');
+Route::get('/personale/loginDocenti', [TeachersController::class,'teachersLogin'])->name('teachers.teacherLogin');
+Route::get('/personale/loginSegreteria', [TeachersController::class,'secretariatLogin'])->name('teachers.secretariatLogin');
 
 /*Eventi*/
-Route::resource('eventi', EventoController::class);
+Route::resource('events', EventController::class);

@@ -51,20 +51,20 @@
                         <li><a class="dropdown-item" href="{{route('brescia.index')}}">Brescia</a></li>
                         <li><a class="dropdown-item" href="{{route('milano.index')}}">Milano</a></li>
                         <div class="dropdown-divider"></div>
-                        <li><a class="dropdown-item" href="{{route('sedi.index')}}" >Visualizza Tutte</a></li>
+                        <li><a class="dropdown-item" href="{{route('sites.index')}}" >Visualizza Tutte</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('docenti.index')}}" role="button">Tutti i Docenti</a>
+                    <a class="nav-link" href="{{route('teachers.index')}}" role="button">Tutti i Docenti</a>
                 </li>       
             </ul> 
             <ul class="navbar-nav mt-2 mt-lg-0 ms-auto">
                 <li class="nav-item ms-auto">
-                    <a class="nav-link" role="button" href="{{route('personale.loginDocenti')}}">Login Docenti</a>
+                    <a class="nav-link" role="button" href="{{route('teachers.teacherLogin')}}">Login Docenti</a>
                 </li>
                 <li class="nav-item ms-auto">
-                    <a class="nav-link" role="button" href="{{route('personale.loginSegreteria')}}">Login Segreteria</a>
+                    <a class="nav-link" role="button" href="{{route('teachers.secretariatLogin')}}">Login Segreteria</a>
                 </li>
             </ul>
         </div>

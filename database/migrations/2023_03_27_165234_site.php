@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sede', function (Blueprint $table){
+        Schema::create('site', function (Blueprint $table){
             $table->increments('id');
-            $table->string('nome_sede');
-            $table->string('via');
-            $table->integer('civico');
-            $table->integer('CAP');
-            $table->string('citta');
-            $table->string('provincia');            
+            $table->string('site_name');
+            $table->string('street');
+            $table->integer('number');
+            $table->integer('postcode');
+            $table->string('city');
+            $table->string('province');            
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sede');
+        Schema::dropIfExists('site');
     }
 };

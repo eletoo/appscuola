@@ -3,11 +3,11 @@
 @section('style', 'mystyle.css')
 
 @section('title')
-  {{$info_sede->nome_sede}} - Docenti
+  {{$info_site->site_name}} - Docenti
 @endsection
 
 @section('page_title')
-  {{$info_sede->nome_sede}} - Docenti
+  {{$info_site->site_name}} - Docenti
 @endsection
 
 @section('breadcrumb')
@@ -15,7 +15,7 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
     <li class="breadcrumb-item">Sedi</li>
-    <li class="breadcrumb-item active" aria-current="page">{{$info_sede->nome_sede}}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{$info_site->site_name}}</li>
   </ol>
 </nav>
 @endsection
@@ -25,11 +25,11 @@
     <!--TEXT-->
     <div class="col-sm-9 col-md-6">
         <p>
-            {{$info_sede->via}} 
-            {{$info_sede->civico}}, 
-            {{$info_sede->CAP}}, 
-            {{$info_sede->citta}} 
-            ({{$info_sede->provincia}})
+            {{$info_site->street}} 
+            {{$info_site->number}}, 
+            {{$info_site->postcode}}, 
+            {{$info_site->city}} 
+            ({{$info_site->province}})
             <br></br>
         </p>
     </div>
@@ -49,10 +49,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($lista_docenti as $doc)
+					@foreach($teachers_list as $teacher)
 						<tr>
-							<td>{{$doc->lastname}}</td>
-							<td>{{$doc->firstname}}</td>
+							<td>{{$teacher->lastname}}</td>
+							<td>{{$teacher->firstname}}</td>
 							<td>
 								<button type="button" class="btn btn-primary">
 									<a href="#"><i class="bi bi-clock"></i> Orario</a>

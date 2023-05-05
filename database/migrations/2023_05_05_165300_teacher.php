@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('personale', function (Blueprint $table) {
+        Schema::create('teacher', function (Blueprint $table) {
             $table->increments('id'); 
             $table->string('firstname');
             $table->string('lastname');
-            $table->integer('sede_id')->unsigned();
-            $table->string('ruolo');
+            $table->string('role');
+            $table->integer('site_id')->unsigned();
         });
 
-        Schema::table('personale', function (Blueprint $table){
-            $table->foreign('sede_id')->references('id')->on('sede');
+        Schema::table('teacher', function (Blueprint $table){
+            $table->foreign('site_id')->references('id')->on('site');
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personale');
+        Schema::dropIfExists('teacher');
     }
 };
