@@ -26,4 +26,9 @@ class DataLayer
     {
         return Site::orderBy('city', 'asc')->get();
     }
+
+    public function listEvents()
+    {
+        return Event::all();
+    }
 }

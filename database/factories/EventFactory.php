@@ -17,7 +17,7 @@ class EventFactory extends Factory
      */
     public function definition()
     {
-        $day_of_week = $this->faker->randomElement(['MON','TUE','WED','THU','FRI','SAT']);
+        $day_of_week = $this->faker->dateTimeBetween("-5 weeks", "+5 weeks")->setTime(0,0,0);
 
         return [
             'description' => $this->faker->sentence(10),

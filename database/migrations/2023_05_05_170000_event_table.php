@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id'); 
             $table->integer('teacher_id')->unsigned();
             $table->text('description')->nullable();
-            $table->string('day_of_week'); //MON, TUE, WED, THU, FRI, SAT
+            $table->date('day_of_week'); //day between -5 weeks and +5 weeks (see EventFactory)
             $table->integer('hour_of_schoolday')->unsigned(); //from 1 to 6 
         });
 

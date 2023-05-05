@@ -17,7 +17,7 @@ class EventController extends Controller
     {
         $dl = new DataLayer();
         $teachers_list = $dl->listTeachers();
-        $events = Event::all();
+        $events = $dl->listEvents();
         return view('events.index')->with([
             'events' => $events,
             'teachers_list' => $teachers_list
