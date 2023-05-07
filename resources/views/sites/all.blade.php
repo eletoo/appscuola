@@ -49,7 +49,7 @@
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary">
-                            <a href="#">
+                            <a href="{{route('events.school', strtolower($site->city))}}">
                             <i class="bi bi-calendar-event"></i> Calendario</a></button>
                         <button type="button" class="btn btn-primary">
                             <a href="{{route(strtolower($site->city).'.index')}}">

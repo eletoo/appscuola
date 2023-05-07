@@ -18,6 +18,7 @@ Route::middleware(['authCustom'])->group(function(){
 
 /*Teachers*/
 Route::get('/personale/docenti', [TeachersController::class, 'teachers'])->name('teachers.index');
+Route::get('/personale/docenti/{id}/orario', [TeachersController::class, 'timetable'])->name('teachers.timetable');
 
 /*Sites*/
 Route::get('/sede/tutte', [SitesController::class, 'index'])->name('sites.index');
@@ -26,4 +27,5 @@ Route::get('/sede/bergamo', [SitesController::class, 'bergamo'])->name('bergamo.
 Route::get('/sede/milano', [SitesController::class, 'milano'])->name('milano.index');
 
 /*Events*/
+Route::get('/events/{city}', [EventController::class, 'forCity'])->name('events.school');
 Route::resource('events', EventController::class);

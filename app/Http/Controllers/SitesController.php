@@ -10,8 +10,8 @@ class SitesController extends Controller
     public function index()
     {
         $dl = new DataLayer();
-        $lista_sedi = $dl->listSites();
-        return view('sites.all')->with('', $lista_sedi);
+        $sites_list = $dl->listSites();
+        return view('sites.all')->with('sites_list', $sites_list);
     }
 
     public function brescia()

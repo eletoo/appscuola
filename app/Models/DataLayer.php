@@ -31,4 +31,9 @@ class DataLayer
     {
         return Event::all();
     }
+
+    public function getTimetables()
+    {
+        return Timetable::all();
+    }
 }

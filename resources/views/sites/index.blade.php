@@ -55,7 +55,7 @@
 							<td>{{$teacher->firstname}}</td>
 							<td>
 								<button type="button" class="btn btn-primary">
-									<a href="#"><i class="bi bi-clock"></i> Orario</a>
+									<a href="{{route('teachers.timetable', $teacher->id)}}"><i class="bi bi-clock"></i> Orario</a>
 								</button>
 							</td>
 						</tr>

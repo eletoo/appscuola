@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +23,60 @@ class EventController extends Controller
             'events' => $events,
             'teachers_list' => $teachers_list
         ]);
-    } //
+    }
 
+    
+    public function forCity(Request $req, string $city){
+        return [$this, $city]($req);
+    }
+
+    public function bergamo()
+    {
+        $dl = new DataLayer();
+        $teachers_list = $dl->listSiteTeachers(1);
+        $events=array();
+        foreach($teachers_list as $teacher)
+        {
+            $events[]=$dl->listEvents()->where('teacher_id', $teacher->id);
+        }
+        return view('events.school')->with([
+            'site' => $dl->infoSite('Bergamo'),
+            'events' => $events,
+            'teachers_list' => $teachers_list
+        ]);
+    }
+
+    public function brescia()
+    {
+        $dl = new DataLayer();
+        $teachers_list = $dl->listSiteTeachers(2);
+        $events=array();
+        foreach($teachers_list as $teacher)
+        {
+            $events[] = $dl->listEvents()->where('teacher_id', $teacher->id);
+        }
+        return view('events.school')->with([
+            'site' => $dl->infoSite('Brescia'),
+            'events' => $events,
+            'teachers_list' => $teachers_list
+        ]);
+    }
+
+    public function milano()
+    {
+        $dl = new DataLayer();
+        $teachers_list = $dl->listSiteTeachers(3);
+        $events=array();
+        foreach($teachers_list as $teacher)
+        {
+            $events[]=$dl->listEvents()->where('teacher_id', $teacher->id);
+        }
+        return view('events.school')->with([
+            'site' => $dl->infoSite('Milano'),
+            'events' => $events,
+            'teachers_list' => $teachers_list
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

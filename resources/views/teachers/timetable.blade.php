@@ -1,8 +1,23 @@
 @extends('layouts.master')
 
-@section('title', 'Calendario Assenze - Tutti')
+@section('style', 'mystyle.css')
 
-@section('page_title', 'Calendario Assenze Docenti - Tutti gli Istituti')
+@section('title', 'Orario')
+
+@section('page_title')
+Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
+@endsection
+
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+    <li class="breadcrumb-item">Sedi</li>
+    <li class="breadcrumb-item"><a href="{{route(strtolower($site_city).'.index')}}">{{$site_city}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{$teacher->firstname}} {{$teacher->lastname}}</li>
+  </ol>
+</nav>
+@endsection
 
 <head>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
@@ -10,7 +25,7 @@
 
 @section('body')
 <div class="container">
-<div id='calendar'></div>
+<div id='timetable'></div>
 </div>
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -23,15 +38,22 @@
         txt.innerHTML = html;
         return txt.value;
     }
+
     $(document).ready(function() {
         // page is now ready, initialize the calendar...
-        $('#calendar').fullCalendar({
+        $('#timetable').fullCalendar({
             // put your options and callbacks here
+            initialView: 'timeGridWeek',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'timeGridWeek,timeGridDay'
+                },
             events : [
                 @foreach($events as $task)
                 {
-                    title : decodeHtml('{{ $teachers_list->where('id',$task->teacher_id)->first()->lastname." ".$teachers_list->where('id',$task->teacher_id)->first()->firstname }}'),
-                    start : decodeHtml('{{ $task->day_of_week }}'),
+                    title : decodeHtml('{{ $teacher->lastname." ".$teacher->firstname }}'),
+                    start : decodeHtml('{{ $task->day_of_week }}'), //start hour
                     url : decodeHtml('{{ route('events.edit', $task->id) }}')
                 },
                 @endforeach
