@@ -19,14 +19,14 @@ class TeachersController extends Controller
     {
         $dl = new DataLayer();
         $teachers = $dl->listTeachers();
-        return view('teachers.teacherLogin')->with(['teachers_list' => $teachers]);
+        return view('login.teacherLogin')->with(['teachers_list' => $teachers]);
     }
 
     public function secretariatLogin()
     {
         $dl = new DataLayer();
         $teachers = $dl->listTeachers();
-        return view('teachers.secretariatLogin')->with(['teachers_list' => $teachers]);
+        return view('login.secretariatLogin')->with(['teachers_list' => $teachers]);
     }
 
     public function timetable($id)

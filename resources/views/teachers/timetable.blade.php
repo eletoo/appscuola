@@ -52,7 +52,7 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
             events : [
                 @foreach($events as $task)
                 {
-                    title : decodeHtml('{{ $teacher->lastname." ".$teacher->firstname }}'),
+                    title : decodeHtml('{{ $teacher->lastname." ".$teacher->firstname }}'), //class name
                     start : decodeHtml('{{ $task->day_of_week }}'), //start hour
                     url : decodeHtml('{{ route('events.edit', $task->id) }}')
                 },
