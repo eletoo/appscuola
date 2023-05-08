@@ -20,6 +20,10 @@ return new class extends Migration
             $table->integer('hour_of_schoolday')->unsigned();
             $table->string('class')->nullable();
         });
+
+        Schema::table('timetable', function(Blueprint $table){
+            $table->foreign('teacher_id')->references('id')->on('teacher');
+        });
     }
 
     /**

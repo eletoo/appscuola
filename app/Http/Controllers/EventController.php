@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DataLayer;
 use App\Models\Event;
+use Exception;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -26,8 +27,12 @@ class EventController extends Controller
     }
 
     
-    public function forCity(Request $req, string $city){
-        return [$this, $city]($req);
+    public function findMethod(Request $req, string $id){
+        try{
+            return [$this, $id]($req); //if $id is the name of a site city, it calls the method named after the city
+        } catch(Exception){
+            return $this->show($id); //else it means that $id contains an event number and it calls the method to show the desired view
+        }
     }
 
     public function bergamo()
@@ -106,9 +111,15 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($event_id)
     {
-        //
+        $dl = new DataLayer;
+        $event = $dl->getEvent(intval($event_id));
+        $teacherID = $event->teacher_id;
+        $teacher = $dl->getTeacher(intval($teacherID));
+
+        $site_city=$dl->getSiteById($teacher->site_id)->city;
+        return view('events.show')->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city]);
     }
 
     /**

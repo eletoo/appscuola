@@ -15,7 +15,8 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
     <li class="breadcrumb-item">Sedi</li>
-    <li class="breadcrumb-item active" aria-current="page">{{$info_site->site_name}}</li>
+	<li class="breadcrumb-item"><a href="{{route('sites.index')}}">Elenco Sedi</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{$info_site->city}}</li>
   </ol>
 </nav>
 @endsection
@@ -34,6 +35,15 @@
         </p>
     </div>
 </div>
+
+<div class="container-fluid">
+		<button type="button" class="btn btn-primary btn-lg d-flex justify-content-md-center mx-auto my-2 my-md-4">
+			<a href="{{route('events.school', strtolower($info_site->city))}}">
+				Calendario Assenze Completo
+			</a>
+		</button>
+</div>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-offset-10 col-md-12">

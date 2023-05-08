@@ -57,20 +57,20 @@
 <!--BOTTONI-->
 <div class="row">
     <div class="col-md-12">
-        <div class="text-center">
-            <button type="button" class="btn btn-primary home-page-button">
+        <div class="text-center d-flex flex-column flex-md-row justify-content-md-around">
+            <button type="button" class="btn btn-primary home-page-button my-3 my-md-4">
                 <a href="{{route('events.index')}}">
                     <i class="bi bi-calendar-event"></i> 
-                    <br/>Calendari Scuole
+                    <br/>Tutti i Calendari Assenze
                 </a>
             </button>
-            <button type="button" class="btn btn-primary home-page-button">
+            <button type="button" class="btn btn-primary home-page-button my-3 my-md-4">
                 <a href="{{route('teachers.teacherLogin')}}">
                     <i class="bi bi-person"></i> 
                     <br/>Area Riservata Docenti
                 </a>
             </button>
-            <button type="button" class="btn btn-primary home-page-button">
+            <button type="button" class="btn btn-primary home-page-button my-3 my-md-4">
                 <a href="{{route('teachers.secretariatLogin')}}">
                     <i class="bi bi-person"></i> 
                     <br/>Area Riservata Segreteria 

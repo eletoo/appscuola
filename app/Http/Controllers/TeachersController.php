@@ -29,15 +29,13 @@ class TeachersController extends Controller
         return view('login.secretariatLogin')->with(['teachers_list' => $teachers]);
     }
 
-    public function timetable($id)
+    public function timetable($teacher_id)
     {
         $dl = new DataLayer();
 
-        $teachers = $dl->listTeachers();
-        $teacher=$teachers->get($id);
+        $teacher = $dl->listTeachers()->get($teacher_id);
+        $site_city=$dl->listSites()->get($teacher->site_id)->city;
 
-        $site_city=$dl->listSites()->get($teachers->get($id)->site_id)->city;
-
-        return view('teachers.timetable')->with('teacher', $teacher)->with('site_city', $site_city)->with('events',$dl->getTimetables()->where('teacher_id',$teacher->id));
+        return view('teachers.timetable')->with('teacher', $teacher)->with('site_city', $site_city)->with('events', $dl->getTimetables()->where('teacher_id',$teacher->id));
     }
 }

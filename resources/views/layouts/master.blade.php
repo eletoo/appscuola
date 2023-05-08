@@ -71,26 +71,25 @@
 </div>
 
 </body>
+<div class="container">
+    <!--BREADCRUMBS-->
+    <div class="container-fluid">
+        @yield('breadcrumb')
+    </div>
 
-<!--BREADCRUMBS-->
-<div class="container-fluid">
-    @yield('breadcrumb')
-</div>
+    <!--HEADER/TITLE-->
+    <div class="container-fluid">
+        <header class="section-header">
+            <h1>
+                @yield('page_title')
+            </h1>
+        </header>
+    </div>
 
-<!--HEADER/TITLE-->
-<div class="container-fluid">
-    <header class="section-header">
-        <h1>
-            @yield('page_title')
-        </h1>
-    </header>
-</div>
-
-
-
-<!--BODY-->
-<div class="container-fluid">
-    @yield('body')
+    <!--BODY-->
+    <div class="container-fluid">
+        @yield('body')
+    </div>
 </div>
 
 </html>

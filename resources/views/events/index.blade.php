@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('style', 'mystyle.css')
+
 @section('title', 'Calendario Assenze - Tutti')
 
 @section('page_title', 'Calendario Assenze Docenti - Tutti gli Istituti')
@@ -32,7 +34,7 @@
                 {
                     title : decodeHtml('{{ $teachers_list->where('id',$task->teacher_id)->first()->lastname." ".$teachers_list->where('id',$task->teacher_id)->first()->firstname }}'),
                     start : decodeHtml('{{ $task->day_of_week }}'),
-                    url : decodeHtml('{{ route('events.edit', $task->id) }}')
+                    url : decodeHtml('{{ route('events.show', $task->id) }}')
                 },
                 @endforeach
             ],
