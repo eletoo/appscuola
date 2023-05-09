@@ -39,12 +39,12 @@ p {
 
 a {
     color: black;
+    text-decoration: none;
 }
 
 .btn-primary {
     background-color: #94a7c4;
     border-color: #94a7c4;
-
 }
 
 .btn-primary:hover{

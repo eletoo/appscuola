@@ -17,6 +17,7 @@ Assenza Prof. {{$teacher->firstname}} {{$teacher->lastname}} del {{date("d-m-Y",
         <li class="breadcrumb-item">Sedi</li>
         <li class="breadcrumb-item"><a href="{{route('sites.index')}}">Elenco Sedi</a></li>
         <li class="breadcrumb-item"><a href="{{route(strtolower($site_city).'.index')}}">{{$site_city}}</a></li>
+        <li class="breadcrumb-item"><a href="{{route('events.school', $site_city)}}">Calendario Assenze</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{$teacher->firstname}} {{$teacher->lastname}}</li>
     </ol>
 </nav>

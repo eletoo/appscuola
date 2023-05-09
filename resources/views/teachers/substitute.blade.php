@@ -9,7 +9,17 @@ Sostituzione
 @endsection
 
 @section('breadcrumb')
-<!--TODO-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+        <li class="breadcrumb-item">Sedi</li>
+        <li class="breadcrumb-item"><a href="{{route('sites.index')}}">Elenco Sedi</a></li>
+        <li class="breadcrumb-item"><a href="{{route(strtolower($city).'.index')}}">{{$city}}</a></li>
+        <li class="breadcrumb-item"><a href="{{route('events.school', $city)}}">Calendario Assenze</a></li>
+        <li class="breadcrumb-item"><a href="{{route('events.show', $event->id)}}">{{$teacher->firstname}} {{$teacher->lastname}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sostituzione</li>
+    </ol>
+</nav>
 @endsection
 
 @section('body')
@@ -33,7 +43,13 @@ Sostituzione
                     @foreach($available_teachers as $available_teacher)
                     <tr>
                         <td>{{$available_teacher->lastname}} {{$available_teacher->firstname}}</td>
-                        <td class="TODO">BOTTONE SELEZIONA</td>
+                        <td>
+                        <button type="button" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+                            <a href="#"><!--TODO-->
+                                Seleziona
+                            </a>
+                        </button>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

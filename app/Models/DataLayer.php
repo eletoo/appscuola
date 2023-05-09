@@ -15,7 +15,10 @@ class DataLayer
 
     public function listSiteTeachers($siteid)
     {
-        return Teacher::where(['role'=>'Docente', 'site_id'=>$siteid])->orderBy('lastname', 'asc')->orderBy('firstname', 'asc')->get();
+        return Teacher::where(['role'=>'Docente', 'site_id' => $siteid])
+        ->orderBy('lastname', 'asc')
+        ->orderBy('firstname', 'asc')
+        ->get();
     }
 
     public function infoSite($sitecity)
@@ -77,7 +80,8 @@ class DataLayer
                 //add it to the list of substitutes
                 if(date("d-m-Y", strtotime($timetable->day_of_week)) == $day_of_leave
                 && $timetable->hour_of_schoolday == $event->hour_of_schoolday 
-                && $timetable->class == null){
+                && $timetable->class == null
+                && !in_array($available, $available_teachers)){
                     $available_teachers[] = $available;
                 }
             }

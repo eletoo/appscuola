@@ -38,7 +38,7 @@ class EventController extends Controller
     public function bergamo()
     {
         $dl = new DataLayer();
-        $teachers_list = $dl->listSiteTeachers(1);
+        $teachers_list = $dl->listSiteTeachers(2);
         $events=array();
         foreach($teachers_list as $teacher)
         {
@@ -54,7 +54,7 @@ class EventController extends Controller
     public function brescia()
     {
         $dl = new DataLayer();
-        $teachers_list = $dl->listSiteTeachers(2);
+        $teachers_list = $dl->listSiteTeachers(1);
         $events=array();
         foreach($teachers_list as $teacher)
         {
@@ -119,7 +119,7 @@ class EventController extends Controller
         $teacherID = $event->teacher_id;
         $teacher = $dl->getTeacher(intval($teacherID));
 
-        $site_city=$dl->getSiteById($teacher->site_id)->city;
+        $site_city=$dl->getSiteById(intval($teacher->site_id))->city;
 
         $timetables = $dl->listTimetablesByTeacher(intval($teacherID));
         $in_class = true;
@@ -130,7 +130,8 @@ class EventController extends Controller
                 $in_class = false;
             }
         }
-        return view('events.show')->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city, 'in_class' => $in_class]);
+        return view('events.show')
+        ->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city, 'in_class' => $in_class]);
     }
 
     /**

@@ -33,7 +33,7 @@ class TeachersController extends Controller
     {
         $dl = new DataLayer();
         $teacher = $dl->getTeacher(intval($teacher_id));
-        $site_city=$dl->getSiteById($teacher->site_id)->city;
+        $site_city=$dl->getSiteById(intval($teacher->site_id))->city;
 
         return view('teachers.timetable')->with('teacher', $teacher)->with('site_city', $site_city)->with('events', $dl->listTimetablesByTeacher($teacher->id));
     }
@@ -42,6 +42,9 @@ class TeachersController extends Controller
     {
         $dl = new DataLayer;
         $available_teachers = $dl->getAvailableTeachers($teacher_id, $event_id);
-        return view('teachers.substitute')->with('available_teachers', $available_teachers);
+        return view('teachers.substitute')->with('available_teachers', $available_teachers)
+        ->with('teacher', $dl->getTeacher(intval($teacher_id)))
+        ->with('event', $dl->getEvent(intval($event_id)))
+        ->with('city', $dl->getSiteById(intval($dl->getTeacher(intval($teacher_id))->site_id))->city);
     }
 }
