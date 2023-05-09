@@ -19,6 +19,7 @@ Route::middleware(['authCustom'])->group(function(){
 /*Teachers*/
 Route::get('/personale/docenti', [TeachersController::class, 'teachers'])->name('teachers.index');
 Route::get('/personale/docenti/{teacher_id}/orario', [TeachersController::class, 'timetable'])->name('teachers.timetable');
+Route::get('/personale/docenti/{teacher_id}/{event_id}/sostituzione', [TeachersController::class, 'substitute'])->name('teachers.substitute');
 
 /*Sites*/
 Route::get('/sede/tutte', [SitesController::class, 'index'])->name('sites.index');

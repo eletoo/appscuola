@@ -32,10 +32,16 @@ class TeachersController extends Controller
     public function timetable($teacher_id)
     {
         $dl = new DataLayer();
+        $teacher = $dl->getTeacher(intval($teacher_id));
+        $site_city=$dl->getSiteById($teacher->site_id)->city;
 
-        $teacher = $dl->listTeachers()->get($teacher_id);
-        $site_city=$dl->listSites()->get($teacher->site_id)->city;
+        return view('teachers.timetable')->with('teacher', $teacher)->with('site_city', $site_city)->with('events', $dl->listTimetablesByTeacher($teacher->id));
+    }
 
-        return view('teachers.timetable')->with('teacher', $teacher)->with('site_city', $site_city)->with('events', $dl->getTimetables()->where('teacher_id',$teacher->id));
+    public function substitute($teacher_id, $event_id)
+    {
+        $dl = new DataLayer;
+        $available_teachers = $dl->getAvailableTeachers($teacher_id, $event_id);
+        return view('teachers.substitute')->with('available_teachers', $available_teachers);
     }
 }

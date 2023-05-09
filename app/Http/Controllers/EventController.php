@@ -115,11 +115,22 @@ class EventController extends Controller
     {
         $dl = new DataLayer;
         $event = $dl->getEvent(intval($event_id));
+
         $teacherID = $event->teacher_id;
         $teacher = $dl->getTeacher(intval($teacherID));
 
         $site_city=$dl->getSiteById($teacher->site_id)->city;
-        return view('events.show')->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city]);
+
+        $timetables = $dl->listTimetablesByTeacher(intval($teacherID));
+        $in_class = true;
+        foreach ($timetables as $timetable){
+            if ($timetable->day_of_week == $event->day_of_week
+            && $timetable->hour_of_schoolday == $event->hour_of_schoolday
+            && $timetable->class == null) {
+                $in_class = false;
+            }
+        }
+        return view('events.show')->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city, 'in_class' => $in_class]);
     }
 
     /**

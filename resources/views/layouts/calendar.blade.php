@@ -7,7 +7,7 @@
 
     $(document).ready(function() {
         // page is now ready, initialize the calendar...
-        $('#citycalendar').fullCalendar({
+        $('#calendar').fullCalendar({
             // put your options and callbacks here
             events : [
                 @foreach($events as $tasks)

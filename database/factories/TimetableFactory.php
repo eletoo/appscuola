@@ -13,9 +13,14 @@ class TimetableFactory extends Factory
      */
     public function definition()
     {
-        $day_of_week = $this->faker->randomElement(['MON','TUE','WED','THU','FRI','SAT']);
+        $day_of_week = $this->faker->randomElement(['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']);
 
-        $class = $this->faker->randomElement([$this->faker->numberBetween(1,5).$this->faker->randomLetter(), null]);
+        $in_class = $this->faker->boolean(0.75);
+        if ($in_class){
+            $class = $this->faker->numberBetween(1,5).$this->faker->randomLetter();
+        }else{
+            $class = null;
+        }
 
         return [
             'day_of_week' => $day_of_week,

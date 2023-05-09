@@ -24,17 +24,17 @@ Calendario Assenze - {{$site->city}}
 
 
 <head>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css'/>
 </head>
 
 @section('body')
 <div class="container">
-<div id='citycalendar'></div>
+<div id='calendar'></div>
 </div>
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/locale/it.js'></script>
-@include('calendar', ['events'=> $events, 'teachers_list' => $teachers_list])
+@include('layouts.calendar', ['events'=> $events, 'teachers_list' => $teachers_list])
 @endsection
