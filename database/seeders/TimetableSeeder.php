@@ -16,10 +16,10 @@ class TimetableSeeder extends Seeder
      */
     public function run()
     {
-         // Creates the timetables
-         $teachers_list = json_decode(Teacher::all());
-         for ($i = 0; $i < count($teachers_list); $i++) {
-             Timetable::factory()->count(25)->create(['teacher_id' => $teachers_list[$i]->id]);
-         }
+        // Creates the timetables
+        $teachers_list = json_decode(Teacher::all());
+        for ($i = 0; $i < count($teachers_list); $i++) {//todo: check that max 6 timetables are created per day
+            Timetable::factory()->count(25)->create(['teacher_id' => $teachers_list[$i]->id]);
+        }
     }
 }

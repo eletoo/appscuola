@@ -34,8 +34,10 @@ class TeachersController extends Controller
         $dl = new DataLayer();
         $teacher = $dl->getTeacher(intval($teacher_id));
         $site_city=$dl->getSiteById(intval($teacher->site_id))->city;
-
-        return view('teachers.timetable')->with('teacher', $teacher)->with('site_city', $site_city)->with('events', $dl->listTimetablesByTeacher($teacher->id));
+        return view('teachers.timetable')
+        ->with('teacher', $teacher)
+        ->with('site_city', $site_city)
+        ->with('lectures', $dl->listTimetablesByTeacher($teacher->id));
     }
 
     public function substitute($teacher_id, $event_id)

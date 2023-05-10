@@ -25,6 +25,20 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
 </head>
 
 @section('body')
+<?php
+    function retrieveTime(int $index, bool $start){
+        if ($start){
+            return intval($index) + 10;
+        }
+        else{
+            return intval($index) + 11; 
+        }
+    }
+
+    function retrieveDayIndex(string $day){
+        return date('N', strtotime($day));
+    }
+?>
 <div class="container">
 <div id='timetable'></div>
 </div>
@@ -33,6 +47,10 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/locale/it.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.9.0/"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <script>
     function decodeHtml(html) {
         var txt = document.createElement("textarea");
@@ -40,22 +58,53 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
         return txt.value;
     }
 
+    var getNextDay = function (dayName, hour, mins, sec) {
+        // The current day
+        var date = new Date();
+        var now = date.getDay();
+
+        // Days of the week
+        var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+
+        // The index for the day you want
+        var day = days.indexOf(dayName.toLowerCase());
+
+        // Find the difference between the current day and the one you want
+        // If it's the same day as today (or a negative number), jump to the next week
+        var diff = day - now;
+        /*while (diff < 1){
+            diff = diff < 1 ? 7 + diff : diff;
+        }*/
+
+        // Get the timestamp for the desired day
+        var dayTimestamp = date.getTime() + (1000 * 60 * 60 * 24 * diff);
+
+        // Get the next day
+        const d = new Date(dayTimestamp);
+        d.setHours(hour, mins, sec)
+        return d
+    };
+
     $(document).ready(function() {
         // page is now ready, initialize the calendar...
         $('#timetable').fullCalendar({
             // put your options and callbacks here
-            initialView: 'timeGridWeek',
+            defaultView: 'agendaWeek',
             headerToolbar: {
-                left: 'prev,next today',
+                left: 'prev,next',
                 center: 'title',
-                right: 'timeGridWeek,timeGridDay'
-                },
+                right: 'agendaWeek,agendaDay' // user can switch between the two
+            },
+            minTime: "08:00:00",
+            maxTime: "16:00:00",
+            slotDuration: "01:00:00",
+            defaultTimedEventDuration: '01:00',
             events : [
-                @foreach($events as $task)
+                @foreach($lectures as $task)
                 {
-                    title : decodeHtml('{{ $teacher->lastname." ".$teacher->firstname }}'), //class name
-                    start : decodeHtml('{{ $task->day_of_week }}'), //start hour
-                    url : decodeHtml('{{ route('events.show', $task->id) }}')
+                    title : decodeHtml('{{$task->class}}'), //class name
+                    start : getNextDay('{{$task->day_of_week}}', {{retrieveTime($task->hour_of_schoolday, true)}}, 0, 0).toISOString(), //start hour: number from 1 to 6 turned into a time from 8 to 14
+                    //end : getNextDay('{{$task->day_of_week}}', {{retrieveTime($task->hour_of_schoolday, false)}}, 0, 0).toISOString(),
                 },
                 @endforeach
             ],

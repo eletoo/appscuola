@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\SitesController;
+use App\Http\Controllers\TimetableController;
 use Illuminate\Support\Facades\Route;
 
 /*Home*/

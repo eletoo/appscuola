@@ -15,7 +15,7 @@ class TimetableFactory extends Factory
     {
         $day_of_week = $this->faker->randomElement(['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']);
 
-        $in_class = $this->faker->boolean(0.75);
+        $in_class = $this->faker->boolean(75);
         if ($in_class){
             $class = $this->faker->numberBetween(1,5).$this->faker->randomLetter();
         }else{
