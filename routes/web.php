@@ -31,3 +31,6 @@ Route::get('/sede/milano', [SitesController::class, 'milano'])->name('milano.ind
 /*Events*/
 Route::get('/events/{event_id}', [EventController::class, 'findMethod'])->name('events.school');
 Route::resource('events', EventController::class);  
+
+/*Lectures*/
+Route::resource('/timetable', TimetableController::class);

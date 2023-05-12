@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('day_of_week');
             $table->integer('hour_of_schoolday')->unsigned();
             $table->string('class')->nullable();
+            
+            $table->unique(["teacher_id", "day_of_week", "hour_of_schoolday"]);
         });
 
         Schema::table('timetable', function(Blueprint $table){

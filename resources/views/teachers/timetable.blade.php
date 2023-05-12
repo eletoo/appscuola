@@ -28,10 +28,10 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
 <?php
     function retrieveTime(int $index, bool $start){
         if ($start){
-            return intval($index) + 10;
+            return intval($index) + 9;
         }
         else{
-            return intval($index) + 11; 
+            return intval($index) + 10; 
         }
     }
 
@@ -95,16 +95,17 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
                 center: 'title',
                 right: 'agendaWeek,agendaDay' // user can switch between the two
             },
-            minTime: "08:00:00",
+            minTime: "07:00:00",
             maxTime: "16:00:00",
-            slotDuration: "01:00:00",
+            slotDuration: "00:30:00",
             defaultTimedEventDuration: '01:00',
             events : [
                 @foreach($lectures as $task)
                 {
-                    title : decodeHtml('{{$task->class}}'), //class name
+                    title : decodeHtml('{{strtoupper($task->class)}}'), //class name
                     start : getNextDay('{{$task->day_of_week}}', {{retrieveTime($task->hour_of_schoolday, true)}}, 0, 0).toISOString(), //start hour: number from 1 to 6 turned into a time from 8 to 14
                     //end : getNextDay('{{$task->day_of_week}}', {{retrieveTime($task->hour_of_schoolday, false)}}, 0, 0).toISOString(),
+                    url   : "{{route('timetable.show', $task)}}",
                 },
                 @endforeach
             ],

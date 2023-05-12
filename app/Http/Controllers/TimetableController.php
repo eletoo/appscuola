@@ -48,7 +48,10 @@ class TimetableController extends Controller
      */
     public function show(Timetable $timetable)
     {
-        //
+        $dl = new DataLayer();
+        $teacher = $dl->getTeacher(intval($timetable->teacher_id));
+        $site_city=$dl->getSiteById(intval($teacher->site_id))->city;
+        return view('timetables.show')->with(['timetable'=> $timetable, 'site_city'=> $site_city, 'teacher' => $teacher]);
     }
 
     /**
