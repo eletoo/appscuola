@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\TeachersController;
@@ -9,9 +10,12 @@ use Illuminate\Support\Facades\Route;
 
 /*Home*/
 Route::get('/', [MainController::class, 'getHome'])->name('home');
-Route::get('/personale/loginDocenti', [TeachersController::class,'teachersLogin'])->name('teachers.teacherLogin');
-Route::get('/personale/loginSegreteria', [TeachersController::class,'secretariatLogin'])->name('teachers.secretariatLogin');
-Route::post('/personale/loginDocenti',[TeachersController::class,'']);
+
+/*Auth*/
+Route::get('/personale/login', [AuthController::class,'authentication'])->name('user.login');
+Route::post('/personale/login', [AuthController::class, 'login'])->name('user.login');
+Route::get('/personale/logout', [AuthController::class, 'logout'])->name('user.logout');
+
 
 Route::middleware(['authCustom'])->group(function(){
     /*Rotte da proteggere con autenticazione*/

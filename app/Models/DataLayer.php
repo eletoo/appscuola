@@ -10,7 +10,9 @@ class DataLayer
     // contains the methods to interact with the DB
     public function listTeachers()
     {
-        return Teacher::where('role','Docente')->orderBy('lastname', 'asc')->orderBy('firstname', 'asc')->get();
+        return Teacher::where('role','Docente')
+        ->orderBy('lastname', 'asc')
+        ->orderBy('firstname', 'asc')->get();
     }
 
     public function listSiteTeachers($siteid)
@@ -89,4 +91,34 @@ class DataLayer
         return $available_teachers;
     }
 
+    private function addUser($email, $password)
+    {
+        $user = new User();
+        $user->email = $email;
+        $user->password = password_hash($password, PASSWORD_ARGON2ID);
+        $user->save();
+        return $user;
+    }
+
+    public function addTeacher($firstname, $lastname, $password, $email){
+        $user = $this->addUser($email, $password);
+        $teacher = new Teacher();
+        $teacher->firstname = $firstname;
+        $teacher->lastname = $lastname;
+        $teacher->role = 'Docente';
+        $teacher->user_id = $user->id;
+        $teacher->save();
+        return $teacher;
+    }
+
+    public function addSecretary($firstname, $lastname, $password, $email){
+        $user = $this->addUser($email, $password);
+        $teacher = new Teacher();
+        $teacher->firstname = $firstname;
+        $teacher->lastname = $lastname;
+        $teacher->role = 'Segretario';
+        $teacher->user_id = $user->id;
+        $teacher->save();
+        return $teacher;
+    }
 }

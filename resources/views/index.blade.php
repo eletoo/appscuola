@@ -65,13 +65,13 @@
                 </a>
             </button>
             <button type="button" class="btn btn-primary home-page-button my-3 my-md-4">
-                <a href="{{route('teachers.teacherLogin')}}">
+                <a href="{{route('user.login')}}">
                     <i class="bi bi-person"></i> 
                     <br/>Area Riservata Docenti
                 </a>
             </button>
             <button type="button" class="btn btn-primary home-page-button my-3 my-md-4">
-                <a href="{{route('teachers.secretariatLogin')}}">
+                <a href="{{route('user.login')}}">
                     <i class="bi bi-person"></i> 
                     <br/>Area Riservata Segreteria 
                 </a>

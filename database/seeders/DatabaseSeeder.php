@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             SiteSeeder::class,
             TeacherSeeder::class,
             EventSeeder::class,
-            TimetableSeeder::class
+            TimetableSeeder::class,
+            SecretarySeeder::class,
         ]);      
     }
 }

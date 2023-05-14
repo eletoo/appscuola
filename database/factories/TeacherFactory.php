@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -13,8 +14,9 @@ class TeacherFactory extends Factory
     {
         return [
             'firstname'=>$this->faker->firstName(), 
-            'lastname'=>$this->faker->lastName(),
-            'role'=>'Docente'
+            'lastname'=>$this->faker->lastName(),   
+            'role'=>'Docente',
+            'user_id'=>User::factory(),
         ];
     }
 }

@@ -18,11 +18,13 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('role');
-            $table->integer('site_id')->unsigned();
+            $table->integer('site_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned();
         });
 
         Schema::table('teacher', function (Blueprint $table){
             $table->foreign('site_id')->references('id')->on('site');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
