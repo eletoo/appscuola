@@ -37,4 +37,5 @@ class SitesController extends Controller
         $info_site = $dl->infoSite('Milano');
         return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site]);
     }
+
 }

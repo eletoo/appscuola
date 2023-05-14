@@ -17,45 +17,19 @@
 @endsection
 
 @section('body')
-<div class="row">
-    <div class="container-fluid">
-        <div class="instructions">
-            Filtra per:
-        </div>
-    </div>
-    <div class="TODO">TODO: filtra per disponibilità</div>    
-</div>    
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-offset-10 col-md-12">
-            <div>
-                <div class="form-group">
-                    <label for="SedeField">Sede</label>
-                    <select class="form-select" id="SedeField" name="sedefield">
-                        @foreach($sites_list as $site)
-                            <option value="{{$site->id}}">{{$site->city}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="SedeField">Disponibilità</label>
-                    <select class="form-select" id="SedeField" name="sedefield">
-                        @foreach($sites_list as $site)
-                            <option value="{{$site->id}}">{{$site->city}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
             <table class="table table-striped table-hover table-responsive table-bordered">
-                <col width="45%"/>
-                <col width="45%"/>
+                <col width="40%"/>
+                <col width="40%"/>
+                <col width="10%"/>
                 <col width="10%"/>
                 <thead>
                     <tr>
                         <th>Cognome</th>
                         <th>Nome</th>
+                        <th>Sede</th>
                         <th>Azioni</th>                            
                     </tr>
                 </thead>
@@ -64,10 +38,16 @@
                         <tr>
                             <td>{{$teacher->lastname}}</td>
                             <td>{{$teacher->firstname}}</td>
+                            @foreach($sites_list as $site)
+                                @if($site->id == $teacher->site_id)
+                                    <td>{{$site->city}}</td>
+                                @endif
+                            @endforeach
                             <td>
                                 <button  class="btn btn-primary">
-                                    <a href="{{route('teachers.timetable', $teacher->id)}}"><i class="bi bi-clock"></i> Orario</a></td>
+                                    <a href="{{route('teachers.timetable', $teacher->id)}}"><i class="bi bi-clock"></i> Orario</a>
                                 </button>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -95,8 +95,8 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
                 center: 'title',
                 right: 'agendaWeek,agendaDay' // user can switch between the two
             },
-            minTime: "07:00:00",
-            maxTime: "16:00:00",
+            minTime: "07:30:00",
+            maxTime: "16:30:00",
             slotDuration: "00:30:00",
             defaultTimedEventDuration: '01:00',
             events : [

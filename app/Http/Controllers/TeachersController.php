@@ -49,4 +49,5 @@ class TeachersController extends Controller
         ->with('event', $dl->getEvent(intval($event_id)))
         ->with('city', $dl->getSiteById(intval($dl->getTeacher(intval($teacher_id))->site_id))->city);
     }
+
 }

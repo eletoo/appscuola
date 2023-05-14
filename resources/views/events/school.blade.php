@@ -28,8 +28,8 @@ Calendario Assenze - {{$site->city}}
 </head>
 
 @section('body')
-<div class="container">
-<div id='calendar'></div>
+<div class="container" style="padding-top: 3em;">
+  <div id='calendar'></div>
 </div>
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
