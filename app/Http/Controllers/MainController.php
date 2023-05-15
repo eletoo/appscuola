@@ -8,16 +8,12 @@ class MainController extends Controller
 {
     public function getHome()
     {
-        return view('index');
-    }
+        session_start();
 
-    public function getTeachers()
-    {
-        return view('teachers');
-    }
-
-    public function getSites()
-    {
-        return view('sites');
+        if (isset($_SESSION['logged'])) {
+            return view('index')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('loggedRole', $_SESSION['loggedRole']);
+        } else {
+            return view('index')->with('logged', false);
+        }
     }
 }

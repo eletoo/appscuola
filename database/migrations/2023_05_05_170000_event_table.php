@@ -19,10 +19,12 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->date('day_of_week'); //day between -5 weeks and +5 weeks (see EventFactory)
             $table->integer('hour_of_schoolday')->unsigned(); //from 1 to 6 
+            $table->integer('substitute_id')->unsigned()->nullable(); //teacher_id of the substitute teacher
         });
 
         Schema::table('event', function (Blueprint $table){
             $table->foreign('teacher_id')->references('id')->on('teacher');
+            $table->foreign('substitute_id')->references('id')->on('teacher');
         });
     }
 

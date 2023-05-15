@@ -25,7 +25,9 @@ class AuthController extends Controller
         if(Auth::attempt(['email' => $req->input('username'), 'password' => $req->input('password')]))
         {
             $_SESSION['logged'] = true;
-            $_SESSION['loggedName'] = auth()->user()->firstname . ' ' . auth()->user()->lastname;
+            $_SESSION['loggedID'] = auth()->user()->id;
+            $_SESSION['loggedRole'] = $dl->getTeacher(auth()->user()->id)->role;
+            $_SESSION['loggedName'] = $dl->getTeacher(auth()->user()->id)->firstname . ' ' . $dl->getTeacher(auth()->user()->id)->lastname;
             $_SESSION['loggedEmail'] = auth()->user()->email;
             if($dl->getTeacher(auth()->user()->id)->role == 'Admin')
             {

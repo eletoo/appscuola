@@ -29,7 +29,13 @@ Sostituzione
             <div class="text-align-center my-md-5 my-3">
                 Non ci sono docenti disponibili per la sostituzione
             </div>
+            <a href="{{route('events.school', $city)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+                Torna al Calendario
+            </a>
         @else
+        <a href="{{route('events.school', $city)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+            Torna al Calendario
+        </a>
         <div class="col-md-offset-10 col-md-12">
             <table class="table table-striped table-hover table-responsive table-bordered">
                 <col width="80%"/>
@@ -44,10 +50,12 @@ Sostituzione
                     <tr>
                         <td>{{$available_teacher->lastname}} {{$available_teacher->firstname}}</td>
                         <td>
-                            <a href="#" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
-                                <!--TODO-->
-                                Seleziona
-                            </a>
+                            <form class="form-horizontal" name="substitute" method="post" action="{{ route('events.update', ['event' => $event->id]) }}">
+                                @method('PUT')
+                                @csrf
+                                <button class="btn btn-primary" id="selectSubstitute" type="submit" value=" Seleziona" class="hidden"><i class="bi-check-lg"></i> Seleziona</button>
+                                <input id="selectSubstitute" type="hidden" value="{{$available_teacher->id}}" name="substitute_id"/>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -55,9 +63,6 @@ Sostituzione
             </table>
         </div>
         @endif
-        <a href="{{route('events.school', $city)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
-            Torna al Calendario
-        </a>
     </div>
 </div>
 @endsection

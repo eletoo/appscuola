@@ -19,7 +19,7 @@ class EventSeeder extends Seeder
         // Create the events 
         $teachers_list = json_decode(Teacher::all());
         for ($i = 0; $i < count($teachers_list); $i++) {
-            Event::factory()->count(5)->create(['teacher_id' => ($teachers_list[$i])->id]);
+            Event::factory()->count(5)->create(['teacher_id' => ($teachers_list[$i])->id, 'substitute_id' => null]);
         }
     }
 }

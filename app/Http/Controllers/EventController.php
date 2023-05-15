@@ -19,7 +19,7 @@ class EventController extends Controller
     {
         $dl = new DataLayer();
         $teachers_list = $dl->listTeachers();
-        $events = $dl->listEvents();
+        $events = $dl->listEvents()->where('substitute_id', null); //list events without a substitute
         return view('events.index')->with([
             'events' => $events,
             'teachers_list' => $teachers_list
@@ -42,7 +42,7 @@ class EventController extends Controller
         $events=array();
         foreach($teachers_list as $teacher)
         {
-            $events[]=$dl->listEvents()->where('teacher_id', $teacher->id);
+            $events[]=$dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
         }
         return view('events.school')->with([
             'site' => $dl->infoSite('Bergamo'),
@@ -58,7 +58,7 @@ class EventController extends Controller
         $events=array();
         foreach($teachers_list as $teacher)
         {
-            $events[] = $dl->listEvents()->where('teacher_id', $teacher->id);
+            $events[] = $dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
         }
         return view('events.school')->with([
             'site' => $dl->infoSite('Brescia'),
@@ -74,7 +74,7 @@ class EventController extends Controller
         $events=array();
         foreach($teachers_list as $teacher)
         {
-            $events[]=$dl->listEvents()->where('teacher_id', $teacher->id);
+            $events[]=$dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
         }
         return view('events.school')->with([
             'site' => $dl->infoSite('Milano'),
@@ -154,7 +154,10 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // set the substitute_id of the event to the id of the teacher who accepted the substitution
+        $dl = new DataLayer;
+        $dl->editEvent($id, $request->input('substitute_id'));
+        return redirect()->route('events.index');
     }
 
     /**

@@ -59,6 +59,7 @@ class DataLayer
     public function getAvailableTeachersFromSameSite($teacher_id, $siteid)
     {
         return Teacher::where(['role'=>'Docente', 'site_id'=>$siteid])
+        ->where('id', '!=', $teacher_id)
         ->orderBy('lastname', 'asc')
         ->orderBy('firstname', 'asc')
         ->get();
@@ -120,5 +121,23 @@ class DataLayer
         $teacher->user_id = $user->id;
         $teacher->save();
         return $teacher;
+    }
+
+    public function getUserID($email)
+    {
+        $user = User::where('email', $email)->first();
+        return $user->id;
+    }
+
+    public function listSubstitutionsByTeacher($teacher_id)
+    {
+        return Event::where('substitute_id', $teacher_id)->get();
+    }
+
+    public function editEvent($event_id, $substitute_id)
+    {
+        $event = Event::find($event_id);
+        $event->substitute_id = $substitute_id;
+        $event->save();
     }
 }

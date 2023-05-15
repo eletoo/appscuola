@@ -17,17 +17,36 @@ class TeachersController extends Controller
 
     public function homeAdmin()
     {
-        return view('admin.home');
+        session_start();
+
+        $dl = new DataLayer();
+        $userID = $dl->getUserID($_SESSION["loggedEmail"]);
+        return view('admin.home')
+        ->with('logged', $_SESSION['logged'])
+        ->with('loggedName', $_SESSION['loggedName'])
+        ->with('loggedRole', $_SESSION['loggedRole'])
+        ->with('loggedID', $userID);
     }
     
     public function homeTeacher()
     {
-        return view('teachers.home');
+        session_start();
+
+        return view('teachers.home')
+        ->with('logged', $_SESSION['logged'])
+        ->with('loggedName', $_SESSION['loggedName'])
+        ->with('loggedRole', $_SESSION['loggedRole'])
+        ->with('loggedID', $_SESSION['loggedID']);
     }
 
     public function homeSecretary()
     {
-        return view('secretariat.home');
+        session_start();
+        return view('secretariat.home')
+        ->with('logged', $_SESSION['logged'])
+        ->with('loggedName', $_SESSION['loggedName'])
+        ->with('loggedRole', $_SESSION['loggedRole'])
+        ->with('loggedID', $_SESSION['loggedID']);
     }
 
     public function timetable($teacher_id)
@@ -38,9 +57,15 @@ class TeachersController extends Controller
         return view('teachers.timetable')
         ->with('teacher', $teacher)
         ->with('site_city', $site_city)
-        ->with('lectures', $dl->listTimetablesByTeacher($teacher->id));
+        ->with('lectures', $dl->listTimetablesByTeacher($teacher_id));
     }
 
+    public function substitutions($teacher_id)
+    {
+        $dl = new DataLayer();
+        return view('teachers.personalSubstitutions')
+        ->with('substitutions_list', $dl->listSubstitutionsByTeacher($teacher_id));
+    }
     public function substitute($teacher_id, $event_id)
     {
         $dl = new DataLayer;

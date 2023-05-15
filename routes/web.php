@@ -17,9 +17,11 @@ Route::post('/personale/login/{employee_type}', [AuthController::class, 'login']
 Route::get('/personale/logout/{employee_type}', [AuthController::class, 'logout'])->name('user.logout');
 
 
-Route::middleware(['authCustom'])->group(function(){
+Route::middleware(['auth'])->group(function(){
     /*Rotte da proteggere con autenticazione*/
     Route::get('/personale/docenti/areaRiservata', [TeachersController::class, 'homeTeacher'])->name('teacher.home');
+    Route::get('/personale/docenti/areaRiservata/{teacher_id}/supplenze', [TeachersController::class, 'substitutions'])->name('teacher.mySubstitution');
+
     Route::get('/personale/segreteria/areaRiservata', [TeachersController::class, 'homeSecretary'])->name('secretariat.home');
     Route::get('/personale/admin/areaRiservata', [TeachersController::class, 'homeAdmin'])->name('admin.home');
 });
