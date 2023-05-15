@@ -60,10 +60,10 @@
             </ul> 
             <ul class="navbar-nav mt-2 mt-lg-0 ms-auto">
                 <li class="nav-item ms-auto">
-                    <a class="nav-link" role="button" href="{{route('user.login')}}">Login Docenti</a>
+                    <a class="nav-link" role="button" href="{{route('user.login', 'Docente')}}">Login Docenti</a>
                 </li>
                 <li class="nav-item ms-auto">
-                    <a class="nav-link" role="button" href="{{route('user.login')}}">Login Segreteria</a>
+                    <a class="nav-link" role="button" href="{{route('user.login', 'Segreteria')}}">Login Segreteria</a>
                 </li>
             </ul>
         </div>
@@ -73,7 +73,7 @@
 </body>
 <div class="container">
     <!--BREADCRUMBS-->
-    <div class="container-fluid">
+    <div class="container-fluid breadcrumb">
         @yield('breadcrumb')
     </div>
 

@@ -15,18 +15,19 @@ class TeachersController extends Controller
         return view('teachers.index')->with(['teachers_list' => $teachers, 'sites_list' => $sites_list]);
     }
 
-    public function teachersLogin()
+    public function homeAdmin()
     {
-        $dl = new DataLayer();
-        $teachers = $dl->listTeachers();
-        return view('login.teacherLogin')->with(['teachers_list' => $teachers]);
+        return view('admin.home');
+    }
+    
+    public function homeTeacher()
+    {
+        return view('teachers.home');
     }
 
-    public function secretariatLogin()
+    public function homeSecretary()
     {
-        $dl = new DataLayer();
-        $teachers = $dl->listTeachers();
-        return view('login.secretariatLogin')->with(['teachers_list' => $teachers]);
+        return view('secretariat.home');
     }
 
     public function timetable($teacher_id)

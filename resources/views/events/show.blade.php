@@ -63,11 +63,9 @@ Assenza Prof. {{$teacher->firstname}} {{$teacher->lastname}} del {{date("d-m-Y",
     </div>
     <div class="row">
         @if($in_class)
-        <button type="button" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
-			<a href="{{route('teachers.substitute', [ 'teacher_id' => $teacher->id, 'event_id' => $event->id])}}">
+			<a class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4" href="{{route('teachers.substitute', [ 'teacher_id' => $teacher->id, 'event_id' => $event->id])}}">
 				Sostituisci Docente Assente
 			</a>
-		</button>
         @else 
         <div class="text-align-center my-md-5 my-3">
             Il Docente non necessita di essere sostituito in quanto non impegnato con alcuna classe in quest'ora. 

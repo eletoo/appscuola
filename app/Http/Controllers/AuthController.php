@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
-    public function authentication() {
-        return view('auth.auth');
+    public function authentication($employee_type) {
+        return view('auth.auth')->with('employee_type', $employee_type);
     }
 
     public function logout() {
@@ -19,7 +19,7 @@ class AuthController extends Controller
         return Redirect::to(route('home'));
     }
 
-    public function login(Request $req) {
+    public function login(Request $req, $employee_type) {
         session_start();
         $dl = new DataLayer();
         if(Auth::attempt(['email' => $req->input('username'), 'password' => $req->input('password')]))
@@ -27,15 +27,37 @@ class AuthController extends Controller
             $_SESSION['logged'] = true;
             $_SESSION['loggedName'] = auth()->user()->firstname . ' ' . auth()->user()->lastname;
             $_SESSION['loggedEmail'] = auth()->user()->email;
-            if(auth()->user()->role == 'Segreteria')
+            if($dl->getTeacher(auth()->user()->id)->role == 'Admin')
             {
-                $_SESSION['loggedRole'] = 'Segreteria';
-                return Redirect::to(route('secretariat.home'));
+                if($employee_type == 'Admin')
+                {
+                    $_SESSION['loggedRole'] = 'admin';
+                    return Redirect::to(route('admin.home'));
+                }
+                return view('auth.auth')->with('error', 'Non hai i permessi per accedere a questa pagina')->with('employee_type', $employee_type);
             }
-            return Redirect::to(route('teacher.home'));
+            else if($dl->getTeacher(auth()->user()->id)->role == 'Segreteria')
+            {
+                if($employee_type == 'Segreteria' || $employee_type == 'Admin') //administrator can access through secretary page
+                {
+                    $_SESSION['loggedRole'] = 'Segreteria';
+                    return Redirect::to(route('secretariat.home'));
+                }
+                return view('auth.auth')->with('error', 'Non hai i permessi per accedere a questa pagina')->with('employee_type', $employee_type);
+            }
+            else if($dl->getTeacher(auth()->user()->id)->role == 'Docente')
+            {
+                if($employee_type == 'Docente')
+                {
+                    $_SESSION['loggedRole'] = 'Docente';
+                    return Redirect::to(route('teacher.home'));
+                }
+                return view('auth.auth')->with('error', 'Non hai i permessi per accedere a questa pagina')->with('employee_type', $employee_type);
+            }
+            
         }
 
-        return view('auth.auth')->with('error', 'Username o password errati');
+        return view('auth.auth')->with('error', 'Username o password errati')->with('employee_type', $employee_type);
     }
 
     public function teacherRegistration(Request $req) {

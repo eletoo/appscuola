@@ -44,9 +44,7 @@
                                 @endif
                             @endforeach
                             <td>
-                                <button  class="btn btn-primary">
-                                    <a href="{{route('teachers.timetable', $teacher->id)}}"><i class="bi bi-clock"></i> Orario</a>
-                                </button>
+                                <a class="btn btn-primary" href="{{route('teachers.timetable', $teacher->id)}}"><i class="bi bi-clock"></i> Orario</a>
                             </td>
                         </tr>
                     @endforeach

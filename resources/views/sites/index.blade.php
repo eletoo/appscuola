@@ -37,11 +37,9 @@
 </div>
 
 <div class="container-fluid">
-		<button type="button" class="btn btn-primary btn-lg d-flex justify-content-md-center mx-auto my-2 my-md-4">
-			<a href="{{route('events.school', strtolower($info_site->city))}}">
-				Calendario Assenze Completo
-			</a>
-		</button>
+	<a class="btn btn-primary btn-lg d-flex justify-content-md-center mx-auto my-2 my-md-4" href="{{route('events.school', strtolower($info_site->city))}}">
+		Calendario Assenze Completo
+	</a>
 </div>
 
 <div class="container-fluid">
@@ -64,9 +62,7 @@
 							<td>{{$teacher->lastname}}</td>
 							<td>{{$teacher->firstname}}</td>
 							<td>
-								<button type="button" class="btn btn-primary">
-									<a href="{{route('teachers.timetable', $teacher->id)}}"><i class="bi bi-clock"></i> Orario</a>
-								</button>
+								<a class="btn btn-primary" href="{{route('teachers.timetable', $teacher->id)}}"><i class="bi bi-clock"></i> Orario</a>
 							</td>
 						</tr>
 					@endforeach

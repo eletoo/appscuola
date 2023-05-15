@@ -44,11 +44,10 @@ Sostituzione
                     <tr>
                         <td>{{$available_teacher->lastname}} {{$available_teacher->firstname}}</td>
                         <td>
-                        <button type="button" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
-                            <a href="#"><!--TODO-->
+                            <a href="#" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+                                <!--TODO-->
                                 Seleziona
                             </a>
-                        </button>
                         </td>
                     </tr>
                     @endforeach
@@ -56,6 +55,9 @@ Sostituzione
             </table>
         </div>
         @endif
+        <a href="{{route('events.school', $city)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+            Torna al Calendario
+        </a>
     </div>
 </div>
 @endsection

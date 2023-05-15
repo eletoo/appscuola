@@ -4,6 +4,19 @@
     margin-top: 1rem;
 }
 
+a.btn{
+    color: black;
+}
+
+.breadcrumb a{
+    color: black;
+    
+}
+
+.btn{
+    color: black;
+}
+
 header {
     margin-left: 8px;
     margin-top: 2rem;
@@ -37,10 +50,6 @@ p {
     margin-left: 8px;
 }
 
-a {
-    color: black;
-    text-decoration: none;
-}
 
 .btn-primary {
     background-color: #94a7c4;

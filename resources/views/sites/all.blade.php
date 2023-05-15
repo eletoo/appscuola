@@ -48,12 +48,10 @@
                         ({{$site->province}})
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary">
-                            <a href="{{route('events.school', strtolower($site->city))}}">
-                            <i class="bi bi-calendar-event"></i> Calendario</a></button>
-                        <button type="button" class="btn btn-primary">
-                            <a href="{{route(strtolower($site->city).'.index')}}">
-                            <i class="bi bi-person"></i> Docenti</a></button>
+                        <a class="btn btn-primary" href="{{route('events.school', strtolower($site->city))}}">
+                        <i class="bi bi-calendar-event"></i> Calendario</a>
+                        <a class="btn btn-primary" href="{{route(strtolower($site->city).'.index')}}">
+                        <i class="bi bi-person"></i> Docenti</a>
                     </td>
                 </tr>
                 @endforeach
