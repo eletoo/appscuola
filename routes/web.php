@@ -18,18 +18,25 @@ Route::get('/personale/logout/{employee_type}', [AuthController::class, 'logout'
 
 Route::middleware(['authAdmin'])->group(function(){
     Route::get('/personale/admin/areaRiservata', [TeachersController::class, 'homeAdmin'])->name('admin.home');
+    // only admin can add secretaries to the database
+    Route::get('/personale/segreteria/nuovo', [TeachersController::class, 'addSecretary'])->name('secretariat.add'); //TODO: addSecretary
 });
 
 Route::middleware(['authSecretary'])->group(function(){
     Route::get('/personale/segreteria/areaRiservata', [TeachersController::class, 'homeSecretary'])->name('secretariat.home');
     // only secretaries can choose which teacher will substitute another one
     Route::get('/personale/docenti/{teacher_id}/{event_id}/sostituzione', [TeachersController::class, 'substitute'])->name('teachers.substitute');
+    // only secretaries can add teachers to the database
+    Route::get('/personale/docenti/nuovo', [TeachersController::class, 'addTeacher'])->name('teachers.add'); //TODO: addTeacher
 });
 
 Route::middleware(['authTeacher'])->group(function(){
     Route::get('/personale/docenti/areaRiservata', [TeachersController::class, 'homeTeacher'])->name('teacher.home');
     // each teacher has to be logged in to see their own substitutions
-    Route::get('/personale/docenti/areaRiservata/{teacher_id}/supplenze', [TeachersController::class, 'substitutions'])->name('teacher.mySubstitution');
+    Route::get('/personale/docenti/areaRiservata/{teacher_id}/supplenze', [TeachersController::class, 'substitutions'])->name('teacher.mySubstitutions');
+    // each teacher has to be logged in to see their own absences
+    Route::get('/personale/docenti/areaRiservata/{teacher_id}/assenze', [TeachersController::class, 'absences'])->name('teacher.myAbsences');
+    Route::post('/api/certificate', [TeachersController::class, 'uploadCertificate'])->name('teacher.uploadCertificate');
 });
 
 /*Teachers*/

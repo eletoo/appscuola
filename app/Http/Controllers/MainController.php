@@ -11,7 +11,7 @@ class MainController extends Controller
         session_start();
 
         if (isset($_SESSION['logged'])) {
-            return view('index')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('loggedRole', $_SESSION['loggedRole']);
+            return view('index')->with('logged', true)->with('loggedID', $_SESSION['loggedID'])->with('loggedName', $_SESSION['loggedName'])->with('loggedRole', $_SESSION['loggedRole']);
         } else {
             return view('index')->with('logged', false);
         }

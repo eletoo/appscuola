@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Login Docenti')
+@section('title', 'Login')
 
 @section('page_title')
     @if($employee_type == 'Docente')

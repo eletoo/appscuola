@@ -2,9 +2,9 @@
 
 @section('style', 'mystyle.css')
 
-@section('title', 'Le Tue Supplenze')
+@section('title', 'Le Mie Supplenze')
 
-@section('page_title', 'Le Tue Supplenze')
+@section('page_title', 'Le Mie Supplenze')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">

@@ -48,10 +48,25 @@ class TimetableController extends Controller
      */
     public function show(Timetable $timetable)
     {
+        session_start();
         $dl = new DataLayer();
         $teacher = $dl->getTeacher(intval($timetable->teacher_id));
         $site_city=$dl->getSiteById(intval($teacher->site_id))->city;
-        return view('timetables.show')->with(['timetable'=> $timetable, 'site_city'=> $site_city, 'teacher' => $teacher]);
+        if (isset($_SESSION['logged'])) {
+            return view('timetables.show')
+            ->with(['timetable'=> $timetable, 
+            'site_city'=> $site_city, 
+            'teacher' => $teacher,
+            'logged' => true,
+            'loggedID' => $_SESSION['loggedID'],
+            'loggedName' => $_SESSION['loggedName'],
+            'loggedRole' => $_SESSION['loggedRole']]);
+        }
+        return view('timetables.show')
+        ->with(['timetable'=> $timetable, 
+        'site_city'=> $site_city, 
+        'teacher' => $teacher,
+        'logged' => false]);
     }
 
     /**

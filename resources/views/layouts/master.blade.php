@@ -60,27 +60,26 @@
             </ul> 
 
             <ul class="nav navbar-nav mt-2 mt-lg-0 ms-auto navbar-right">
-                @if(false)<!--TODO: if $logged-->
+                @if($logged)<!--TODO: if $logged-->
                     <li class="nav-item ms-auto">
                         <i>Benvenuto {{ $loggedName }}</i> 
                         <a class="btn btn-outline" href="{{ route('user.logout', $loggedRole) }}">Logout <i class="bi-box-arrow-left"></i></a>
                     </li>
                     <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Area Riservata
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item ms-auto">
-                            <a class="nav-link" role="button" href="{{route('teachers.timetable', ['teacher_id' => $loggedID])}}"><i class="bi bi-clock"></i> Il Mio Orario </a>
-                        </li>
-                        <li class="nav-item ms-auto">
-                            <a class="nav-link" role="button" href="{{route('teacher.mySubstitution', ['teacher_id' => $loggedID])}}"> Le Mie Supplenze</a>
-                        </li>
-                        <div class="dropdown-divider"></div>
-                        <li><a class="dropdown-item" href="{{route('teacher.home')}}">Area Riservata</a></li>
-                    </ul>
-                </li>
-                    
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Area Riservata
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item ms-auto">
+                                <a class="nav-link" role="button" href="{{route('teachers.timetable', ['teacher_id' => $loggedID])}}"><i class="bi bi-clock"></i> Il Mio Orario </a>
+                            </li>
+                            <li class="nav-item ms-auto">
+                                <a class="nav-link" role="button" href="{{route('teacher.mySubstitutions', ['teacher_id' => $loggedID])}}"> Le Mie Supplenze</a>
+                            </li>
+                            <div class="dropdown-divider"></div>
+                            <li><a class="dropdown-item" href="{{route('teacher.home')}}">Area Riservata</a></li>
+                        </ul>
+                    </li>
                 @else
                     <li class="nav-item ms-auto">
                         <a class="nav-link" role="button" href="{{route('user.login', 'Docente')}}">Login Docenti</a>

@@ -21,12 +21,24 @@ class EventController extends Controller
      */
     public function index()
     {
+        session_start();
         $dl = new DataLayer();
         $teachers_list = $dl->listTeachers();
         $events = $dl->listEvents()->where('substitute_id', null); //list events without a substitute
+        if (isset($_SESSION['logged'])) {
+            return view('events.index')->with([
+                'events' => $events,
+                'teachers_list' => $teachers_list,
+                'logged' => true,
+                'loggedID' => $_SESSION['loggedID'],
+                'loggedName' => $_SESSION['loggedName'],
+                'loggedRole' => $_SESSION['loggedRole']
+            ]);
+        }
         return view('events.index')->with([
             'events' => $events,
-            'teachers_list' => $teachers_list
+            'teachers_list' => $teachers_list,
+            'logged' => false
         ]);
     }
 
@@ -41,6 +53,7 @@ class EventController extends Controller
 
     public function bergamo()
     {
+        session_start();
         $dl = new DataLayer();
         $teachers_list = $dl->listSiteTeachers(2);
         $events=array();
@@ -48,15 +61,28 @@ class EventController extends Controller
         {
             $events[]=$dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
         }
+        if (isset($_SESSION['logged'])) {
+            return view('events.school')->with([
+                'site' => $dl->infoSite('Bergamo'),
+                'events' => $events,
+                'teachers_list' => $teachers_list,
+                'logged' => true,
+                'loggedID' => $_SESSION['loggedID'],
+                'loggedName' => $_SESSION['loggedName'],
+                'loggedRole' => $_SESSION['loggedRole']
+            ]);
+        }
         return view('events.school')->with([
             'site' => $dl->infoSite('Bergamo'),
             'events' => $events,
-            'teachers_list' => $teachers_list
+            'teachers_list' => $teachers_list,
+            'logged' => false
         ]);
     }
 
     public function brescia()
     {
+        session_start();
         $dl = new DataLayer();
         $teachers_list = $dl->listSiteTeachers(1);
         $events=array();
@@ -64,15 +90,29 @@ class EventController extends Controller
         {
             $events[] = $dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
         }
+        if (isset($_SESSION['logged'])) {
+            return view('events.school')->with([
+                'site' => $dl->infoSite('Brescia'),
+                'events' => $events,
+                'teachers_list' => $teachers_list,
+                'logged' => true,
+                'loggedID' => $_SESSION['loggedID'],
+                'loggedName' => $_SESSION['loggedName'],
+                'loggedRole' => $_SESSION['loggedRole']
+            ]);
+        }
+
         return view('events.school')->with([
             'site' => $dl->infoSite('Brescia'),
             'events' => $events,
-            'teachers_list' => $teachers_list
+            'teachers_list' => $teachers_list,
+            'logged' => false
         ]);
     }
 
     public function milano()
     {
+        session_start();
         $dl = new DataLayer();
         $teachers_list = $dl->listSiteTeachers(3);
         $events=array();
@@ -80,10 +120,22 @@ class EventController extends Controller
         {
             $events[]=$dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
         }
+        if (isset($_SESSION['logged'])) {
+            return view('events.school')->with([
+                'site' => $dl->infoSite('Milano'),
+                'events' => $events,
+                'teachers_list' => $teachers_list,
+                'logged' => true,
+                'loggedID' => $_SESSION['loggedID'],
+                'loggedName' => $_SESSION['loggedName'],
+                'loggedRole' => $_SESSION['loggedRole']
+            ]);
+        }
         return view('events.school')->with([
             'site' => $dl->infoSite('Milano'),
             'events' => $events,
-            'teachers_list' => $teachers_list
+            'teachers_list' => $teachers_list,
+            'logged' => false
         ]);
     }
 
@@ -117,6 +169,7 @@ class EventController extends Controller
      */
     public function show($event_id)
     {
+        session_start();
         $dl = new DataLayer;
         $event = $dl->getEvent(intval($event_id));
 
@@ -134,8 +187,12 @@ class EventController extends Controller
                 $in_class = false;
             }
         }
+        if (isset($_SESSION['logged'])) {
+            return view('events.show')
+            ->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city, 'in_class' => $in_class, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+        }
         return view('events.show')
-        ->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city, 'in_class' => $in_class]);
+        ->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city, 'in_class' => $in_class, 'logged' => false]);
     }
 
     /**
@@ -159,9 +216,32 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         // set the substitute_id of the event to the id of the teacher who accepted the substitution
+        session_start();
+        $dl = new DataLayer;
+        // if the user is logged in and is a secretary then edit the event
+        if (isset($_SESSION['logged']) && $dl->getTeacher(auth()->user()->id)->role == 'Segreteria') {
+            $dl->editEvent($id, $request->input('substitute_id'));
+            return redirect()->route('events.index');
+        }
+        // if the user is not logged in, redirect to the login page
+        return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
+        
+
+/*
+        // if the user is not logged in, redirect to the login page
+        if (!isset($_SESSION['logged'])) {
+            return redirect()->route('user.login', 'Segreteria');
+        }
+        // if the user is not a secretary, redirect to the login page
+        if ($_SESSION['loggedRole'] != 'Segreteria') {
+            return redirect()->route('user.login', 'Segreteria');
+        }
+        // if the user is a secretary and is logged in then edit the event
+
         $dl = new DataLayer;
         $dl->editEvent($id, $request->input('substitute_id'));
         return redirect()->route('events.index');
+*/
     }
 
     /**

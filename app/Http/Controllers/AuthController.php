@@ -10,7 +10,16 @@ use Illuminate\Support\Facades\Redirect;
 class AuthController extends Controller
 {
     public function authentication($employee_type) {
-        return view('auth.auth')->with('employee_type', $employee_type);
+        session_start();
+        if (isset($_SESSION['logged'])){
+            if ($_SESSION['loggedRole'] == $employee_type) {
+                return Redirect::to(route('home'));
+            }
+            else {
+                return view('auth.auth')->with(['employee_type'=> $employee_type, 'logged' => true, 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole'], 'loggedID' => $_SESSION['loggedID']]);
+            }
+        }
+        return view('auth.auth')->with(['employee_type'=> $employee_type, 'logged' => false]);
     }
 
     public function logout() {

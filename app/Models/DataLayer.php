@@ -134,10 +134,18 @@ class DataLayer
         return Event::where('substitute_id', $teacher_id)->get();
     }
 
+    public function listAbsencesByTeacher($teacher_id)
+    {
+        return Event::where('teacher_id', $teacher_id)->orderBy('day_of_week', 'desc')->get();
+    }
+
     public function editEvent($event_id, $substitute_id)
     {
-        $event = Event::find($event_id);
-        $event->substitute_id = $substitute_id;
-        $event->save();
+        session_start();
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Segreteria') {
+            $event = Event::find($event_id);
+            $event->substitute_id = $substitute_id;
+            $event->save();
+        }        
     }
 }
