@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
 
+    public function __construct() {
+        $this->middleware('authSecretary', ['only' => ['update', 'create', 'store', 'edit', 'destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

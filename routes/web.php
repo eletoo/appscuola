@@ -16,20 +16,25 @@ Route::get('/personale/login/{employee_type}', [AuthController::class,'authentic
 Route::post('/personale/login/{employee_type}', [AuthController::class, 'login'])->name('user.login');
 Route::get('/personale/logout/{employee_type}', [AuthController::class, 'logout'])->name('user.logout');
 
-
-Route::middleware(['auth'])->group(function(){
-    /*Rotte da proteggere con autenticazione*/
-    Route::get('/personale/docenti/areaRiservata', [TeachersController::class, 'homeTeacher'])->name('teacher.home');
-    Route::get('/personale/docenti/areaRiservata/{teacher_id}/supplenze', [TeachersController::class, 'substitutions'])->name('teacher.mySubstitution');
-
-    Route::get('/personale/segreteria/areaRiservata', [TeachersController::class, 'homeSecretary'])->name('secretariat.home');
+Route::middleware(['authAdmin'])->group(function(){
     Route::get('/personale/admin/areaRiservata', [TeachersController::class, 'homeAdmin'])->name('admin.home');
+});
+
+Route::middleware(['authSecretary'])->group(function(){
+    Route::get('/personale/segreteria/areaRiservata', [TeachersController::class, 'homeSecretary'])->name('secretariat.home');
+    // only secretaries can choose which teacher will substitute another one
+    Route::get('/personale/docenti/{teacher_id}/{event_id}/sostituzione', [TeachersController::class, 'substitute'])->name('teachers.substitute');
+});
+
+Route::middleware(['authTeacher'])->group(function(){
+    Route::get('/personale/docenti/areaRiservata', [TeachersController::class, 'homeTeacher'])->name('teacher.home');
+    // each teacher has to be logged in to see their own substitutions
+    Route::get('/personale/docenti/areaRiservata/{teacher_id}/supplenze', [TeachersController::class, 'substitutions'])->name('teacher.mySubstitution');
 });
 
 /*Teachers*/
 Route::get('/personale/docenti', [TeachersController::class, 'teachers'])->name('teachers.index');
 Route::get('/personale/docenti/{teacher_id}/orario', [TeachersController::class, 'timetable'])->name('teachers.timetable');
-Route::get('/personale/docenti/{teacher_id}/{event_id}/sostituzione', [TeachersController::class, 'substitute'])->name('teachers.substitute');
 
 
 /*Sites*/
