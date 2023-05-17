@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('role');
             $table->integer('site_id')->unsigned()->nullable();
-            $table->bigInteger('user_id')->unsigned();
+            $table->integer('user_id')->unsigned();
         });
 
         Schema::table('teacher', function (Blueprint $table){

@@ -24,7 +24,7 @@ class SecretarySeeder extends Seeder
         $admin = new Teacher();
         $admin->firstname = 'admin';
         $admin->lastname = 'user';
-        $admin->role = 'Segreteria';
+        $admin->role = 'Admin';
         $admin->user_id = $user->id;
         $admin->site_id = null;
         $admin->save();

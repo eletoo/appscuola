@@ -11,7 +11,7 @@
 </div>
 <div class="row my-3">
     <div class="col" align="center">
-        <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Registra Nuovo Docente</a>
+        <a class="btn btn-lg btn-primary my-3" href="{{route('teachers.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Registra Nuovo Docente</a>
     </div>
     <div class="col" align="center">
         <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>

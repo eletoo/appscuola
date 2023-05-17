@@ -114,13 +114,13 @@ class AuthController extends Controller
 
     public function teacherRegistration(Request $req) {
         $dl = new DataLayer();
-        $dl->addTeacher($req->input('firstname'), $req->input('lastname'), $req->input('password'), $req->input('email'));
-        return true;
+        $teacher = $dl->addTeacher($req->input('firstname'), $req->input('lastname'), $req->input('password'),$req->input('site_id'));
+        return redirect()->route('admin.home');
     }
 
-    public function secretariatRegistration(Request $req) {
+    public function secretaryRegistration(Request $req) {
         $dl = new DataLayer();
-        $dl->addSecretary($req->input('firstname'), $req->input('lastname'), $req->input('password'), $req->input('email'));
-        return true;
+        $secretary = $dl->addSecretary($req->input('firstname'), $req->input('lastname'), $req->input('password'));
+        return $secretary;
     }
 }

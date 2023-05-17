@@ -10,7 +10,7 @@ class Teacher extends Model
     use HasFactory;
     protected $table = 'teacher';
     public $timestamps = false;
-    protected $fillable = ['firstname', 'lastname', 'role'];
+    protected $fillable = ['firstname', 'lastname', 'role', 'site_id', 'user_id'];
 
     public function sites()
     {

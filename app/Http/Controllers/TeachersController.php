@@ -3,10 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataLayer;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class TeachersController extends Controller
 {
+    public function createTeacher()
+    {
+        session_start();
+        if (isset($_SESSION['logged'])){
+            if ($_SESSION['loggedRole'] == 'Segreteria' || $_SESSION['loggedRole'] == 'Admin'){
+                return view('teachers.create')->with(['sites_list' => (new DataLayer())->listSites(), 'employees_list'=>Teacher::all(), 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+            }
+        }
+        return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
+    }
+
+    public function createSecretary()
+    {
+        //TODO: createSecretary
+    }
+
     public function teachers()
     {  
         session_start();
@@ -119,6 +136,14 @@ class TeachersController extends Controller
         ->with(['absences_list' => $dl->listAbsencesByTeacher($teacher_id), 'logged' => false]);
     }
 
+    public function uploadCertificate($req) //TODO: uploadCertificate
+    {
+        if($req->hasFile('Certificate'))
+            $req->file('Certificate')->storeAs('public/certificates/', $req->get('absence_id'));
+
+        return view('personalAbsences');
+    }
+
     public function substitute($teacher_id, $event_id)
     {
         session_start();
@@ -137,13 +162,5 @@ class TeachersController extends Controller
         }            
         
         return redirect()->to(route('user.login', ['employee_type' => 'Segreteria']));
-    }
-
-    public function uploadCertificate($req) //TODO: uploadCertificate
-    {
-        if($req->hasFile('Certificate'))
-            $req->file('Certificate')->storeAs('public/certificates/', $req->get('absence_id'));
-
-        return view('personalAbsences');
-    }
+    }    
 }

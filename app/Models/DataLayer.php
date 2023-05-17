@@ -94,25 +94,24 @@ class DataLayer
 
     private function addUser($email, $password)
     {
-        $user = new User();
-        $user->email = $email;
-        $user->password = password_hash($password, PASSWORD_ARGON2ID);
+        $user = new User(['email' => $email, 'password' => password_hash($password, PASSWORD_ARGON2ID)]);
         $user->save();
-        return $user;
+        return User::find($user->id)->first();
     }
 
-    public function addTeacher($firstname, $lastname, $password, $email){
+    public function addTeacher($firstname, $lastname, $password, $site_id){
+        $email = $firstname . '.' . $lastname . '@leopardi.it';
+        while (User::where('email', $email)->exists()) {
+            $email = $firstname . '.' . $lastname . count(User::where('email', $email)->get()). '@leopardi.it';
+        }
         $user = $this->addUser($email, $password);
-        $teacher = new Teacher();
-        $teacher->firstname = $firstname;
-        $teacher->lastname = $lastname;
-        $teacher->role = 'Docente';
-        $teacher->user_id = $user->id;
+        $teacher = new Teacher(['firstname' => $firstname, 'lastname' => $lastname, 'role' => 'Docente', 'site_id' => $site_id, 'user_id' => intval($user->id)]);       
         $teacher->save();
         return $teacher;
     }
 
-    public function addSecretary($firstname, $lastname, $password, $email){
+    public function addSecretary($firstname, $lastname, $password){
+        $email = $firstname . '.' . $lastname . '@leopardi.it';
         $user = $this->addUser($email, $password);
         $teacher = new Teacher();
         $teacher->firstname = $firstname;
