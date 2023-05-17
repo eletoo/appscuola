@@ -54,7 +54,7 @@ Assenza Prof. {{$teacher->firstname}} {{$teacher->lastname}} del {{date("d-m-Y",
                         @endif
                     </tr>
                     <tr>
-                        <td><b>Descrizione/Motivazione</b></td>
+                        <td><b>Descrizione</b></td>
                         <td>{{$event->description}}</td>
                     </tr>
                 </tbody>
@@ -64,7 +64,7 @@ Assenza Prof. {{$teacher->firstname}} {{$teacher->lastname}} del {{date("d-m-Y",
     <div class="row">
         @if($in_class)
 			<a class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4" href="{{route('teachers.substitute', [ 'teacher_id' => $teacher->id, 'event_id' => $event->id])}}">
-				Sostituisci Docente Assente
+            <i class="bi bi-arrow-left-right"></i> &nbsp; Sostituisci Docente Assente
 			</a>
         @else 
         <div class="text-align-center my-md-5 my-3">

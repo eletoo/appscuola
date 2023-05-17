@@ -21,18 +21,16 @@ class TeachersController extends Controller
 
     public function homeAdmin()
     {
-        session_start();
+        session_start();        
 
-        $dl = new DataLayer();
-        $userID = $dl->getUserID($_SESSION["loggedEmail"]);
-
-        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin')
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin'){
             return view('admin.home')
             ->with('logged', true)
             ->with('loggedName', $_SESSION['loggedName'])
             ->with('loggedRole', $_SESSION['loggedRole'])
-            ->with('loggedID', $userID);
-        
+            ->with('loggedID', $_SESSION['loggedID']);
+        }
+
         return redirect()->route('user.login', ['employee_type' => 'Admin']);
     }
     
@@ -40,12 +38,13 @@ class TeachersController extends Controller
     {
         session_start();
 
-        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Docente')
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Docente'){
             return view('teachers.home')
             ->with('logged', true)
             ->with('loggedName', $_SESSION['loggedName'])
             ->with('loggedRole', $_SESSION['loggedRole'])
             ->with('loggedID', $_SESSION['loggedID']);
+        }
 
         return redirect()->route('user.login', ['employee_type' => 'Docente']);
     }
@@ -54,12 +53,13 @@ class TeachersController extends Controller
     {
         session_start();
 
-        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Segreteria')
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Segreteria'){
             return view('secretariat.home')
         ->with('logged', true)
         ->with('loggedName', $_SESSION['loggedName'])
         ->with('loggedRole', $_SESSION['loggedRole'])
         ->with('loggedID', $_SESSION['loggedID']);
+        }
 
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }

@@ -30,11 +30,11 @@ Sostituzione
                 Non ci sono docenti disponibili per la sostituzione
             </div>
             <a href="{{route('events.school', $city)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
-                Torna al Calendario
+            <i class="bi bi-chevron-left"></i> Torna al Calendario
             </a>
         @else
         <a href="{{route('events.school', $city)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
-            Torna al Calendario
+        <i class="bi bi-chevron-left"></i> Torna al Calendario
         </a>
         <div class="col-md-offset-10 col-md-12">
             <table class="table table-striped table-hover table-responsive table-bordered">

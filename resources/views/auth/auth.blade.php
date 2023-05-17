@@ -46,7 +46,7 @@
                         <input type="password" name="password" class="form-control" placeholder="Password"/>
                     </div>
 
-                    <a href="{{ route('home') }}" class="btn btn-secondary"><i class="bi-box-arrow-left"></i> Indietro</a>
+                    <a href="{{ route('home') }}" class="btn btn-secondary"><i class="bi bi-chevron-left"></i> Home</a>
                     <button type="submit" class="btn btn-primary"><i class="bi-check-lg"></i> Accedi</button>
                 </form>
             </div>

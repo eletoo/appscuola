@@ -43,7 +43,7 @@
                     <tbody>
                         @foreach($absences_list as $absence)
                             <tr>
-                                <td>{{$absence->day_of_week}}</td>
+                                <td>{{date('d/m/Y', strtotime($absence->day_of_week))}}</td>
                                 <td>{{$absence->hour_of_schoolday}}</td>
                                 <td>
                                     <form class="form-horizontal" name="certificate" method="post" action="/api/certificate" enctype="multipart/form-data">
