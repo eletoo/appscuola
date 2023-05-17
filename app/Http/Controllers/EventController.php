@@ -225,23 +225,6 @@ class EventController extends Controller
         }
         // if the user is not logged in, redirect to the login page
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
-        
-
-/*
-        // if the user is not logged in, redirect to the login page
-        if (!isset($_SESSION['logged'])) {
-            return redirect()->route('user.login', 'Segreteria');
-        }
-        // if the user is not a secretary, redirect to the login page
-        if ($_SESSION['loggedRole'] != 'Segreteria') {
-            return redirect()->route('user.login', 'Segreteria');
-        }
-        // if the user is a secretary and is logged in then edit the event
-
-        $dl = new DataLayer;
-        $dl->editEvent($id, $request->input('substitute_id'));
-        return redirect()->route('events.index');
-*/
     }
 
     /**

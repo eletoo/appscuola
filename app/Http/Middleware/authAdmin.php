@@ -19,6 +19,6 @@ class authAdmin extends Middleware
         {
             return true;
         }
-        return route('user.login', ['employee_type' => 'Admin']);
+        return route('user.login', ['employee_type' => 'Segreteria']);
     }
 }

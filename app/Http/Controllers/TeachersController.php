@@ -31,7 +31,7 @@ class TeachersController extends Controller
             ->with('loggedID', $_SESSION['loggedID']);
         }
 
-        return redirect()->route('user.login', ['employee_type' => 'Admin']);
+        return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }
     
     public function homeTeacher()
