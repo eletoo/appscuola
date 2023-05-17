@@ -14,8 +14,11 @@ class authSecretary extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('user.login', ['employee_type' => 'Segreteria']);
+        session_start();
+        if(isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Segreteria')
+        {
+            return true;
         }
+        return route('user.login', ['employee_type' => 'Segreteria']);
     }
 }

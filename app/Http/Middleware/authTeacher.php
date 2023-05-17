@@ -14,8 +14,11 @@ class authTeacher extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('user.login', ['employee_type' => 'Docente']);
+        session_start();
+        if(isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Docente')
+        {
+            return true;
         }
+        return route('user.login', ['employee_type' => 'Docente']);
     }
 }

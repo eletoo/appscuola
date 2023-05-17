@@ -14,8 +14,11 @@ class authAdmin extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('user.login', ['employee_type' => 'Admin']);
+        session_start();
+        if(isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin')
+        {
+            return true;
         }
+        return route('user.login', ['employee_type' => 'Admin']);
     }
 }
