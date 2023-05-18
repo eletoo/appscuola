@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class DataLayer
 {
     // contains the methods to interact with the DB
+    public function listSecretaries()
+    {
+        return Teacher::where('role','Segreteria')
+        ->orderBy('lastname', 'asc')
+        ->orderBy('firstname', 'asc')->get();
+    }
+
     public function listTeachers()
     {
         return Teacher::where('role','Docente')
@@ -126,6 +133,14 @@ class DataLayer
         $secretary = new Teacher(['firstname' => $firstname, 'lastname' => $lastname, 'role' => 'Segreteria', 'site_id' => null, 'user_id' => intval($user->id)]);       
         $secretary->save();
         return $secretary;
+    }
+
+    public function deleteSecretary($secretary_id)
+    {
+        $secretary = Teacher::find($secretary_id);
+        $user = User::find($secretary->user_id);
+        $secretary->delete();
+        $user->delete();
     }
 
     public function getUserID($email)

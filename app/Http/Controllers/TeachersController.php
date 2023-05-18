@@ -28,6 +28,23 @@ class TeachersController extends Controller
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }
 
+    public function destroySecretary($secretary_id)
+    {
+        session_start();
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin'){
+            $dl = new DataLayer();
+            $dl->deleteSecretary($secretary_id);
+            return view('admin.home')->with(
+                ['secretaries_list' => $dl->listSecretaries(),
+                'logged' => true,
+                'loggedID' => $_SESSION['loggedID'],
+                'loggedName' => $_SESSION['loggedName'],
+                'loggedRole' => $_SESSION['loggedRole'],
+                'success' => 'Segretario eliminato con successo!']);
+        }
+        return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
+    }
+
     public function teachers()
     {  
         session_start();
@@ -38,6 +55,17 @@ class TeachersController extends Controller
             return view('teachers.index')->with(['teachers_list' => $teachers, 'sites_list' => $sites_list, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
         }
         return view('teachers.index')->with(['teachers_list' => $teachers, 'sites_list' => $sites_list, 'logged' => false]);
+    }
+
+    public function secretaries()
+    {
+        session_start();
+        $dl = new DataLayer();
+        $secretaries = $dl->listSecretaries();
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin') {
+            return view('secretariat.index')->with(['secretaries_list' => $secretaries, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+        }
+        return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }
 
     public function homeAdmin()

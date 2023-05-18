@@ -57,7 +57,7 @@
                     </td>
                     <td>
                         <div class="col" align="center">
-                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Segretario</a>
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('secretaries.index', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Segretario</a>
                         </div>
                     </td>
                 </tr>
