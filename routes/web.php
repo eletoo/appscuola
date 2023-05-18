@@ -24,7 +24,6 @@ Route::middleware(['authAdmin'])->group(function(){
     // only admin can remove secretaries from the database
     Route::get('/personale/segreteria/tutti', [TeachersController::class, 'secretaries'])->name('secretaries.index');
     Route::delete('/personale/segreteria/{secretary_id}', [TeachersController::class, 'destroySecretary'])->name('secretary.destroy');
-    
     // POSSIBLE EXPANSION: only admin can add sites to the database
     // Route::get('/sede/nuova', [SitesController::class, 'createSite'])->name('site.add');
     // Route::post('/sede/nuova', [SitesController::class, 'storeSite'])->name('site.store');
@@ -34,9 +33,10 @@ Route::middleware(['authSecretary'])->group(function(){
     Route::get('/personale/segreteria/areaRiservata', [TeachersController::class, 'homeSecretary'])->name('secretariat.home');
     // only secretaries can choose which teacher will substitute another one
     Route::get('/personale/docenti/{teacher_id}/{event_id}/sostituzione', [TeachersController::class, 'substitute'])->name('teachers.substitute');
-    // only secretaries can add teachers to the database
+    // both secretaries and admin can add/remove teachers to the database
     Route::get('/personale/docenti/nuovo', [TeachersController::class, 'createTeacher'])->name('teacher.add'); 
     Route::post('/personale/docenti/nuovo', [AuthController::class, 'teacherRegistration'])->name('teacher.store');
+    Route::delete('/personale/docenti/{teacher_id}', [TeachersController::class, 'destroyTeacher'])->name('teacher.destroy');
 });
 
 Route::middleware(['authTeacher'])->group(function(){

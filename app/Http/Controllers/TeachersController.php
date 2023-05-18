@@ -19,6 +19,33 @@ class TeachersController extends Controller
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }
 
+    public function destroyTeacher($teacher_id)
+    {
+        session_start();
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin'){
+            $dl = new DataLayer();
+            $dl->deleteTeacher($teacher_id);
+            return view('admin.home')->with(
+                ['teachers_list' => $dl->listTeachers(),
+                'logged' => true,
+                'loggedID' => $_SESSION['loggedID'],
+                'loggedName' => $_SESSION['loggedName'],
+                'loggedRole' => $_SESSION['loggedRole'],
+                'success' => 'Docente eliminato con successo!']);
+        }else if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Segreteria'){
+            $dl = new DataLayer();
+            $dl->deleteTeacher($teacher_id);
+            return view('secretariat.home')->with(
+                ['teachers_list' => $dl->listTeachers(),
+                'logged' => true,
+                'loggedID' => $_SESSION['loggedID'],
+                'loggedName' => $_SESSION['loggedName'],
+                'loggedRole' => $_SESSION['loggedRole'],
+                'success' => 'Docente eliminato con successo!']);
+        }
+        return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
+    }
+
     public function createSecretary()
     {
         session_start();

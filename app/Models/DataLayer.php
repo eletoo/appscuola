@@ -124,6 +124,17 @@ class DataLayer
         return $teacher;
     }
 
+    public function deleteTeacher($teacher_id){
+        $teacher = Teacher::find($teacher_id);
+        $events = Event::where('teacher_id', $teacher_id)->get();
+        $timetables = Timetable::where('teacher_id', $teacher_id)->get();
+        $user = User::find($teacher->user_id);
+        $events->each->delete();
+        $timetables->each->delete();
+        $teacher->delete();
+        $user->delete(); 
+    }
+
     public function addSecretary($firstname, $lastname, $password){
         $email = $firstname . '.' . $lastname . '@segreteria.leopardi.it';
         while (User::where('email', $email)->exists()) {

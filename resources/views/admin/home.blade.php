@@ -41,7 +41,7 @@
                     </td>
                     <td>
                         <div class="col" align="center">
-                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('teachers.index', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
                         </div>
                     </td>
                 </tr>

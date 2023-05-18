@@ -21,10 +21,10 @@
     <div class="row">
         <div class="col-md-offset-10 col-md-12">
             <table class="table table-striped table-hover table-responsive table-bordered">
-                <col width="40%"/>
-                <col width="40%"/>
-                <col width="10%"/>
-                <col width="10%"/>
+                <col width="25%"/>
+                <col width="25%"/>
+                <col width="25%"/>
+                <col width="25%"/>
                 <thead>
                     <tr>
                         <th>Cognome</th>
@@ -45,6 +45,14 @@
                             @endforeach
                             <td>
                                 <a class="btn btn-primary" href="{{route('teachers.timetable', $teacher->id)}}"><i class="bi bi-clock"></i> Orario</a>
+                                @if($logged && ($loggedRole == 'Admin' || $loggedRole == 'Segreteria'))
+                                    <br></br>
+                                    <form class="form-horizontal" name="delete" method="post" action="{{ route('teacher.destroy', $teacher->id) }}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-primary" id="delete" type="submit" value=" Elimina" class="hidden"><i class="bi bi-trash"></i> Elimina</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
