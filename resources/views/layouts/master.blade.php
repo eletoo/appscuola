@@ -59,7 +59,7 @@
             </ul> 
 
             <ul class="nav navbar-nav mt-2 mt-lg-0 ms-auto navbar-right me-4">
-                @if($logged)<!--TODO: if $logged-->
+                @if($logged)
                     <li class="nav-item ms-auto">
                         <a class="btn btn-outline" href="{{ route('user.logout', $loggedRole) }}"><i class="bi-box-arrow-left"></i> Logout</a>
                     </li>

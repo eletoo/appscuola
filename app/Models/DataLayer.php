@@ -38,6 +38,13 @@ class DataLayer
         return Site::where('id', $site_id)->first();
     }
 
+    public function addSite($site_name, $street, $number, $postcode, $city, $province)
+    {
+        $site = new Site(['site_name' => $site_name, 'street' => $street, 'number' => $number, 'postcode' => $postcode, 'city' => $city, 'province' => $province]);
+        $site->save();
+        return $site;
+    }
+
     public function listEvents()
     {
         return Event::all();

@@ -21,6 +21,9 @@ Route::middleware(['authAdmin'])->group(function(){
     // only admin can add secretaries to the database
     Route::get('/personale/segreteria/nuovo', [TeachersController::class, 'createSecretary'])->name('secretary.add'); 
     Route::post('/personale/segreteria/nuovo', [AuthController::class, 'secretaryRegistration'])->name('secretary.store');
+    // only admin can add sites to the database
+    // Route::get('/sede/nuova', [SitesController::class, 'createSite'])->name('site.add');
+    // Route::post('/sede/nuova', [SitesController::class, 'storeSite'])->name('site.store');
 });
 
 Route::middleware(['authSecretary'])->group(function(){

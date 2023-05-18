@@ -14,28 +14,74 @@
 @endsection
 
 @section('buttons')
+
+<div class="container-fluid">
 <div class="row my-3">
-    <div class="col" align="center">
-        <a class="btn btn-lg btn-primary my-3" href="{{route('secretary.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Registra Nuovo Segretario</a>
-    </div>
-    <div class="col" align="center">
-        <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Segretario</a>
+    <div class="col-md-12">
+        <table class="table table-striped table-hover table-responsive table-bordered">
+            <col width="40%"/>
+            <col width="30%"/>
+            <col width="30%"/>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nuovo</th>
+                    <th>Rimuovi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Docenti
+                    </td>
+                    <td>
+                        <div class="col" align="center">
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('teacher.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Nuovo Docente</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col" align="center">
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Segretari
+                    </td>
+                    <td>
+                        <div class="col" align="center">
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('secretary.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Nuovo Segretario</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col" align="center">
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Segretario</a>
+                        </div>
+                    </td>
+                </tr>
+<!--
+                <tr>
+                    <td>
+                        Sedi
+                    </td>
+                    <td>
+                        <div class="col" align="center">
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-building-add"></i> Nuova Sede</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col" align="center">
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-building-dash"></i> Rimuovi Sede</a>
+                        </div>
+                    </td>
+                </tr>
+-->
+            </tbody>
+        </table>                
     </div>
 </div>
-<div class="row my-3">
-    <div class="col" align="center">
-        <a class="btn btn-lg btn-primary my-3" href="{{route('teacher.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Registra Nuovo Docente</a>
-    </div>
-    <div class="col" align="center">
-        <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
-    </div>
 </div>
-<div class="row my-3">
-    <div class="col" align="center">
-        <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-building-add"></i> Registra Nuova Sede</a>
-    </div>
-    <div class="col" align="center">
-        <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-building-add"></i> Rimuovi Sede</a>
-    </div>
-</div>
+
 @endsection

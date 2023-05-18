@@ -51,9 +51,9 @@
 
                         <select class="select" name="site_id">
                             <option value="0" disabled selected>Sede</option>
-                            <option value="2">Bergamo</option>
-                            <option value="1">Brescia</option>
-                            <option value="3">Milano</option>
+                            @foreach($sites_list as $site)
+                                <option value="{{$site->id}}">{{$site->city}}</option>
+                            @endforeach
                         </select>
 
                         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Site;
 use Illuminate\Http\Request;
 use App\Models\DataLayer;
 
@@ -54,4 +55,24 @@ class SitesController extends Controller
         return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => false]);
     }
 
+    public function createSite()
+    {
+        session_start();
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin'){
+            return view('sites.create')->with(['logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+        }
+        return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
+    }
+
+    public function storeSite(Request $request)
+    {
+        session_start();
+        $dl = new DataLayer();
+        $dl->addSite($request->input('site_name'), $request->input('street'), $request->input('number'), $request->input('postcode'), $request->input('city'), $request->input('province'));
+        return view('admin.home')
+            ->with('logged', true)
+            ->with('loggedName', $_SESSION['loggedName'])
+            ->with('loggedRole', $_SESSION['loggedRole'])
+            ->with('loggedID', $_SESSION['loggedID'])->with('success', 'Sede aggiunta con successo.');
+    }
 }
