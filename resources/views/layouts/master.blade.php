@@ -56,6 +56,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('teachers.index')}}" role="button"><i class="bi bi-person-vcard"></i> Tutti i Docenti</a>
                 </li>       
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false"><i class="bi bi-calendar-event"></i> Calendari Assenze
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{route('events.school', 'bergamo')}}">Bergamo</a></li>
+                        <li><a class="dropdown-item" href="{{route('events.school', 'brescia')}}">Brescia</a></li>
+                        <li><a class="dropdown-item" href="{{route('events.school', 'milano')}}">Milano</a></li>
+                        <div class="dropdown-divider"></div>
+                        <li><a class="dropdown-item" href="{{route('events.index')}}" >Tutti i Calendari Assenze</a></li>
+                    </ul>
+                </li>
             </ul> 
 
             <ul class="nav navbar-nav mt-2 mt-lg-0 ms-auto navbar-right me-4">
