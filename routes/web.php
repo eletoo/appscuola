@@ -19,7 +19,8 @@ Route::get('/personale/logout/{employee_type}', [AuthController::class, 'logout'
 Route::middleware(['authAdmin'])->group(function(){
     Route::get('/personale/admin/areaRiservata', [TeachersController::class, 'homeAdmin'])->name('admin.home');
     // only admin can add secretaries to the database
-    Route::get('/personale/segreteria/nuovo', [TeachersController::class, 'createSecretary'])->name('secretariat.add'); //TODO: addSecretary
+    Route::get('/personale/segreteria/nuovo', [TeachersController::class, 'createSecretary'])->name('secretary.add'); 
+    Route::post('/personale/segreteria/nuovo', [AuthController::class, 'secretaryRegistration'])->name('secretary.store');
 });
 
 Route::middleware(['authSecretary'])->group(function(){
@@ -27,8 +28,8 @@ Route::middleware(['authSecretary'])->group(function(){
     // only secretaries can choose which teacher will substitute another one
     Route::get('/personale/docenti/{teacher_id}/{event_id}/sostituzione', [TeachersController::class, 'substitute'])->name('teachers.substitute');
     // only secretaries can add teachers to the database
-    Route::get('/personale/docenti/nuovo', [TeachersController::class, 'createTeacher'])->name('teachers.add'); //TODO: addTeacher
-    Route::post('/personale/docenti/nuovo', [AuthController::class, 'teacherRegistration'])->name('teachers.store');
+    Route::get('/personale/docenti/nuovo', [TeachersController::class, 'createTeacher'])->name('teacher.add'); 
+    Route::post('/personale/docenti/nuovo', [AuthController::class, 'teacherRegistration'])->name('teacher.store');
 });
 
 Route::middleware(['authTeacher'])->group(function(){

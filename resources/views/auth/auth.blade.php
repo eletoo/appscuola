@@ -16,9 +16,9 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-    @if($employee_type == 'docenti')
+    @if(strtolower($employee_type) == 'docenti')
         <li class="breadcrumb-item active" aria-current="page">Login Docenti</li>
-    @elseif($employee_type == 'segreteria')
+    @elseif(strtolower($employee_type) == 'segreteria')
         <li class="breadcrumb-item active" aria-current="page">Login Segreteria</li>
     @endif
   </ol>

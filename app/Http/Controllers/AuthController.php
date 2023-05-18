@@ -113,14 +113,34 @@ class AuthController extends Controller
     }
 
     public function teacherRegistration(Request $req) {
+        session_start();
         $dl = new DataLayer();
-        $teacher = $dl->addTeacher($req->input('firstname'), $req->input('lastname'), $req->input('password'),$req->input('site_id'));
-        return redirect()->route('admin.home');
+        $dl->addTeacher($req->input('firstname'), $req->input('lastname'), $req->input('password'),$req->input('site_id'));
+        if ($_SESSION['loggedRole']=='Admin')
+            return view('admin.home')
+                ->with('logged', true)
+                ->with('loggedName', $_SESSION['loggedName'])
+                ->with('loggedRole', $_SESSION['loggedRole'])
+                ->with('loggedID', $_SESSION['loggedID'])
+                ->with('success', 'Docente aggiunto con successo');
+        else if ($_SESSION['loggedRole']=='Segreteria')
+            return view('secretariat.home')
+                ->with('logged', true)
+                ->with('loggedName', $_SESSION['loggedName'])
+                ->with('loggedRole', $_SESSION['loggedRole'])
+                ->with('loggedID', $_SESSION['loggedID'])
+                ->with('success', 'Docente aggiunto con successo');
     }
 
     public function secretaryRegistration(Request $req) {
+        session_start();
         $dl = new DataLayer();
-        $secretary = $dl->addSecretary($req->input('firstname'), $req->input('lastname'), $req->input('password'));
-        return $secretary;
+        $dl->addSecretary($req->input('firstname'), $req->input('lastname'), $req->input('password'));
+        return view('admin.home')
+            ->with('logged', true)
+            ->with('loggedName', $_SESSION['loggedName'])
+            ->with('loggedRole', $_SESSION['loggedRole'])
+            ->with('loggedID', $_SESSION['loggedID'])
+            ->with('success', 'Segretario aggiunto con successo');
     }
 }

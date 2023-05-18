@@ -26,6 +26,7 @@
             <br/>
             Seleziona una delle seguenti opzioni:
         </div>          
+        @yield('success_or_fail')
         @yield('buttons')      
     </div>
 </div>

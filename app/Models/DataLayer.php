@@ -96,7 +96,7 @@ class DataLayer
     {
         $user = new User(['email' => $email, 'password' => password_hash($password, PASSWORD_ARGON2ID)]);
         $user->save();
-        return User::find($user->id)->first();
+        return $user;
     }
 
     public function addTeacher($firstname, $lastname, $password, $site_id){
@@ -111,15 +111,14 @@ class DataLayer
     }
 
     public function addSecretary($firstname, $lastname, $password){
-        $email = $firstname . '.' . $lastname . '@leopardi.it';
+        $email = $firstname . '.' . $lastname . '@segreteria.leopardi.it';
+        while (User::where('email', $email)->exists()) {
+            $email = $firstname . '.' . $lastname . count(User::where('email', $email)->get()). '@segreteria.leopardi.it';
+        }
         $user = $this->addUser($email, $password);
-        $teacher = new Teacher();
-        $teacher->firstname = $firstname;
-        $teacher->lastname = $lastname;
-        $teacher->role = 'Segretario';
-        $teacher->user_id = $user->id;
-        $teacher->save();
-        return $teacher;
+        $secretary = new Teacher(['firstname' => $firstname, 'lastname' => $lastname, 'role' => 'Segreteria', 'site_id' => null, 'user_id' => intval($user->id)]);       
+        $secretary->save();
+        return $secretary;
     }
 
     public function getUserID($email)

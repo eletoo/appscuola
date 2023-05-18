@@ -21,7 +21,11 @@ class TeachersController extends Controller
 
     public function createSecretary()
     {
-        //TODO: createSecretary
+        session_start();
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin'){
+            return view('secretariat.create')->with(['sites_list' => (new DataLayer())->listSites(), 'employees_list'=>Teacher::all(), 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+        }
+        return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }
 
     public function teachers()

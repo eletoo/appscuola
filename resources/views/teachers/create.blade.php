@@ -7,14 +7,21 @@
 @section('page_title', 'Registra Nuovo Docente')
 
 @section('breadcrumb')
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+    @if($loggedRole=='Segreteria')
+        <li class="breadcrumb-item"><a href="{{route('secretariat.home')}}">Area Riservata</a></li>
+    @elseif ($loggedRole=='Admin')
+        <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Area Riservata</a></li>
+    @endif
+    <li class="breadcrumb-item active" aria-current="page">Nuovo Docente</li>
+  </ol>
+</nav>
 @endsection
 
 @section('body')
-<!-- Form that lets the user compile the firstname and lastname fields and select one of the sites in sites_list to associate with the new teacher.
-the added teacher will have an automatic email in the form of "firstname.lastname@leopardi.it" and password "password". 
-the form is submitted by calling the AuthController::teacherRegistration function-->
-<form action="{{ route('teachers.store') }}" method="post">
+<form action="{{ route('teacher.store') }}" method="post">
     @method('POST')
     @csrf
 
@@ -54,8 +61,17 @@ the form is submitted by calling the AuthController::teacherRegistration functio
 
                     <input type="hidden" name="teacher_id" value=count($employees_list)+1>
                     <input type="hidden" name="password" value="password">
-                    <button type="submit" class="btn btn-success btn-lg mb-1">Registra</button>
-
+                    <button type="submit" class="btn btn-success btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">Registra</button>
+                    
+                    @if($loggedRole == 'Segreteria')
+                        <a href="{{route('secretariat.home')}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+                            <i class="bi bi-chevron-left"></i> Annulla
+                        </a>
+                    @elseif($loggedRole == 'Admin')
+                        <a href="{{route('admin.home')}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+                            <i class="bi bi-chevron-left"></i> Annulla
+                        </a>
+                    @endif
                     </form>
 
                 </div>
