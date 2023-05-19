@@ -20,7 +20,7 @@
         <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-journal-medical"></i> Certificati Assenze</a>
     </div>
     <div class="col" align="center">
-        <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-arrow-left-right"></i> Effettua Sostituzioni</a>
+        <a class="btn btn-lg btn-primary my-3" href="{{route('teachers.substitute', ['teacher_id' => $loggedID])}}"><i class="bi bi-arrow-left-right"></i> Effettua Sostituzioni</a>
     </div>
 </div>
 @endsection
