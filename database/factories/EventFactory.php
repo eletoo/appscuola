@@ -24,6 +24,7 @@ class EventFactory extends Factory
             'day_of_week' => $day_of_week,
             'hour_of_schoolday' => $this->faker->numberBetween(1,6),
             'certificate' => false,
+            'validated' => false,
         ];
     }
 }

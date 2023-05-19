@@ -170,11 +170,32 @@ class DataLayer
         return Event::where('teacher_id', $teacher_id)->orderBy('day_of_week', 'desc')->get();
     }
 
-    public function setValidCertificate($absence_id)
+    public function setCertificate($absence_id)
     {
         $event = Event::find($absence_id);
         $event->certificate = true;
         $event->save();
+    }
+
+    public function validateCertificate($certificate_id)
+    {
+        $event = Event::find($certificate_id);
+        $event->validated = true;
+        $event->save();
+    }
+
+    public function invalidateCertificate($certificate_id)
+    {
+        $event = Event::find($certificate_id);
+        $event->certificate = false;
+        $event->validated = false;
+        $event->save();
+        // TODO: send email to the teacher
+    }
+
+    public function listCertificatesByTeacher($teacher_id)
+    {
+        return Event::where('teacher_id', $teacher_id)->orderBy('day_of_week', 'desc')->get();
     }
 
     public function editEvent($event_id, $substitute_id)

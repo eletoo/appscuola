@@ -47,6 +47,9 @@
                                 <a class="btn btn-primary" href="{{route('teachers.timetable', $teacher->id)}}"><i class="bi bi-clock"></i> Orario</a>
                                 @if($logged && ($loggedRole == 'Admin' || $loggedRole == 'Segreteria'))
                                     <br></br>
+                                    <a class="btn btn-primary" href="{{route('teacher.manageCertificates', $teacher->id)}}"><i class="bi bi-journal"></i> Certificati</a>
+                                    
+                                    <br></br>
                                     <form class="form-horizontal" name="delete" method="post" action="{{ route('teacher.destroy', $teacher->id) }}">
                                         @method('DELETE')
                                         @csrf

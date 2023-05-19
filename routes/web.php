@@ -37,6 +37,11 @@ Route::middleware(['authSecretary'])->group(function(){
     Route::get('/personale/docenti/nuovo', [TeachersController::class, 'createTeacher'])->name('teacher.add'); 
     Route::post('/personale/docenti/nuovo', [AuthController::class, 'teacherRegistration'])->name('teacher.store');
     Route::delete('/personale/docenti/{teacher_id}', [TeachersController::class, 'destroyTeacher'])->name('teacher.destroy');
+    // only secretaries can manage abscence certificates
+    Route::get('/personale/docenti/{teacher_id}/certificati', [TeachersController::class, 'manageCertificates'])->name('teacher.manageCertificates');
+    Route::get('/personale/docenti/{certificate_id}/certificato', [TeachersController::class, 'viewCertificate'])->name('teacher.viewCertificate');
+    Route::put('/personale/docenti/{certificate_id}/convalida', [TeachersController::class, 'validateCertificate'])->name('teacher.validateCertificate');
+    Route::put('/personale/docenti/{certificate_id}/rifiuta', [TeachersController::class, 'invalidateCertificate'])->name('teacher.invalidateCertificate');
 });
 
 Route::middleware(['authTeacher'])->group(function(){

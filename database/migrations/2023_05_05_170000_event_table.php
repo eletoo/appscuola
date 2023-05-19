@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('hour_of_schoolday')->unsigned(); //from 1 to 6 
             $table->integer('substitute_id')->unsigned()->nullable(); //teacher_id of the substitute teacher
             $table->boolean('certificate'); // true if the event has been associated to a certificate by the teacher
+            $table->boolean('validated'); // true if the event has been validated by the secretary
         });
 
         Schema::table('event', function (Blueprint $table){

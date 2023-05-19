@@ -83,16 +83,16 @@
                         @if($loggedRole == 'Admin')
                             <ul class="dropdown-menu">
                                 <li class="nav-item ms-auto">
-                                    <a class="nav-link" role="button" href="{{route('teacher.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Nuovo Docente</a>
+                                    <a class="nav-link" role="button" href="{{route('teacher.add')}}"><i class="bi bi-person-add"></i> Nuovo Docente</a>
                                 </li>
                                 <li class="nav-item ms-auto">
-                                    <a class="nav-link" role="button" href="{{route('teachers.index', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
+                                    <a class="nav-link" role="button" href="{{route('teachers.index')}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
                                 </li>
                                 <li class="nav-item ms-auto">
-                                    <a class="nav-link" role="button" href="{{route('secretary.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Nuovo Segretario</a>
+                                    <a class="nav-link" role="button" href="{{route('secretary.add')}}"><i class="bi bi-person-add"></i> Nuovo Segretario</a>
                                 </li>
                                 <li class="nav-item ms-auto">
-                                    <a class="nav-link" role="button" href="{{route('secretaries.index', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Segretario</a>
+                                    <a class="nav-link" role="button" href="{{route('secretaries.index')}}"><i class="bi bi-person-dash"></i> Rimuovi Segretario</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li><a class="nav-link" role="button" href="{{route('admin.home')}}"><i class="bi bi-person"></i> Area Riservata</a></li>
@@ -114,16 +114,16 @@
                         @elseif($loggedRole == 'Segreteria')
                             <ul class="dropdown-menu">
                                 <li class="nav-item ms-auto">
-                                    <a class="nav-link" role="button" href="{{route('teacher.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Nuovo Docente</a>
+                                    <a class="nav-link" role="button" href="{{route('teacher.add')}}"><i class="bi bi-person-add"></i> Nuovo Docente</a>
                                 </li>
                                 <li class="nav-item ms-auto">
-                                    <a class="nav-link" role="button" href="{{route('teachers.index', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
+                                    <a class="nav-link" role="button" href="{{route('teachers.index')}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
                                 </li>
                                 <li class="nav-item ms-auto">
-                                    <a class="nav-link" role="button" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-journal-medical"></i> Certificati Assenze</a>
+                                    <a class="nav-link" role="button" href="{{route('home')}}"><i class="bi bi-journal-medical"></i> Certificati Assenze</a>
                                 </li>
                                 <li class="nav-item ms-auto">
-                                    <a class="nav-link" role="button" href="{{route('teachers.substitute', ['teacher_id' => $loggedID])}}"><i class="bi bi-arrow-left-right"></i> Effettua Sostituzioni</a>
+                                    <a class="nav-link" role="button" href="{{route('teachers.index')}}"><i class="bi bi-arrow-left-right"></i> Effettua Sostituzioni</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li class="nav-item ms-auto">
