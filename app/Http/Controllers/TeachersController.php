@@ -11,7 +11,7 @@ class TeachersController extends Controller
     public function createTeacher()
     {
         session_start();
-        if (isset($_SESSION['logged'])){
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true){
             if ($_SESSION['loggedRole'] == 'Segreteria' || $_SESSION['loggedRole'] == 'Admin'){
                 return view('teachers.create')->with(['sites_list' => (new DataLayer())->listSites(), 'employees_list'=>Teacher::all(), 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
             }
