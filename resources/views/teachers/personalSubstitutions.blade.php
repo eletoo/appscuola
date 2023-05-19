@@ -29,12 +29,15 @@
         </div> 
         <div class="row">
             <table class="table table-striped table-hover table-responsive table-bordered">
-                <col width="50%"/>
-                <col width="50%"/>
+                <col width="25%"/>
+                <col width="25%"/>
+                <col width="25%"/>
+                <col width="25%"/>
                 <thead>
                     <tr>
                         <th>Giorno</th>
                         <th>Ora</th>
+                        <th>Docente</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +45,7 @@
                         <tr>
                             <td>{{date('d/m/Y', strtotime($substitution->day_of_week))}}</td>
                             <td>{{$substitution->hour_of_schoolday}}</td>
+                            <td>{{$teachers_list->get($substitution->teacher_id)->firstname}} {{$teachers_list->get($substitution->teacher_id)->lastname}}</td>
                         </tr>
                     @endforeach
                 </tbody>

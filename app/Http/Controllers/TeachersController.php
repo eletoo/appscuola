@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DataLayer;
 use App\Models\Teacher;
+use App\Models\Timetable;
 use Illuminate\Http\Request;
 
 class TeachersController extends Controller
@@ -209,9 +210,12 @@ class TeachersController extends Controller
     {
         session_start();
         $dl = new DataLayer();
+
         if (isset($_SESSION['logged']))
             return view('teachers.personalSubstitutions')
         ->with(['substitutions_list'=> $dl->listSubstitutionsByTeacher($teacher_id),
+        'teachers_list' => $dl->listTeachers(),
+        'timetables_list' => $dl->listTimetables(),
         'logged' => $_SESSION['logged'],
         'loggedID' => $_SESSION['loggedID'],
         'loggedName' => $_SESSION['loggedName'],
@@ -237,7 +241,7 @@ class TeachersController extends Controller
         ->with(['absences_list' => $dl->listAbsencesByTeacher($teacher_id), 'logged' => false]);
     }
 
-    public function uploadCertificate(Request $req) //TODO: uploadCertificate
+    public function uploadCertificate(Request $req)
     {
         session_start();
         if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Docente')

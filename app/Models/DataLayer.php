@@ -65,6 +65,10 @@ class DataLayer
         return Teacher::where("id", $id)->first();
     }
 
+    public function listTimetables(){
+        return Timetable::all();
+    }
+
     public function listTimetablesByTeacher($teacher_id)
     {
         return Timetable::where('teacher_id', $teacher_id)->get();
@@ -189,7 +193,7 @@ class DataLayer
         $event = Event::find($certificate_id);
         $event->certificate = false;
         $event->validated = false;
-        $event->save();
+        $event->save();        
         // TODO: send email to the teacher
     }
 
