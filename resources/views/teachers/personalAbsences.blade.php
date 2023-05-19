@@ -28,10 +28,10 @@
             </div> 
             <div class="row">
                 <table class="table table-striped table-hover table-responsive table-bordered">
-                    <col width="40%"/>
-                    <col width="40%"/>
-                    <col width="10%"/>
-                    <col width="10%"/>
+                    <col width="30%"/>
+                    <col width="30%"/>
+                    <col width="20%"/>
+                    <col width="20%"/>
                     <thead>
                         <tr>
                             <th>Giorno</th>
@@ -46,11 +46,12 @@
                                 <td>{{date('d/m/Y', strtotime($absence->day_of_week))}}</td>
                                 <td>{{$absence->hour_of_schoolday}}</td>
                                 <td>
-                                    <form class="form-horizontal" name="certificate" method="post" action="/api/certificate" enctype="multipart/form-data">
+                                    <form class="form-horizontal" name="certificate" method="post" action="{{route('teacher.uploadCertificate')}}" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="absence_id" value="{{$absence->id}}"/>
+                                        <input type="hidden" name="teacher_id" value="{{$absence->teacher_id}}"/>
                                         <input type="file" name="Certificate" onChange="document.getElementById('loadCertificate-{{$absence->id}}').style.display='block'"
-                                        @if($absence->certificate != null)
+                                        @if($absence->certificate == true)
                                             style="display:none"
                                         @endif
                                         />
@@ -58,7 +59,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    @if($absence->certificate == null) <!-- TODO -->
+                                    @if($absence->certificate == false) 
                                         <i class="bi bi-circle-fill" style="color: red;" > Carica Certificato </i>
                                     @else
                                         <i class="bi bi-circle-fill" style="color: green;"> Situazione Regolare</i>

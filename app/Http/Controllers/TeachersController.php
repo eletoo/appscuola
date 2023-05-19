@@ -195,12 +195,26 @@ class TeachersController extends Controller
         ->with(['absences_list' => $dl->listAbsencesByTeacher($teacher_id), 'logged' => false]);
     }
 
-    public function uploadCertificate($req) //TODO: uploadCertificate
+    public function uploadCertificate(Request $req) //TODO: uploadCertificate
     {
-        if($req->hasFile('Certificate'))
-            $req->file('Certificate')->storeAs('public/certificates/', $req->get('absence_id'));
+        session_start();
+        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Docente')
+        {
+            if($req->hasFile('Certificate')){
+                $req->file('Certificate')->storeAs('public/certificates/', 'prof'.$req->input('teacher_id').'absence'.$req->input('absence_id').'.pdf');
+                $dl = new DataLayer();
+                $dl->setValidCertificate($req->input('absence_id'));
+            }                
 
-        return view('personalAbsences');
+            return view('teachers.personalAbsences')->with(['absences_list' => (new DataLayer())->listAbsencesByTeacher($req->get('teacher_id')), 
+                'logged' => true, 
+                'loggedID' => $_SESSION['loggedID'], 
+                'loggedName' => $_SESSION['loggedName'], 
+                'loggedRole' => $_SESSION['loggedRole']]);
+        }        
+
+        return view('teachers.personalAbsences')->with(['absences_list' => (new DataLayer())->listAbsencesByTeacher($req->get('teacher_id')), 
+        'logged' => false]);
     }
 
     public function substitute($teacher_id, $event_id)

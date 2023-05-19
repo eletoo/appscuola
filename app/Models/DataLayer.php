@@ -170,6 +170,13 @@ class DataLayer
         return Event::where('teacher_id', $teacher_id)->orderBy('day_of_week', 'desc')->get();
     }
 
+    public function setValidCertificate($absence_id)
+    {
+        $event = Event::find($absence_id);
+        $event->certificate = true;
+        $event->save();
+    }
+
     public function editEvent($event_id, $substitute_id)
     {
         session_start();

@@ -23,6 +23,7 @@ class EventFactory extends Factory
             'description' => $this->faker->sentence(10),
             'day_of_week' => $day_of_week,
             'hour_of_schoolday' => $this->faker->numberBetween(1,6),
+            'certificate' => false,
         ];
     }
 }
