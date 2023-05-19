@@ -179,7 +179,6 @@ class DataLayer
 
     public function editEvent($event_id, $substitute_id)
     {
-        session_start();
         if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Segreteria') {
             $event = Event::find($event_id);
             $event->substitute_id = $substitute_id;

@@ -17,7 +17,7 @@
         <a class="btn btn-lg btn-primary my-3" href="{{route('teachers.index', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
     </div>
     <div class="col" align="center">
-        <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-journal-medical"></i> Gestisci Certificati Assenze</a>
+        <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-journal-medical"></i> Certificati Assenze</a>
     </div>
     <div class="col" align="center">
         <a class="btn btn-lg btn-primary my-3" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-arrow-left-right"></i> Effettua Sostituzioni</a>
