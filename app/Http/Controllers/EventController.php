@@ -221,7 +221,7 @@ class EventController extends Controller
         // if the user is logged in and is a secretary then edit the event
         if (isset($_SESSION['logged']) && $dl->getTeacher(auth()->user()->id)->role == 'Segreteria') {
             $dl->editEvent($id, $request->input('substitute_id'));
-            return redirect()->route('events.index');
+            return redirect()->route('events.school', ['event_id' => $request->input('city')]);
         }
         // if the user is not logged in, redirect to the login page
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);

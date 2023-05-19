@@ -215,7 +215,6 @@ class TeachersController extends Controller
             return view('teachers.personalSubstitutions')
         ->with(['substitutions_list'=> $dl->listSubstitutionsByTeacher($teacher_id),
         'teachers_list' => $dl->listTeachers(),
-        'timetables_list' => $dl->listTimetables(),
         'logged' => $_SESSION['logged'],
         'loggedID' => $_SESSION['loggedID'],
         'loggedName' => $_SESSION['loggedName'],

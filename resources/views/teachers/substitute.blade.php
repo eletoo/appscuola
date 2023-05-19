@@ -55,6 +55,7 @@ Sostituzione
                                 @csrf
                                 <button class="btn btn-primary" id="selectSubstitute" type="submit" value=" Seleziona" class="hidden"><i class="bi-check-lg"></i> Seleziona</button>
                                 <input id="selectSubstitute" type="hidden" value="{{$available_teacher->id}}" name="substitute_id"/>
+                                <input id="city" type="hidden" value="{{$city}}" name="city"/>
                             </form>
                         </td>
                     </tr>
