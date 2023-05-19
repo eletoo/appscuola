@@ -114,7 +114,10 @@
                         @elseif($loggedRole == 'Segreteria')
                             <ul class="dropdown-menu">
                                 <li class="nav-item ms-auto">
-                                    <a class="nav-link" role="button" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Registra Nuovo Docente</a>
+                                    <a class="nav-link" role="button" href="{{route('teacher.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Nuovo Docente</a>
+                                </li>
+                                <li class="nav-item ms-auto">
+                                    <a class="nav-link" role="button" href="{{route('teachers.index', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
                                 </li>
                                 <li class="nav-item ms-auto">
                                     <a class="nav-link" role="button" href="{{route('home', ['teacher_id' => $loggedID])}}"><i class="bi bi-journal-medical"></i> Gestisci Certificati Assenze</a>
