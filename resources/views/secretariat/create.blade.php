@@ -17,7 +17,7 @@
 @endsection
 
 @section('body')
-<form action="{{ route('secretary.store') }}" method="post">
+<form name="secretaryRegistration" method="post" action="{{ route('secretary.store') }}">
     @method('POST')
     @csrf
 
@@ -32,20 +32,25 @@
 
                     <form class="px-md-2">
 
-                    <div class="form-outline mb-4">
-                        <input type="text" name="firstname" class="form-control" />
+                    <div class="invalid-input" id="invalid-firstname"></div>
+                    <div class="form-group">
+                        <input type="text" name="firstname" id="firstname" class="form-control" />
                         <label class="form-label" for="firstname">Nome</label>
                     </div>
-
-                    <div class="form-outline mb-4">
-                        <input type="text" name="lastname" class="form-control" />
+                    
+                    <div class="invalid-input" id="invalid-lastname"></div>
+                    <div class="form-group">
+                        <input type="text" name="lastname" id="lastname" class="form-control" />
                         <label class="form-label" for="lastname">Cognome</label>
                     </div>
 
-                    <input type="hidden" name="teacher_id" value=count($employees_list)+1>
-                    <input type="hidden" name="password" value="password">
-                    <button type="submit" class="btn btn-success btn-lg mb-1">Registra</button>
+
+                    <input type="hidden" name="teacher_id" id="teacher_id" value=count($employees_list)+1>
+                    <input type="hidden" name="password" id="password" value="password">
                     
+                    <button type="submit" value="register" onclick="event.preventDefault(); checkSecretary('register')" class="btn btn-success btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+                        <i class="bi-check-lg"></i> Registra
+                    </button>                    
                     <a href="{{route('admin.home')}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
                         <i class="bi bi-chevron-left"></i> Annulla
                     </a>

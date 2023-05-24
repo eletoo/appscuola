@@ -21,11 +21,17 @@ class TeachersController extends Controller
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }
 
-    public function ajaxCheckForTeachers(Request $request)
+    public function ajaxCheckForEmployee(Request $request)
     {
+        $site_id = $request->input('site_id');
 
-        $teachers = DB::select('select * from teacher where (firstname = ? AND lastname = ? AND site_id = ?)',
-        [$request->input('firstname'), $request->input('lastname'), $request->input('site_id')]);
+        if (isset($site_id)){ // the employee is a teacher
+            $teachers = DB::select('select * from teacher where (firstname = ? AND lastname = ? AND site_id = ?)',
+            [$request->input('firstname'), $request->input('lastname'), $request->input('site_id')]);
+        } else { // the employee is a secretary
+            $teachers = DB::select('select * from teacher where (firstname = ? AND lastname = ?)',
+            [$request->input('firstname'), $request->input('lastname')]);
+        }
         
         if (count($teachers) == 0) {
             $response = array('found'=>false);

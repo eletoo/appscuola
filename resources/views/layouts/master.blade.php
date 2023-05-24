@@ -15,6 +15,7 @@
     <script src="{{ url('/') }}/js/bootstrap.bundle.min.js"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="{{ url('/') }}/js/teacherRegistration.js"></script>
+    <script src="{{ url('/') }}/js/secretaryRegistration.js"></script>
 
 </head>
 

@@ -21,7 +21,7 @@ Route::middleware(['authAdmin'])->group(function(){
     // only admin can add secretaries to the database
     Route::get('/personale/segreteria/nuovo', [TeachersController::class, 'createSecretary'])->name('secretary.add'); 
     Route::post('/personale/segreteria/nuovo', [AuthController::class, 'secretaryRegistration'])->name('secretary.store');
-    Route::get('/ajaxTeacher', [TeachersController::class, 'ajaxCheckForTeachers']);
+    Route::get('/ajaxSecretary', [TeachersController::class, 'ajaxCheckForEmployee']);
 
     // only admin can remove secretaries from the database
     Route::get('/personale/segreteria/tutti', [TeachersController::class, 'secretaries'])->name('secretaries.index');
@@ -38,6 +38,7 @@ Route::middleware(['authSecretary'])->group(function(){
     // both secretaries and admin can add/remove teachers to the database
     Route::get('/personale/docenti/nuovo', [TeachersController::class, 'createTeacher'])->name('teacher.add'); 
     Route::post('/personale/docenti/nuovo', [AuthController::class, 'teacherRegistration'])->name('teacher.store');
+    Route::get('/ajaxTeacher', [TeachersController::class, 'ajaxCheckForEmployee']);
     Route::delete('/personale/docenti/{teacher_id}', [TeachersController::class, 'destroyTeacher'])->name('teacher.destroy');
     // only secretaries can manage abscence certificates
     Route::get('/personale/docenti/{teacher_id}/certificati', [TeachersController::class, 'manageCertificates'])->name('teacher.manageCertificates');
