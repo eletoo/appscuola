@@ -64,3 +64,6 @@ table{
 }
 
 
+.invalid-input {
+    color: red;
+}

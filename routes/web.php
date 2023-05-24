@@ -21,6 +21,8 @@ Route::middleware(['authAdmin'])->group(function(){
     // only admin can add secretaries to the database
     Route::get('/personale/segreteria/nuovo', [TeachersController::class, 'createSecretary'])->name('secretary.add'); 
     Route::post('/personale/segreteria/nuovo', [AuthController::class, 'secretaryRegistration'])->name('secretary.store');
+    Route::get('/ajaxTeacher', [TeachersController::class, 'ajaxCheckForTeachers']);
+
     // only admin can remove secretaries from the database
     Route::get('/personale/segreteria/tutti', [TeachersController::class, 'secretaries'])->name('secretaries.index');
     Route::delete('/personale/segreteria/{secretary_id}', [TeachersController::class, 'destroySecretary'])->name('secretary.destroy');

@@ -21,7 +21,7 @@
 @endsection
 
 @section('body')
-<form action="{{ route('teacher.store') }}" method="post">
+<form name="teacherRegistration" method="post" action="{{ route('teacher.store') }}" >
     @method('POST')
     @csrf
 
@@ -36,32 +36,41 @@
 
                     <form class="px-md-2">
 
-                    <div class="form-outline mb-4">
-                        <input type="text" name="firstname" class="form-control" />
+                    <div class="invalid-input" id="invalid-firstname"></div>
+                    <div class="form-group">
+                        <input type="text" name="firstname" id="firstname" class="form-control" />
                         <label class="form-label" for="firstname">Nome</label>
                     </div>
-
-                    <div class="form-outline mb-4">
-                        <input type="text" name="lastname" class="form-control" />
+                    
+                    <div class="invalid-input" id="invalid-lastname"></div>
+                    <div class="form-group">
+                        <input type="text" name="lastname" id="lastname" class="form-control" />
                         <label class="form-label" for="lastname">Cognome</label>
+
                     </div>
 
+                    <div class="invalid-input" id="no-site_id-selected"></div>
+                    <div class="form-group">
+
                         <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
-                        <div class="col-md-6 mb-4">
+                            <div class="col-md-6 mb-4">
 
-                        <select class="select" name="site_id">
-                            <option value="0" disabled selected>Sede</option>
-                            @foreach($sites_list as $site)
-                                <option value="{{$site->id}}">{{$site->city}}</option>
-                            @endforeach
-                        </select>
+                            <select class="select" name="site_id" id="site_id">
+                                <option value="0" disabled selected>Sede</option>
+                                @foreach($sites_list as $site)
+                                    <option value="{{$site->id}}">{{$site->city}}</option>
+                                @endforeach
+                            </select>
 
+                            </div>
                         </div>
                     </div>
 
-                    <input type="hidden" name="teacher_id" value=count($employees_list)+1>
-                    <input type="hidden" name="password" value="password">
-                    <button type="submit" class="btn btn-success btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">Registra</button>
+                    <input type="hidden" name="teacher_id" id="teacher_id" value=count($employees_list)+1>
+                    <input type="hidden" name="password" id="password" value="password">
+                    <button type="submit" value="register" onclick="event.preventDefault(); checkTeacher('register')" class="btn btn-success btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+                        <i class="bi-check-lg"></i> Registra
+                    </button>
                     
                     @if($loggedRole == 'Segreteria')
                         <a href="{{route('secretariat.home')}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">

@@ -6,6 +6,7 @@ use App\Models\DataLayer;
 use App\Models\Teacher;
 use App\Models\Timetable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeachersController extends Controller
 {
@@ -18,6 +19,20 @@ class TeachersController extends Controller
             }
         }
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
+    }
+
+    public function ajaxCheckForTeachers(Request $request)
+    {
+
+        $teachers = DB::select('select * from teacher where (firstname = ? AND lastname = ? AND site_id = ?)',
+        [$request->input('firstname'), $request->input('lastname'), $request->input('site_id')]);
+        
+        if (count($teachers) == 0) {
+            $response = array('found'=>false);
+        } else {
+            $response = array('found'=>true);
+        }
+        return response()->json($response);
     }
 
     public function destroyTeacher($teacher_id)
