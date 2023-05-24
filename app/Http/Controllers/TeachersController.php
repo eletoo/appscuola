@@ -82,8 +82,12 @@ class TeachersController extends Controller
     {
         session_start();
         $dl = new DataLayer();
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Segreteria'){
-            return response()->file(storage_path('app/public/certificates/prof'.$dl->getEvent($certificate_id)->teacher_id.'absence'.$certificate_id.'.pdf'));
+        if (isset($_SESSION['logged']) && $_SESSION['logged'])
+        {
+            if($_SESSION['loggedRole'] == 'Segreteria' || $_SESSION['loggedRole'] == 'Admin')
+            {
+                return response()->file(storage_path('app/public/certificates/prof'.$dl->getEvent($certificate_id)->teacher_id.'absence'.$certificate_id.'.pdf'));
+            }
         }
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }
@@ -92,10 +96,14 @@ class TeachersController extends Controller
     {
         session_start();
         $dl = new DataLayer();
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Segreteria'){
-            $dl->validateCertificate($certificate_id);
-            return view('secretariat.manageCertificates')->with(['certificates_list' => $dl->listCertificatesByTeacher($dl->getEvent($certificate_id)->teacher_id), 'teacher' => $dl->getTeacher($dl->getEvent($certificate_id)->teacher_id), 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
-        }
+        if (isset($_SESSION['logged']) && $_SESSION['logged']){
+            if($_SESSION['loggedRole'] == 'Segreteria' || $_SESSION['loggedRole'] == 'Admin')
+            {
+                $dl->validateCertificate($certificate_id);
+                return view('secretariat.manageCertificates')->with(['certificates_list' => $dl->listCertificatesByTeacher($dl->getEvent($certificate_id)->teacher_id), 'teacher' => $dl->getTeacher($dl->getEvent($certificate_id)->teacher_id), 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+            }
+        } 
+            
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }
 
@@ -103,9 +111,11 @@ class TeachersController extends Controller
     {
         session_start();
         $dl = new DataLayer();
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Segreteria'){
-            $dl->invalidateCertificate($certificate_id);
-            return view('secretariat.manageCertificates')->with(['certificates_list' => $dl->listCertificatesByTeacher($dl->getEvent($certificate_id)->teacher_id), 'teacher' => $dl->getTeacher($dl->getEvent($certificate_id)->teacher_id), 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+        if (isset($_SESSION['logged']) && $_SESSION['logged']){            
+            if($_SESSION['loggedRole'] == 'Segreteria' || $_SESSION['loggedRole'] == 'Admin'){
+                $dl->invalidateCertificate($certificate_id);
+                return view('secretariat.manageCertificates')->with(['certificates_list' => $dl->listCertificatesByTeacher($dl->getEvent($certificate_id)->teacher_id), 'teacher' => $dl->getTeacher($dl->getEvent($certificate_id)->teacher_id), 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+            }
         }
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
     }

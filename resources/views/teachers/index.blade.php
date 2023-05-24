@@ -53,7 +53,7 @@
                                     <form class="form-horizontal" name="delete" method="post" action="{{ route('teacher.destroy', $teacher->id) }}">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-primary" id="delete" type="submit" value=" Elimina" class="hidden"><i class="bi bi-trash"></i> Elimina</button>
+                                        <button class="btn btn-primary" id="delete" type="submit" value=" Elimina" class="hidden"><i class="bi bi-person-dash"></i> Elimina</button>
                                     </form>
                                 @endif
                             </td>

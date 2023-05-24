@@ -36,12 +36,12 @@
                     </td>
                     <td>
                         <div class="col" align="center">
-                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('teacher.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Nuovo Docente</a>
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('teacher.add')}}"><i class="bi bi-person-add"></i> Nuovo Docente</a>
                         </div>
                     </td>
                     <td>
                         <div class="col" align="center">
-                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('teachers.index', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('teachers.index')}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
                         </div>
                     </td>
                 </tr>
@@ -52,12 +52,12 @@
                     </td>
                     <td>
                         <div class="col" align="center">
-                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('secretary.add', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-add"></i> Nuovo Segretario</a>
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('secretary.add')}}"><i class="bi bi-person-add"></i> Nuovo Segretario</a>
                         </div>
                     </td>
                     <td>
                         <div class="col" align="center">
-                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('secretaries.index', ['teacher_id' => $loggedID])}}"><i class="bi bi-person-dash"></i> Rimuovi Segretario</a>
+                            <a class="btn btn-lg btn-primary my-3" style="width: 80%" href="{{route('secretaries.index')}}"><i class="bi bi-person-dash"></i> Rimuovi Segretario</a>
                         </div>
                     </td>
                 </tr>
