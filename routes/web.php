@@ -72,4 +72,4 @@ Route::get('/events/{event_id}', [EventController::class, 'findMethod'])->name('
 Route::resource('events', EventController::class);  
 
 /*Lectures*/
-Route::resource('/timetable', TimetableController::class);
+Route::resource('/timetable', TimetableController::class); //TODO: possibly useless for the time being

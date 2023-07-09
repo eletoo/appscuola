@@ -22,6 +22,8 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
 
 <head>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.3/jquery-ui.css' rel='stylesheet' />
+
 </head>
 
 @section('body')
@@ -41,6 +43,25 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
 ?>
 <div class="container">
 <div id='timetable'></div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Informazioni Lezione</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="modalBody">
+                 
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        </div>
+        </div>
+    </div>
 </div>
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -105,11 +126,20 @@ Orario Prof. {{$teacher->firstname}} {{$teacher->lastname}}
                     title : decodeHtml('{{strtoupper($task->class)}}'), //class name
                     start : getNextDay('{{$task->day_of_week}}', {{retrieveTime($task->hour_of_schoolday, true)}}, 0, 0).toISOString(), //start hour: number from 1 to 6 turned into a time from 8 to 14
                     //end : getNextDay('{{$task->day_of_week}}', {{retrieveTime($task->hour_of_schoolday, false)}}, 0, 0).toISOString(),
-                    url   : "{{route('timetable.show', $task)}}",
+                    url   : "#",
                 },
                 @endforeach
             ],
-            locale: 'it'
+            locale: 'it',
+            eventClick: function(entry){
+                // opens event information in modal window
+                // first and last name of the teacher
+                // class name (if it's a lesson), else "Orario di Ricevimento"
+                const class_name = entry.title == "" ? "Orario di Ricevimento" : "Lezione con la classe " + entry.title;
+                $("#modalBody").html("Prof. {{$teacher->firstname}} {{$teacher->lastname}}<br></br> " + class_name);
+
+                $("#myModal").modal("show");
+            },
         })
     });
 </script>

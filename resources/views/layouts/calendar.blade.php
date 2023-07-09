@@ -15,7 +15,7 @@
                         {
                             title : decodeHtml('{{ $teachers_list->where('id',$task->teacher_id)->first()->lastname." ".$teachers_list->where('id',$task->teacher_id)->first()->firstname }}'),
                             start : decodeHtml('{{ $task->day_of_week }}'),
-                            url : decodeHtml('{{ route('events.show', $task->id) }}')
+                            url   : decodeHtml('{{ route('events.show', $task->id) }}')
                         },
                     @endforeach 
                 @endforeach
