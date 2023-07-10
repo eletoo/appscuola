@@ -6,8 +6,9 @@ function checkAbsenceFields(button){
     description_err_msg = $("#invalidDescription");
 
     date = document.getElementById("day_of_week");
-    hour_of_schoolday = document.getElementsByName("hour_of_schoolday");
+    hour_of_schoolday = document.getElementsByName("hour_of_schoolday[]");    
     description = document.getElementById("description");
+
     var hour_of_schoolday_checked = false;
     for(var i = 0; i < hour_of_schoolday.length; i++){
         if(hour_of_schoolday[i].checked){
@@ -50,7 +51,16 @@ function checkAbsenceFields(button){
     {
         if ( button === "save")
         {
+            var hours = [];
+            for (var i = 0; i < hour_of_schoolday.length; i++){
+                if (hour_of_schoolday[i].checked){
+                    hours[i] = hour_of_schoolday[i].value;
+                }
+            }
+            console.log(hours);
+            $('input[name="hour_of_schoolday[]"]').value = hours;
             $('form[name=absenceForm]').submit();
+            
             return true;
         }
     }

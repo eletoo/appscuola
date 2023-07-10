@@ -58,37 +58,37 @@
         <div class="col-8">
             <div class="custom-controls-stacked">
                 <div class="custom-control custom-checkbox">
-                <input name="hour_of_schoolday" id="hour_of_schoolday_1" type="checkbox" class="custom-control-input" value="1" aria-describedby="hour_of_schooldayHelpBlock"> 
+                <input name="hour_of_schoolday[]" id="hour_of_schoolday_1" type="checkbox" class="custom-control-input" value="1" aria-describedby="hour_of_schooldayHelpBlock"> 
                 <label for="hour_of_schoolday_1" class="custom-control-label">8:00-9:00</label>
                 </div>
             </div>
             <div class="custom-controls-stacked">
                 <div class="custom-control custom-checkbox">
-                <input name="hour_of_schoolday" id="hour_of_schoolday_2" type="checkbox" class="custom-control-input" value="2" aria-describedby="hour_of_schooldayHelpBlock"> 
+                <input name="hour_of_schoolday[]" id="hour_of_schoolday_2" type="checkbox" class="custom-control-input" value="2" aria-describedby="hour_of_schooldayHelpBlock"> 
                 <label for="hour_of_schoolday_2" class="custom-control-label">9:00-10:00</label>
                 </div>
             </div>
             <div class="custom-controls-stacked">
                 <div class="custom-control custom-checkbox">
-                <input name="hour_of_schoolday" id="hour_of_schoolday_3" type="checkbox" class="custom-control-input" value="3" aria-describedby="hour_of_schooldayHelpBlock"> 
+                <input name="hour_of_schoolday[]" id="hour_of_schoolday_3" type="checkbox" class="custom-control-input" value="3" aria-describedby="hour_of_schooldayHelpBlock"> 
                 <label for="hour_of_schoolday_3" class="custom-control-label">10:00-11:00</label>
                 </div>
             </div>
             <div class="custom-controls-stacked">
                 <div class="custom-control custom-checkbox">
-                <input name="hour_of_schoolday" id="hour_of_schoolday_4" type="checkbox" class="custom-control-input" value="4" aria-describedby="hour_of_schooldayHelpBlock"> 
+                <input name="hour_of_schoolday[]" id="hour_of_schoolday_4" type="checkbox" class="custom-control-input" value="4" aria-describedby="hour_of_schooldayHelpBlock"> 
                 <label for="hour_of_schoolday_4" class="custom-control-label">11:00-12:00</label>
                 </div>
             </div>
             <div class="custom-controls-stacked">
                 <div class="custom-control custom-checkbox">
-                <input name="hour_of_schoolday" id="hour_of_schoolday_5" type="checkbox" class="custom-control-input" value="5" aria-describedby="hour_of_schooldayHelpBlock"> 
+                <input name="hour_of_schoolday[]" id="hour_of_schoolday_5" type="checkbox" class="custom-control-input" value="5" aria-describedby="hour_of_schooldayHelpBlock"> 
                 <label for="hour_of_schoolday_5" class="custom-control-label">12:00-13:00</label>
                 </div>
             </div>
             <div class="custom-controls-stacked">
                 <div class="custom-control custom-checkbox">
-                <input name="hour_of_schoolday" id="hour_of_schoolday_6" type="checkbox" class="custom-control-input" value="6" aria-describedby="hour_of_schooldayHelpBlock"> 
+                <input name="hour_of_schoolday[]" id="hour_of_schoolday_6" type="checkbox" class="custom-control-input" value="6" aria-describedby="hour_of_schooldayHelpBlock"> 
                 <label for="hour_of_schoolday_6" class="custom-control-label">13:00-14:00</label>
                 </div>
             </div> 
