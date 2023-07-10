@@ -6,12 +6,15 @@ use App\Models\DataLayer;
 use App\Models\Event;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 
 class EventController extends Controller
 {
 
     public function __construct() {
         $this->middleware('authSecretary', ['only' => ['update', 'create', 'store', 'edit', 'destroy']]);
+        $this->middleware('authTeacher', ['only' => ['show', 'create', 'store']]);
     }
 
     /**
@@ -25,7 +28,7 @@ class EventController extends Controller
         $dl = new DataLayer();
         $teachers_list = $dl->listTeachers();
         $events = $dl->listEvents()->where('substitute_id', null); //list events without a substitute
-        if (isset($_SESSION['logged'])) {
+        if (isset($_SESSION['logged']) && $_SESSION['logged']) {
             return view('events.index')->with([
                 'events' => $events,
                 'teachers_list' => $teachers_list,
@@ -47,6 +50,8 @@ class EventController extends Controller
         try{
             return [$this, $id]($req); //if $id is the name of a site city, it calls the method named after the city
         } catch(Exception){
+            if ($id == "create")
+                return $this->create(); //if $id is "create", it calls the method to create a new event
             return $this->show($id); //else it means that $id contains an event number and it calls the method to show the desired view
         }
     }
@@ -61,7 +66,7 @@ class EventController extends Controller
         {
             $events[]=$dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
         }
-        if (isset($_SESSION['logged'])) {
+        if (isset($_SESSION['logged']) && $_SESSION['logged']) {
             return view('events.school')->with([
                 'site' => $dl->infoSite('Bergamo'),
                 'events' => $events,
@@ -90,7 +95,7 @@ class EventController extends Controller
         {
             $events[] = $dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
         }
-        if (isset($_SESSION['logged'])) {
+        if (isset($_SESSION['logged']) && $_SESSION['logged']) {
             return view('events.school')->with([
                 'site' => $dl->infoSite('Brescia'),
                 'events' => $events,
@@ -120,7 +125,7 @@ class EventController extends Controller
         {
             $events[]=$dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
         }
-        if (isset($_SESSION['logged'])) {
+        if (isset($_SESSION['logged']) && $_SESSION['logged']) {
             return view('events.school')->with([
                 'site' => $dl->infoSite('Milano'),
                 'events' => $events,
@@ -146,7 +151,17 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        session_start();
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Docente'){
+            return view('events.create')->with([
+                'logged' => true,
+                'loggedID' => $_SESSION['loggedID'],
+                'loggedName' => $_SESSION['loggedName'],
+                'loggedRole' => $_SESSION['loggedRole'], 
+                'teacher_id' => $_SESSION['loggedID']
+            ]);
+        }
+        return redirect()->route('user.login', 'Docente');
     }
 
     /**
@@ -157,8 +172,28 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        Event::create($request->all());
-        return redirect()->route('events.index');
+        $hours = $request->input('hour_of_schoolday');
+        $teacherID = $request->input('teacher_id');
+        $day_of_week = $request->input('day_of_week');
+        $description = $request->input('description');
+        $certificate = 0;
+        $validated = 0;
+        $substitute_id = null;
+        
+        $id = count(Event::all())+1;
+        //  var_dump($hours);
+        Event::create([
+            'id'=>$id, 
+            'teacher_id'=>$teacherID, 
+            'description'=>$description, 
+            'day_of_week'=>$day_of_week,
+            'hour_of_schoolday'=> $hours, 
+            'certificate'=>$certificate,
+            'validated'=> $validated, 
+            'substitute_id'=>$substitute_id
+        ]);
+        
+        return redirect()->route('teacher.myAbsences', ['teacher_id' => $request->input('teacher_id')]);
     }
 
     /**

@@ -17,6 +17,14 @@
 
 @section('body')
 <div class="container-fluid">
+
+    <!-- Button to create new absence -->
+    <div class="row">
+        <div class="col-md-offset-10 col-md-12">
+            <a class="btn btn-lg btn-primary my-3" href="{{'/events/create'}}" role="button"><i class="bi bi-plus-circle"></i> Nuova Assenza</a>
+        </div>
+    </div>
+
     @if($absences_list->count() == 0)
         <div class="col-md-offset-10 col-md-12 my-5" style="font-size: large;">
             Non hai assenze da gestire.

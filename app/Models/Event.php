@@ -11,7 +11,7 @@ class Event extends Model
 
     protected $table = 'event';
     public $timestamps = false;
-    protected $fillable = ['description', 'day_of_week', 'hour_of_schoolday'];
+    protected $fillable = ['teacher_id', 'description', 'day_of_week', 'hour_of_schoolday', 'certificate', 'validated', 'substitute_id'];
 
     public function teacher()
     {
