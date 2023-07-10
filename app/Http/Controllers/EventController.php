@@ -173,26 +173,17 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $hours = $request->input('hour_of_schoolday');
-        var_dump($hours);
-        $teacherID = $request->input('teacher_id');
-        $day_of_week = $request->input('day_of_week');
-        $description = $request->input('description');
-        $certificate = 0;
-        $validated = 0;
-        $substitute_id = null;
         
         foreach ($hours as $hour){
-            $id = count(Event::all())+1;
-            //  var_dump($hours);
             Event::create([
-                'id'=>$id, 
-                'teacher_id'=>$teacherID, 
-                'description'=>$description, 
-                'day_of_week'=>$day_of_week,
+                'id'=>count(Event::all())+1, 
+                'teacher_id'=>$request->input('teacher_id'), 
+                'description'=>$request->input('description'), 
+                'day_of_week'=>$request->input('day_of_week'),
                 'hour_of_schoolday'=> $hour, 
-                'certificate'=>$certificate,
-                'validated'=> $validated, 
-                'substitute_id'=>$substitute_id
+                'certificate'=>0,
+                'validated'=> 0, 
+                'substitute_id'=> null
             ]);
         }
         
