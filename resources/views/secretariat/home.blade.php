@@ -1,14 +1,19 @@
 @extends('layouts.personalArea')
 
-@section('buttons')
-
-@if(@isset($success))
-    <div class="alert alert-success" role="alert">
-        {{$success}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+@section('success_or_fail')
+    @isset($success)
+    <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="alert alert-success alert-dismissible">
+            {{$success}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
-@endif
+    </div>
+    @endif
+@endsection
 
+@section('buttons')
 <div class="row">
     <div class="col" align="center">
         <a class="btn btn-lg btn-primary my-3" href="/timetable/create"><i class="bi bi-calendar-plus"></i> Nuova Lezione</a>
@@ -30,5 +35,5 @@
         <a class="btn btn-lg btn-primary my-3" href="{{route('sites.index')}}"><i class="bi bi-arrow-left-right"></i> Effettua Sostituzioni</a>
     </div>
 </div>
-<br
-@endsection
+<br>
+@endsection('buttons')

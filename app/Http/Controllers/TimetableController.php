@@ -61,9 +61,15 @@ class TimetableController extends Controller
      */
     public function store(StoreTimetableRequest $request)
     {
+        session_start();
         Timetable::create($request->all());
 
-        return redirect()->route('secretariat.home');
+        return view('secretariat.home')
+        ->with('logged', true)
+        ->with('loggedName', $_SESSION['loggedName'])
+        ->with('loggedRole', $_SESSION['loggedRole'])
+        ->with('loggedID', $_SESSION['loggedID'])
+        ->with('success', 'Lezione aggiunta con successo');
     }
 
     /**

@@ -187,7 +187,7 @@ class EventController extends Controller
             ]);
         }
         
-        return redirect()->route('teacher.myAbsences', ['teacher_id' => $request->input('teacher_id')]);
+        return redirect()->route('teacher.myAbsences', ['teacher_id' => $request->input('teacher_id'), 'success' => 'Assenza aggiunta con successo!']);
     }
 
     /**

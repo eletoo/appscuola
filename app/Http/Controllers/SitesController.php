@@ -73,6 +73,7 @@ class SitesController extends Controller
             ->with('logged', true)
             ->with('loggedName', $_SESSION['loggedName'])
             ->with('loggedRole', $_SESSION['loggedRole'])
-            ->with('loggedID', $_SESSION['loggedID'])->with('success', 'Sede aggiunta con successo.');
+            ->with('loggedID', $_SESSION['loggedID'])
+            ->with('success', 'Sede aggiunta con successo.');
     }
 }
