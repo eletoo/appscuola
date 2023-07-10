@@ -10,7 +10,7 @@ class Timetable extends Model
     use HasFactory;
     protected $table = 'timetable';
     public $timestamps = false;
-    protected $fillable = ['description', 'day_of_week', 'hour_of_schoolday', 'class'];
+    protected $fillable = ['teacher_id', 'day_of_week', 'hour_of_schoolday', 'class'];
 
     public function teacher()
     {

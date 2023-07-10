@@ -45,6 +45,9 @@ Route::middleware(['authSecretary'])->group(function(){
     Route::get('/personale/docenti/{certificate_id}/certificato', [TeachersController::class, 'viewCertificate'])->name('teacher.viewCertificate');
     Route::put('/personale/docenti/{certificate_id}/convalida', [TeachersController::class, 'validateCertificate'])->name('teacher.validateCertificate');
     Route::put('/personale/docenti/{certificate_id}/rifiuta', [TeachersController::class, 'invalidateCertificate'])->name('teacher.invalidateCertificate');
+    /*Lectures*/
+    Route::resource('/timetable', TimetableController::class); //TODO: possibly useless for the time being
+    Route::get('/timetable/check/{day_of_week}/{hour_of_schoolday}/{teacher_id}', [TimetableController::class, 'check'])->name('timetable.check');
 });
 
 Route::middleware(['authTeacher'])->group(function(){
@@ -71,5 +74,3 @@ Route::get('/sede/milano', [SitesController::class, 'milano'])->name('milano.ind
 Route::get('/events/{event_id}', [EventController::class, 'findMethod'])->name('events.school');
 Route::resource('events', EventController::class);  
 
-/*Lectures*/
-Route::resource('/timetable', TimetableController::class); //TODO: possibly useless for the time being

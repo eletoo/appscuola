@@ -6,9 +6,23 @@ use App\Models\DataLayer;
 use App\Models\Timetable;
 use App\Http\Requests\StoreTimetableRequest;
 use App\Http\Requests\UpdateTimetableRequest;
+use App\Models\Teacher;
 
 class TimetableController extends Controller
 {
+
+    public function check($day, $hour, $teacher_id){
+        $timetable = Timetable::where([
+            ['day_of_week', '=', $day],
+            ['hour_of_schoolday', '=', $hour],
+            ['teacher_id', '=', $teacher_id]
+        ])->first();
+        if($timetable == null){
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +40,17 @@ class TimetableController extends Controller
      */
     public function create()
     {
-        //
+        session_start();
+        if(!isset($_SESSION['logged']) || $_SESSION['logged'] == false){
+            return redirect(route('user.login', 'Segreteria'));
+        }
+        return view('timetables.add')->with([
+            'logged' => true,
+            'loggedID' => $_SESSION['loggedID'],
+            'loggedName' => $_SESSION['loggedName'],
+            'loggedRole' => $_SESSION['loggedRole'], 
+            'teachers' => Teacher::orderBy('lastname', 'asc')->get()
+        ]);
     }
 
     /**
@@ -37,7 +61,9 @@ class TimetableController extends Controller
      */
     public function store(StoreTimetableRequest $request)
     {
-        //
+        Timetable::create($request->all());
+
+        return redirect()->route('secretariat.home');
     }
 
     /**

@@ -58,7 +58,7 @@
                                         <form action="{{route('teacher.invalidateCertificate', $certificate->id)}}" method="post" class="mt-1 mb-2">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-danger" value="$certificate->id" name="certificate_id"><i class="bi bi-check-lg"></i> Rifiuta</button>
+                                            <button type="submit" class="btn btn-danger" value="$certificate->id" name="certificate_id" onclick="sendAlertEmail('{{$teacher->email}}')"><i class="bi bi-check-lg"></i> Rifiuta</button>
                                         </form>
                                     @endif
                                 @endif

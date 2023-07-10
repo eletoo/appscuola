@@ -11,11 +11,18 @@
 
 <div class="row">
     <div class="col" align="center">
+        <a class="btn btn-lg btn-primary my-3" href="/timetable/create"><i class="bi bi-calendar-plus"></i> Nuova Lezione</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col" align="center">
         <a class="btn btn-lg btn-primary my-3" href="{{route('teacher.add')}}"><i class="bi bi-person-add"></i> Nuovo Docente</a>
     </div>
     <div class="col" align="center">
         <a class="btn btn-lg btn-primary my-3" href="{{route('teachers.index')}}"><i class="bi bi-person-dash"></i> Rimuovi Docente</a>
     </div>
+</div>
+<div class="row">
     <div class="col" align="center">
         <a class="btn btn-lg btn-primary my-3" href="{{route('teachers.index')}}"><i class="bi bi-journal-medical"></i> Certificati Assenze</a>
     </div>
@@ -23,4 +30,5 @@
         <a class="btn btn-lg btn-primary my-3" href="{{route('sites.index')}}"><i class="bi bi-arrow-left-right"></i> Effettua Sostituzioni</a>
     </div>
 </div>
+<br
 @endsection
