@@ -170,4 +170,41 @@
     </div>
 </div>
 
+<!--FOOTER-->
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-5 my-5 border-top">
+    <div class="col mb-3">
+        <a href="{{route('home')}}" class="d-flex align-items-center mb-3 link-dark text-decoration-none ps-5">
+            <img src="{{url('/img/views/schoolfooter.png')}}" alt="Max-width 100%" width="100" height="100">
+        </a>
+        <p class="text-muted ps-5">© 2023 Elena Tonini</p>
+    </div>
+
+    <div class="col mb-3">
+        <h5 class="ps-5">Sezioni</h5>
+        <ul class="nav flex-column ps-5">
+        <li class="nav-item mb-2"><a href="{{route('home')}}" class="nav-link p-0 text-muted">Home</a></li>
+        <li class="nav-item mb-2"><a href="{{route('sites.index')}}" class="nav-link p-0 text-muted">Tutte le sedi</a></li>
+        <li class="nav-item mb-2"><a href="{{route('teachers.index')}}" class="nav-link p-0 text-muted">Tutti i docenti</a></li>
+        <li class="nav-item mb-2"><a href="{{route('events.index')}}" class="nav-link p-0 text-muted">Tutti i calendari assenze</a></li>
+        </ul>
+    </div>
+
+    <div class="col mb-3">
+        <h5 class="ps-5">Sedi</h5>
+        <ul class="nav flex-column ps-5">
+        <li class="nav-item mb-2"><a href="{{route('bergamo.index')}}" class="nav-link p-0 text-muted">Bergamo</a></li>
+        <li class="nav-item mb-2"><a href="{{route('brescia.index')}}" class="nav-link p-0 text-muted">Brescia</a></li>
+        <li class="nav-item mb-2"><a href="{{route('milano.index')}}" class="nav-link p-0 text-muted">Milano</a></li>
+        </ul>
+    </div>
+
+    <div class="col mb-3">
+        <h5 class="ps-5">Accedi</h5>
+        <ul class="nav flex-column ps-5">
+        <li class="nav-item mb-2"><a href="{{route('user.login', 'Docente')}}" class="nav-link p-0 text-muted">Login Docenti</a></li>
+        <li class="nav-item mb-2"><a href="{{route('user.login', 'Segreteria')}}" class="nav-link p-0 text-muted">Login Segreteria</a></li>
+        </ul>
+    </div>
+</footer>
+
 </html>
