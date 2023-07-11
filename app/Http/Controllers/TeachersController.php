@@ -7,6 +7,7 @@ use App\Models\Teacher;
 use App\Models\Timetable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class TeachersController extends Controller
 {
@@ -242,7 +243,7 @@ class TeachersController extends Controller
         session_start();
         $dl = new DataLayer();
 
-        if (isset($_SESSION['logged']))
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && $_SESSION['loggedRole'] == 'Docente')
             return view('teachers.personalSubstitutions')
         ->with(['substitutions_list'=> $dl->listSubstitutionsByTeacher($teacher_id),
         'teachers_list' => $dl->listTeachers(),
@@ -251,15 +252,14 @@ class TeachersController extends Controller
         'loggedName' => $_SESSION['loggedName'],
         'loggedRole' => $_SESSION['loggedRole']]);
 
-        return view('teachers.personalSubstitutions')
-        ->with(['substitutions_list'=> $dl->listSubstitutionsByTeacher($teacher_id), 'logged' => false]);
+        return Redirect::to(route('user.login', ['employee_type' => 'Docente']));
     }
 
     public function absences($teacher_id)
     {
         session_start();
         $dl = new DataLayer();
-        if (isset($_SESSION['logged']))
+        if (isset($_SESSION['logged']) && $_SESSION['logged'])
             return view('teachers.personalAbsences')
                 ->with(['absences_list' => $dl->listAbsencesByTeacher($teacher_id),
                 'logged' => $_SESSION['logged'],
@@ -267,14 +267,13 @@ class TeachersController extends Controller
                 'loggedName' => $_SESSION['loggedName'],
                 'loggedRole' => $_SESSION['loggedRole']]);
 
-        return view('teachers.personalAbsences')
-        ->with(['absences_list' => $dl->listAbsencesByTeacher($teacher_id), 'logged' => false]);
+        return Redirect::to(route('user.login', ['employee_type' => 'Docente']));
     }
 
     public function uploadCertificate(Request $req)
     {
         session_start();
-        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Docente')
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Docente')
         {
             if($req->hasFile('Certificate')){
                 $req->file('Certificate')->storeAs('public/certificates/', 'prof'.$req->input('teacher_id').'absence'.$req->input('absence_id').'.pdf');
@@ -289,8 +288,7 @@ class TeachersController extends Controller
                 'loggedRole' => $_SESSION['loggedRole']]);
         }        
 
-        return view('teachers.personalAbsences')->with(['absences_list' => (new DataLayer())->listAbsencesByTeacher($req->get('teacher_id')), 
-        'logged' => false]);
+        return Redirect::to(route('user.login', ['employee_type' => 'Docente']));
     }
 
     public function substitute($teacher_id, $event_id)

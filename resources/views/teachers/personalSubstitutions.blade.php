@@ -32,7 +32,6 @@
                 <col width="25%"/>
                 <col width="25%"/>
                 <col width="25%"/>
-                <col width="25%"/>
                 <thead>
                     <tr>
                         <th>Giorno</th>
