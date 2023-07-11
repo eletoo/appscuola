@@ -16,6 +16,9 @@
 </nav>
 @endsection
 
+<script src="{{ url('/') }}/js/confirmDeleteTeacher.js"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 @section('body')
 <div class="container-fluid">
     <div class="row">
@@ -50,11 +53,8 @@
                                     <a class="btn btn-primary" href="{{route('teacher.manageCertificates', $teacher->id)}}"><i class="bi bi-journal"></i> Certificati</a>
                                     
                                     <br></br>
-                                    <form class="form-horizontal" name="delete" method="post" action="{{ route('teacher.destroy', $teacher->id) }}">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-primary" id="delete" type="submit" value=" Elimina" class="hidden"><i class="bi bi-person-dash"></i> Elimina</button>
-                                    </form>
+                                    
+                                    <button type="button" class="btn btn-danger" onclick="confirmDelete('{{$teacher->id}}')"><i class="bi bi-person-dash"></i> Elimina</button>
                                 @endif
                             </td>
                         </tr>
@@ -65,4 +65,26 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Attenzione</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Sei sicuro di voler eliminare il docente?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close-modal" data-bs-dismiss="modal">Annulla</button>
+                <button class="btn btn-danger" id="delete"><i class="bi bi-person-dash"></i> Elimina</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
+
