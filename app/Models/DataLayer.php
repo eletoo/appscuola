@@ -32,7 +32,7 @@ class DataLayer
 
     public function infoSite($sitecity)
     {
-        return Site::where('city', $sitecity)->first();
+        return Site::where('id', $sitecity)->first();
     }
 
     public function listSites()

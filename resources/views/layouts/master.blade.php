@@ -65,9 +65,9 @@
                         aria-expanded="false"><i class="bi bi-calendar-event"></i> Calendari Assenze
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('events.school', 'bergamo')}}">Bergamo</a></li>
-                        <li><a class="dropdown-item" href="{{route('events.school', 'brescia')}}">Brescia</a></li>
-                        <li><a class="dropdown-item" href="{{route('events.school', 'milano')}}">Milano</a></li>
+                        <li><a class="dropdown-item" href="{{route('events.school', 2)}}">Bergamo</a></li>
+                        <li><a class="dropdown-item" href="{{route('events.school', 1)}}">Brescia</a></li>
+                        <li><a class="dropdown-item" href="{{route('events.school', 3)}}">Milano</a></li>
                         <div class="dropdown-divider"></div>
                         <li><a class="dropdown-item" href="{{route('events.index')}}" >Tutti i Calendari Assenze</a></li>
                     </ul>

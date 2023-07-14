@@ -37,7 +37,7 @@
 </div>
 
 <div class="container-fluid">
-	<a class="btn btn-primary btn-lg d-flex justify-content-md-center mx-auto my-2 my-md-4" href="{{route('events.school', strtolower($info_site->city))}}">
+	<a class="btn btn-primary btn-lg d-flex justify-content-md-center mx-auto my-2 my-md-4" href="{{route('events.school', $info_site->id)}}">
 		<i class="bi bi-calendar-event"></i>&nbsp; Calendario Assenze Completo 
 	</a>
 </div>

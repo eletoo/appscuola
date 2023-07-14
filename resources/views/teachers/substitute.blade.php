@@ -15,7 +15,7 @@ Sostituzione
         <li class="breadcrumb-item">Sedi</li>
         <li class="breadcrumb-item"><a href="{{route('sites.index')}}">Elenco Sedi</a></li>
         <li class="breadcrumb-item"><a href="{{route(strtolower($city).'.index')}}">{{$city}}</a></li>
-        <li class="breadcrumb-item"><a href="{{route('events.school', $city)}}">Calendario Assenze</a></li>
+        <li class="breadcrumb-item"><a href="{{route('events.school', $city->id)}}">Calendario Assenze</a></li>
         <li class="breadcrumb-item"><a href="{{route('events.show', $event->id)}}">{{$teacher->firstname}} {{$teacher->lastname}}</a></li>
         <li class="breadcrumb-item active" aria-current="page">Sostituzione</li>
     </ol>
@@ -29,11 +29,11 @@ Sostituzione
             <div class="text-align-center my-md-5 my-3">
                 Non ci sono docenti disponibili per la sostituzione
             </div>
-            <a href="{{route('events.school', $city)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+            <a href="{{route('events.school', $city->id)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
             <i class="bi bi-chevron-left"></i> Torna al Calendario
             </a>
         @else
-        <a href="{{route('events.school', $city)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+        <a href="{{route('events.school', $city->id)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
         <i class="bi bi-chevron-left"></i> Torna al Calendario
         </a>
         <div class="col-md-offset-10 col-md-12">

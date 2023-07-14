@@ -45,22 +45,10 @@ class EventController extends Controller
         ]);
     }
 
-    
-    public function findMethod(Request $req, string $id){
-        try{
-            return [$this, $id]($req); //if $id is the name of a site city, it calls the method named after the city
-        } catch(Exception){
-            if ($id == "create")
-                return $this->create(); //if $id is "create", it calls the method to create a new event
-            return $this->show($id); //else it means that $id contains an event number and it calls the method to show the desired view
-        }
-    }
-
-    public function bergamo()
-    {
+    public function eventsByCity($city_id){
         session_start();
         $dl = new DataLayer();
-        $teachers_list = $dl->listSiteTeachers(2);
+        $teachers_list = $dl->listSiteTeachers($city_id);
         $events=array();
         foreach($teachers_list as $teacher)
         {
@@ -68,7 +56,7 @@ class EventController extends Controller
         }
         if (isset($_SESSION['logged']) && $_SESSION['logged']) {
             return view('events.school')->with([
-                'site' => $dl->infoSite('Bergamo'),
+                'site' => $dl->infoSite($city_id),
                 'events' => $events,
                 'teachers_list' => $teachers_list,
                 'logged' => true,
@@ -78,66 +66,7 @@ class EventController extends Controller
             ]);
         }
         return view('events.school')->with([
-            'site' => $dl->infoSite('Bergamo'),
-            'events' => $events,
-            'teachers_list' => $teachers_list,
-            'logged' => false
-        ]);
-    }
-
-    public function brescia()
-    {
-        session_start();
-        $dl = new DataLayer();
-        $teachers_list = $dl->listSiteTeachers(1);
-        $events=array();
-        foreach($teachers_list as $teacher)
-        {
-            $events[] = $dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
-        }
-        if (isset($_SESSION['logged']) && $_SESSION['logged']) {
-            return view('events.school')->with([
-                'site' => $dl->infoSite('Brescia'),
-                'events' => $events,
-                'teachers_list' => $teachers_list,
-                'logged' => true,
-                'loggedID' => $_SESSION['loggedID'],
-                'loggedName' => $_SESSION['loggedName'],
-                'loggedRole' => $_SESSION['loggedRole']
-            ]);
-        }
-
-        return view('events.school')->with([
-            'site' => $dl->infoSite('Brescia'),
-            'events' => $events,
-            'teachers_list' => $teachers_list,
-            'logged' => false
-        ]);
-    }
-
-    public function milano()
-    {
-        session_start();
-        $dl = new DataLayer();
-        $teachers_list = $dl->listSiteTeachers(3);
-        $events=array();
-        foreach($teachers_list as $teacher)
-        {
-            $events[]=$dl->listEvents()->where('teacher_id', $teacher->id)->where('substitute_id', null);
-        }
-        if (isset($_SESSION['logged']) && $_SESSION['logged']) {
-            return view('events.school')->with([
-                'site' => $dl->infoSite('Milano'),
-                'events' => $events,
-                'teachers_list' => $teachers_list,
-                'logged' => true,
-                'loggedID' => $_SESSION['loggedID'],
-                'loggedName' => $_SESSION['loggedName'],
-                'loggedRole' => $_SESSION['loggedRole']
-            ]);
-        }
-        return view('events.school')->with([
-            'site' => $dl->infoSite('Milano'),
+            'site' => $dl->infoSite($city_id),
             'events' => $events,
             'teachers_list' => $teachers_list,
             'logged' => false
@@ -205,7 +134,7 @@ class EventController extends Controller
         $teacherID = $event->teacher_id;
         $teacher = $dl->getTeacher(intval($teacherID));
 
-        $site_city=$dl->getSiteById(intval($teacher->site_id))->city;
+        $site=$dl->getSiteById(intval($teacher->site_id));
 
         $timetables = $dl->listTimetablesByTeacher(intval($teacherID));
         $in_class = true;
@@ -218,10 +147,10 @@ class EventController extends Controller
         }
         if (isset($_SESSION['logged'])) {
             return view('events.show')
-            ->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city, 'in_class' => $in_class, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+            ->with(['event'=> $event, 'teacher'=> $teacher, 'site' => $site, 'in_class' => $in_class, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
         }
         return view('events.show')
-        ->with(['event'=> $event, 'teacher'=> $teacher, 'site_city' => $site_city, 'in_class' => $in_class, 'logged' => false]);
+        ->with(['event'=> $event, 'teacher'=> $teacher, 'site' => $site, 'in_class' => $in_class, 'logged' => false]);
     }
 
     /**

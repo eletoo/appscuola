@@ -24,7 +24,7 @@ class SitesController extends Controller
         session_start();
         $dl = new DataLayer();
         $teachers = $dl->listSiteTeachers(1);
-        $info_site = $dl->infoSite('Brescia');
+        $info_site = $dl->infoSite(1);
         if (isset($_SESSION['logged'])) {
             return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
         }
@@ -36,7 +36,7 @@ class SitesController extends Controller
         session_start();
         $dl = new DataLayer();
         $teachers = $dl->listSiteTeachers(2);
-        $info_site = $dl->infoSite('Bergamo');
+        $info_site = $dl->infoSite(2);
         if (isset($_SESSION['logged'])) {
             return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
         }
@@ -48,7 +48,7 @@ class SitesController extends Controller
         session_start();
         $dl = new DataLayer();
         $teachers = $dl->listSiteTeachers(3);
-        $info_site = $dl->infoSite('Milano');
+        $info_site = $dl->infoSite(3);
         if (isset($_SESSION['logged'])) {
             return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
         }
