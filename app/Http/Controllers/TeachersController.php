@@ -220,11 +220,11 @@ class TeachersController extends Controller
         session_start();
         $dl = new DataLayer();
         $teacher = $dl->getTeacher(intval($teacher_id));
-        $site_city=$dl->getSiteById(intval($teacher->site_id))->city;
+        $site_city=$dl->getSiteById(intval($teacher->site_id));
         if (isset($_SESSION['logged'])) {
             return view('teachers.timetable')->
             with(['teacher'=> $teacher, 
-            'site_city'=> $site_city, 
+            'site'=> $site_city, 
             'lectures' => $dl->listTimetablesByTeacher($teacher_id),
             'logged' => true, 
             'loggedID' => $_SESSION['loggedID'], 
@@ -233,7 +233,7 @@ class TeachersController extends Controller
         }
         return view('teachers.timetable')
         ->with(['teacher'=> $teacher, 
-        'site_city'=> $site_city, 
+        'site'=> $site_city, 
         'lectures' => $dl->listTimetablesByTeacher($teacher_id), 
         'logged' => false]);
     }
@@ -301,7 +301,7 @@ class TeachersController extends Controller
             return view('teachers.substitute')->with(['available_teachers' => $available_teachers, 
             'teacher' => $dl->getTeacher(intval($teacher_id)), 
             'event' => $dl->getEvent(intval($event_id)), 
-            'city' => $dl->getSiteById(intval($dl->getTeacher(intval($teacher_id))->site_id))->city,
+            'site' => $dl->getSiteById(intval($dl->getTeacher(intval($teacher_id))->site_id)),
             'logged' => $_SESSION['logged'], 
             'loggedID' => $_SESSION['loggedID'], 
             'loggedName' => $_SESSION['loggedName'], 

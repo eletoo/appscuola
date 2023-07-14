@@ -48,9 +48,9 @@
                         aria-expanded="false"><i class="bi bi-building"></i> Sedi
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('bergamo.index')}}">Bergamo</a></li>
-                        <li><a class="dropdown-item" href="{{route('brescia.index')}}">Brescia</a></li>
-                        <li><a class="dropdown-item" href="{{route('milano.index')}}">Milano</a></li>
+                        <li><a class="dropdown-item" href="{{route('school.index',2)}}">Bergamo</a></li>
+                        <li><a class="dropdown-item" href="{{route('school.index',1)}}">Brescia</a></li>
+                        <li><a class="dropdown-item" href="{{route('school.index',3)}}">Milano</a></li>
                         <div class="dropdown-divider"></div>
                         <li><a class="dropdown-item" href="{{route('sites.index')}}" >Visualizza Tutte</a></li>
                     </ul>
@@ -192,9 +192,9 @@
     <div class="col mb-3">
         <h5 class="ps-5">Sedi</h5>
         <ul class="nav flex-column ps-5">
-        <li class="nav-item mb-2"><a href="{{route('bergamo.index')}}" class="nav-link p-0 text-muted">Bergamo</a></li>
-        <li class="nav-item mb-2"><a href="{{route('brescia.index')}}" class="nav-link p-0 text-muted">Brescia</a></li>
-        <li class="nav-item mb-2"><a href="{{route('milano.index')}}" class="nav-link p-0 text-muted">Milano</a></li>
+        <li class="nav-item mb-2"><a href="{{route('school.index',2)}}" class="nav-link p-0 text-muted">Bergamo</a></li>
+        <li class="nav-item mb-2"><a href="{{route('school.index',1)}}" class="nav-link p-0 text-muted">Brescia</a></li>
+        <li class="nav-item mb-2"><a href="{{route('school.index',3)}}" class="nav-link p-0 text-muted">Milano</a></li>
         </ul>
     </div>
 

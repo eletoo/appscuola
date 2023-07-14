@@ -14,8 +14,8 @@ Sostituzione
         <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
         <li class="breadcrumb-item">Sedi</li>
         <li class="breadcrumb-item"><a href="{{route('sites.index')}}">Elenco Sedi</a></li>
-        <li class="breadcrumb-item"><a href="{{route(strtolower($city).'.index')}}">{{$city}}</a></li>
-        <li class="breadcrumb-item"><a href="{{route('events.school', $city->id)}}">Calendario Assenze</a></li>
+        <li class="breadcrumb-item"><a href="{{route('school.index', $site->id)}}">{{$site->city}}</a></li>
+        <li class="breadcrumb-item"><a href="{{route('events.school', $site->id)}}">Calendario Assenze</a></li>
         <li class="breadcrumb-item"><a href="{{route('events.show', $event->id)}}">{{$teacher->firstname}} {{$teacher->lastname}}</a></li>
         <li class="breadcrumb-item active" aria-current="page">Sostituzione</li>
     </ol>
@@ -29,11 +29,11 @@ Sostituzione
             <div class="text-align-center my-md-5 my-3">
                 Non ci sono docenti disponibili per la sostituzione
             </div>
-            <a href="{{route('events.school', $city->id)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+            <a href="{{route('events.school', $site->id)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
             <i class="bi bi-chevron-left"></i> Torna al Calendario
             </a>
         @else
-        <a href="{{route('events.school', $city->id)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
+        <a href="{{route('events.school', $site->id)}}" class="btn btn-primary btn-lg d-flex justify-content-center mx-auto my-2 my-md-4">
         <i class="bi bi-chevron-left"></i> Torna al Calendario
         </a>
         <div class="col-md-offset-10 col-md-12">
@@ -55,7 +55,7 @@ Sostituzione
                                 @csrf
                                 <button class="btn btn-primary" id="selectSubstitute" type="submit" value=" Seleziona" class="hidden"><i class="bi-check-lg"></i> Seleziona</button>
                                 <input id="selectSubstitute" type="hidden" value="{{$available_teacher->id}}" name="substitute_id"/>
-                                <input id="city" type="hidden" value="{{$city}}" name="city"/>
+                                <input id="city" type="hidden" value="{{$site->city}}" name="city"/>
                             </form>
                         </td>
                     </tr>

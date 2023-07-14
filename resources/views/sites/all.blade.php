@@ -48,9 +48,9 @@
                         ({{$site->province}})
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{route('events.school', strtolower($site->id))}}">
+                        <a class="btn btn-primary" href="{{route('events.school', $site->id)}}">
                         <i class="bi bi-calendar-event"></i> Calendario</a>
-                        <a class="btn btn-primary" href="{{route(strtolower($site->city).'.index')}}">
+                        <a class="btn btn-primary" href="{{route('school.index', $site->id)}}">
                         <i class="bi bi-person"></i> Docenti</a>
                     </td>
                 </tr>

@@ -21,7 +21,7 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <a href="{{route('bergamo.index')}}">
+            <a href="{{route('school.index',2)}}">
                 <img class="d-block w-100" src="{{url('/img/carousel/bergamo.jpg')}}" alt="Bergamo">
             </a>
             <div class="carousel-caption d-none d-md-block">
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <a href="{{route('bergamo.index')}}">
+            <a href="{{route('school.index',1)}}">
                 <img class="d-block w-100" src="{{url('/img/carousel/brescia.jpg')}}" alt="Brescia">
             </a>
             <div class="carousel-caption d-none d-md-block">
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <a href="{{route('bergamo.index')}}">
+            <a href="{{route('school.index',3)}}">
                 <img class="d-block w-100" src="{{url('/img/carousel/milano.jpg')}}" alt="Milano">
             </a>
             <div class="carousel-caption d-none d-md-block">

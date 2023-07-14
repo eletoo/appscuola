@@ -16,12 +16,11 @@ Calendario Assenze - {{$site->city}}
     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
     <li class="breadcrumb-item">Sedi</li>
     <li class="breadcrumb-item"><a href="{{route('sites.index')}}">Elenco Sedi</a></li>
-    <li class="breadcrumb-item"><a href="{{route(strtolower($site->city).'.index')}}">{{$site->city}}</a></li>
+    <li class="breadcrumb-item"><a href="{{route('school.index', $site->id)}}">{{$site->city}}</a></li>
     <li class="breadcrumb-item active" aria-current="page">Calendario Assenze</li>
   </ol>
 </nav>
 @endsection
-
 
 <head>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css'/>

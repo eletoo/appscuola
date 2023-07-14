@@ -67,9 +67,7 @@ Route::get('/personale/docenti/{teacher_id}/orario', [TeachersController::class,
 
 /*Sites*/
 Route::get('/sede/tutte', [SitesController::class, 'index'])->name('sites.index');
-Route::get('/sede/brescia', [SitesController::class, 'brescia'])->name('brescia.index');
-Route::get('/sede/bergamo', [SitesController::class, 'bergamo'])->name('bergamo.index');
-Route::get('/sede/milano', [SitesController::class, 'milano'])->name('milano.index');
+Route::get('/sede/{id}', [SitesController::class, 'school'])->name('school.index');
 
 /*Events*/
 Route::get('/events/city/{city_id}', [EventController::class, 'eventsByCity'])->name('events.school');

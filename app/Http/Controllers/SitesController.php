@@ -19,12 +19,12 @@ class SitesController extends Controller
         return view('sites.all')->with(['sites_list'=> $sites_list, 'logged' => false]);
     }
 
-    public function brescia()
+    public function school($schoolId)
     {
         session_start();
         $dl = new DataLayer();
-        $teachers = $dl->listSiteTeachers(1);
-        $info_site = $dl->infoSite(1);
+        $teachers = $dl->listSiteTeachers($schoolId);
+        $info_site = $dl->infoSite($schoolId);
         if (isset($_SESSION['logged'])) {
             return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
         }
