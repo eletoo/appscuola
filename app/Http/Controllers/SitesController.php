@@ -30,6 +30,21 @@ class SitesController extends Controller
         }
         return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => false]);
     }  
+<<<<<<< HEAD
+=======
+
+    public function milano()
+    {
+        session_start();
+        $dl = new DataLayer();
+        $teachers = $dl->listSiteTeachers(3);
+        $info_site = $dl->infoSite(3);
+        if (isset($_SESSION['logged'])) {
+            return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
+        }
+        return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => false]);
+    }
+>>>>>>> 50200607cc8452388353d88c496008897133d8e1
 
     public function createSite()
     {
