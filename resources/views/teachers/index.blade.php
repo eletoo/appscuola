@@ -54,7 +54,7 @@
                                     
                                     <br></br>
                                     
-                                    <button type="button" class="btn btn-danger" onclick="confirmDelete('{{$teacher->id}}')"><i class="bi bi-person-dash"></i> Elimina</button>
+                                    <button type="button" class="btn btn-danger" onclick="confirmDelete('{{$teacher->id}}, true')"><i class="bi bi-person-dash"></i> Elimina</button>
                                 @endif
                             </td>
                         </tr>

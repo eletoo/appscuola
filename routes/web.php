@@ -26,6 +26,7 @@ Route::middleware(['authAdmin'])->group(function(){
     // only admin can remove secretaries from the database
     Route::get('/personale/segreteria/tutti', [TeachersController::class, 'secretaries'])->name('secretaries.index');
     Route::delete('/personale/segreteria/{secretary_id}', [TeachersController::class, 'destroySecretary'])->name('secretary.destroy');
+    
     // POSSIBLE EXPANSION: only admin can add sites to the database
     // Route::get('/sede/nuova', [SitesController::class, 'createSite'])->name('site.add');
     // Route::post('/sede/nuova', [SitesController::class, 'storeSite'])->name('site.store');

@@ -164,7 +164,7 @@ class TeachersController extends Controller
         session_start();
         $dl = new DataLayer();
         $secretaries = $dl->listSecretaries();
-        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin') {
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Admin') {
             return view('secretariat.index')->with(['secretaries_list' => $secretaries, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
         }
         return redirect()->route('user.login', ['employee_type' => 'Segreteria']);
@@ -174,7 +174,7 @@ class TeachersController extends Controller
     {
         session_start();        
 
-        if (isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin'){
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Admin'){
             return view('admin.home')
             ->with('logged', true)
             ->with('loggedName', $_SESSION['loggedName'])

@@ -74,29 +74,7 @@ function checkTeacher(button)
                 }
 
             });
-        } /*else {
-            teacher_id = $("input[name=teacher_id]").val();
-            password = $("input[name=password]").val();
-
-            $.ajax('/ajaxTeacherUpdate', {
-
-                method: 'GET',
-
-                data: {firstname: firstName.val().trim(), lastname: lastName.val().trim(), id: teacher_id, password: password, site_id: site_id.val()},
-
-                success: function (data) {
-
-                    if (data.found)
-                    {
-                        error = true;
-                        lastName_msg.html("Il docente è già presente nel database");
-                    } else {
-                        $('form[name=teacherRegistration]').submit();
-                    }
-                }
-
-            });
-        }*/
+        } 
     }
     
 }
