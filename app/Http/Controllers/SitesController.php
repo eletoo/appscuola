@@ -29,31 +29,7 @@ class SitesController extends Controller
             return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
         }
         return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => false]);
-    }
-
-    public function bergamo()
-    {
-        session_start();
-        $dl = new DataLayer();
-        $teachers = $dl->listSiteTeachers(2);
-        $info_site = $dl->infoSite(2);
-        if (isset($_SESSION['logged'])) {
-            return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
-        }
-        return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => false]);
-    }
-
-    public function milano()
-    {
-        session_start();
-        $dl = new DataLayer();
-        $teachers = $dl->listSiteTeachers(3);
-        $info_site = $dl->infoSite(3);
-        if (isset($_SESSION['logged'])) {
-            return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => true, 'loggedID' => $_SESSION['loggedID'], 'loggedName' => $_SESSION['loggedName'], 'loggedRole' => $_SESSION['loggedRole']]);
-        }
-        return view('sites.index')->with(['teachers_list' => $teachers, 'info_site' => $info_site, 'logged' => false]);
-    }
+    }  
 
     public function createSite()
     {
