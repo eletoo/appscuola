@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function authentication($employee_type) {
         session_start();
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true){
+        if (isset($_SESSION['logged']) && $_SESSION['logged']){
             if ($_SESSION['loggedRole'] == $employee_type) {
                 return Redirect::to(route('home'));
             }
@@ -40,20 +40,11 @@ class AuthController extends Controller
             $_SESSION['loggedName'] = $dl->getTeacher(auth()->user()->id)->firstname . ' ' . $dl->getTeacher(auth()->user()->id)->lastname;
             $_SESSION['loggedEmail'] = auth()->user()->email;
             // if the user is an Admin, I want to redirect him to the admin page
-            if($dl->getTeacher(auth()->user()->id)->role == 'Admin')
+            if($dl->getTeacher(auth()->user()->id)->role == 'Admin' && $employee_type == 'Segreteria')
             {
-                if ($employee_type == 'Segreteria')
-                {
-                    $_SESSION['logged'] = true;
-                    $_SESSION['loggedRole'] = 'Admin';
-                    return Redirect::to(route('admin.home'));
-                }
-                return view('auth.auth')->with(['error'=> 'Non hai i permessi per accedere a questa pagina',
-                'employee_type'=> $employee_type,
-                'logged' => $_SESSION['logged'],
-                'loggedName' => $_SESSION['loggedName'],
-                'loggedRole' => $_SESSION['loggedRole'],
-                'loggedID' => $_SESSION['loggedID']]);
+                $_SESSION['logged'] = true;
+                $_SESSION['loggedRole'] = 'Admin';
+                return Redirect::to(route('admin.home'));
             }
             // if the user is a secretary, I want to redirect him to the secretary page
             else if($dl->getTeacher(auth()->user()->id)->role == 'Segreteria')
@@ -70,32 +61,21 @@ class AuthController extends Controller
                     $_SESSION['loggedRole'] = 'Admin';
                     return Redirect::to(route('admin.home'));
                 }
-
-                return view('auth.auth')->with(['error'=> 'Non hai i permessi per accedere a questa pagina',
-                'employee_type'=> $employee_type,
-                'logged' => $_SESSION['logged'],
-                'loggedName' => $_SESSION['loggedName'],
-                'loggedRole' => $_SESSION['loggedRole'],
-                'loggedID' => $_SESSION['loggedID']]);
             }
-            else if($dl->getTeacher(auth()->user()->id)->role == 'Docente')
+            else if($dl->getTeacher(auth()->user()->id)->role == 'Docente' && $employee_type == 'Docente')
             {
-                if($employee_type == 'Docente')
-                {
-                    $_SESSION['logged'] = true;
-                    $_SESSION['loggedRole'] = 'Docente';
-                    return Redirect::to(route('teacher.home'));
-                }
-
-                return view('auth.auth')
-                ->with(['error'=> 'Non hai i permessi per accedere a questa pagina',
-                'employee_type'=> $employee_type,
-                'logged' => $_SESSION['logged'],
-                'loggedName' => $_SESSION['loggedName'],
-                'loggedRole' => $_SESSION['loggedRole'],
-                'loggedID' => $_SESSION['loggedID']]);
+                $_SESSION['logged'] = true;
+                $_SESSION['loggedRole'] = 'Docente';
+                return Redirect::to(route('teacher.home'));
             }
             
+            return view('auth.auth')
+            ->with(['error'=> 'Non hai i permessi per accedere a questa pagina',
+            'employee_type'=> $employee_type,
+            'logged' => $_SESSION['logged'],
+            'loggedName' => $_SESSION['loggedName'],
+            'loggedRole' => $_SESSION['loggedRole'],
+            'loggedID' => $_SESSION['loggedID']]);
         }
 
         // if the user is already logged in, I want to keep the "logged-in" navbar and show an error message
