@@ -64,7 +64,6 @@ Route::middleware(['authTeacher'])->group(function(){
 Route::get('/personale/docenti', [TeachersController::class, 'teachers'])->name('teachers.index');
 Route::get('/personale/docenti/{teacher_id}/orario', [TeachersController::class, 'timetable'])->name('teachers.timetable');
 
-
 /*Sites*/
 Route::get('/sede/tutte', [SitesController::class, 'index'])->name('sites.index');
 Route::get('/sede/{id}', [SitesController::class, 'school'])->name('school.index');

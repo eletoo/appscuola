@@ -15,7 +15,7 @@ class authSecretary extends Middleware
     protected function redirectTo($request)
     {
         session_start();
-        if(isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Segreteria')
+        if(isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Segreteria')
         {
             return true;
         }

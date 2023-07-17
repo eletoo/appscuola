@@ -15,7 +15,7 @@ class authAdmin extends Middleware
     protected function redirectTo($request)
     {
         session_start();
-        if(isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Admin')
+        if(isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Admin')
         {
             return true;
         }

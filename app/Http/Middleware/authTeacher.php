@@ -15,7 +15,7 @@ class authTeacher extends Middleware
     protected function redirectTo($request)
     {
         session_start();
-        if(isset($_SESSION['logged']) && $_SESSION['loggedRole'] == 'Docente')
+        if(isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['loggedRole'] == 'Docente')
         {
             return true;
         }
