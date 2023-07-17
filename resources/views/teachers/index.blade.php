@@ -16,7 +16,7 @@
 </nav>
 @endsection
 
-<script src="{{ url('/') }}/js/confirmDeleteTeacher.js"></script>
+<script src="{{ url('/') }}/js/confirmDelete.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 @section('body')
@@ -54,7 +54,7 @@
                                     
                                     <br></br>
                                     
-                                    <button type="button" class="btn btn-danger" onclick="confirmDelete('{{$teacher->id}}, true')"><i class="bi bi-person-dash"></i> Elimina</button>
+                                    <button type="button" class="btn btn-danger" onclick="confirmDelete('{{$teacher->id}}', false)"><i class="bi bi-person-dash"></i> Elimina</button>
                                 @endif
                             </td>
                         </tr>

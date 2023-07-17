@@ -24,7 +24,7 @@ return new class extends Migration
         });
 
         Schema::table('timetable', function(Blueprint $table){
-            $table->foreign('teacher_id')->references('id')->on('teacher');
+            $table->foreign('teacher_id')->references('id')->on('teacher')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

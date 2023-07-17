@@ -6,7 +6,7 @@
 
 @section('page_title', 'Tutti i Segretari')
 
-<script src="{{ url('/') }}/js/confirmDeleteTeacher.js"></script>
+<script src="{{ url('/') }}/js/confirmDelete.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 @section('breadcrumb')
@@ -40,7 +40,7 @@
                             <td>{{$secretary->firstname}}</td>
 
                             <td>
-                                <button type="button" class="btn btn-danger" onclick="confirmDelete('{{$secretary->id}},false')"><i class="bi bi-person-dash"></i> Elimina</button>
+                                <button type="button" class="btn btn-danger" onclick="confirmDelete('{{$secretary->id}}', false)"><i class="bi bi-person-dash"></i> Elimina</button>
                             </td>
                         </tr>
                     @endforeach

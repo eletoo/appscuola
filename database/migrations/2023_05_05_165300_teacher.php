@@ -23,8 +23,8 @@ return new class extends Migration
         });
 
         Schema::table('teacher', function (Blueprint $table){
-            $table->foreign('site_id')->references('id')->on('site');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('site_id')->references('id')->on('site')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
