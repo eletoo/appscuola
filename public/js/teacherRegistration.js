@@ -21,6 +21,9 @@ function checkTeacher(button)
         firstName_msg.html("Il nome deve contenere solo lettere (no cifre, no caratteri speciali)");
         firstName.focus();
         error = true;
+    } else if (firstName.val().trim().length > 20) {
+        firstName_msg.html("Il campo 'Nome' non può contenere più di 20 caratteri");
+        error = true;
     } else {
         firstName_msg.html("");
     }
@@ -35,6 +38,9 @@ function checkTeacher(button)
         lastName_msg.html("Il cognome deve contenere solo lettere (no cifre, no caratteri speciali)");
         lastName.focus();
         error = true;
+    } else if (lastName.val().trim().length > 20) {	
+        lastName_msg.html("Il campo 'Cognome' non può contenere più di 20 caratteri");
+        erroq = true;
     } else {
         lastName_msg.html("");
     }
