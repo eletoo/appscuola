@@ -63,7 +63,7 @@
                                             style="display:none"
                                         @endif
                                         />
-                                        <button class="btn btn-primary my-2" style="display: none" id="loadCertificate-{{$absence->id}}" type="submit" value=" Carica Certificato" class="hidden"><i class="bi bi-eye"></i> Carica Certificato</button>
+                                        <button class="btn btn-primary my-2" style="display: none" id="loadCertificate-{{$absence->id}}" type="submit" value=" Carica Certificato" class="hidden"><i class="bi bi-upload"></i> Carica Certificato</button>
                                     </form>
                                 </td>
                                 <td>
