@@ -13,7 +13,7 @@ class EventController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('authSecretary', ['only' => ['update', 'create', 'store', 'edit', 'destroy']]);
+        $this->middleware('authSecretary', ['only' => ['show', 'update', 'create', 'store', 'edit', 'destroy']]);
         $this->middleware('authTeacher', ['only' => ['show', 'create', 'store']]);
     }
 
